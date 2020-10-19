@@ -55,17 +55,20 @@
 // main-content
 .main-content{
   background-color: #F4F4F4;
+  padding-bottom: 50px;
 }
 .main-content .wrapper{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 26px;
-  margin-bottom: 30px;
+  padding-bottom: 10px;
 }
 .main-content .title{
   font-size: 34px;
   font-weight: normal;
   text-align: center;
+  margin-top: 0;
+  padding-top: 50px;
 }
 .main-content img{
   width: 280px;
@@ -75,8 +78,11 @@
   height: 350px;
   background-color: #fff;
 }
+.main-content .info{
+  padding: 10px;
+}
 .main-content .heading{
-  margin: 10px 0 0;
+  margin: 0;
 }
 .main-content .date,
 .main-content .text{
@@ -88,4 +94,11 @@
 .main-content .date{
   font-size: 0.8rem;
   color: $dark-gray;
+}
+.main-content .more{
+  text-align: center;
+  font-size: 1.25rem;
+}
+.main-content .more a{
+  color: $primary;
 }
