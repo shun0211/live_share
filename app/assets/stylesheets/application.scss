@@ -15,7 +15,9 @@
  */
 
  @import "sanitize.scss";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
  @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
  @import "sub_footer.scss";
- @import "tickets.scss";
+ @import "tickets/index.scss";
  @import "footer.scss";

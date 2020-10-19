@@ -1,0 +1,91 @@
+@import "common.scss";
+
+.big-bg{
+  background-image: url(toppage-bg);
+  min-height: 100vh;
+  background-size: cover;
+  background-position: right 20% center;
+}
+.wrapper{
+  padding: 0 4%;
+}
+.page-header h2{
+  font-family: 'Sriracha', sans-serif;
+  font-size: 48px;
+  margin-top: 5px;
+}
+.page-header a{
+  color: $dark_gray;
+}
+.top-nav{
+  display: flex;
+  font-size: 1.75rem;
+  margin-top: 10px;
+}
+.page-header{
+  display: flex;
+  justify-content: space-between;
+}
+.page-header li {
+  margin-left: 16px;
+  color: $dark_gray;
+}
+.home-content{
+  text-align: center;
+  color: $dark_gray;
+  margin-top: 18%;
+}
+.home-content h1{
+  font-family: 'Sriracha', sans-serif;
+  font-size: 4.25rem;
+  margin-bottom: 0;
+}
+.home-content p{
+  font-size: 1.25rem;
+  margin-bottom: 48px;
+}
+.button{
+  color: #000;
+  background: #FFCDCD;
+  border-radius: 10px;
+  padding: 18px 32px;
+  font-size: 1.2rem;
+}
+
+// main-content
+.main-content{
+  background-color: #F4F4F4;
+}
+.main-content .wrapper{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  margin-bottom: 30px;
+}
+.main-content .title{
+  font-size: 34px;
+  font-weight: normal;
+  text-align: center;
+}
+.main-content img{
+  width: 280px;
+  height: 220px;
+}
+.main-content .item{
+  height: 350px;
+  background-color: #fff;
+}
+.main-content .heading{
+  margin: 10px 0 0;
+}
+.main-content .date,
+.main-content .text{
+  margin: 5px 0;
+}
+.main-content .heading{
+  font-size: 1.25rem
+}
+.main-content .date{
+  font-size: 0.8rem;
+  color: $dark-gray;
+}
