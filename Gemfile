@@ -49,3 +49,6 @@ gem 'haml-rails'
 # erbからhamlに一括変換するGem
 gem 'erb2haml'
 gem 'font-awesome-sass'
+gem 'devise'
+gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'jquery-rails'
