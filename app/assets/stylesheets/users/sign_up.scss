@@ -1,0 +1,40 @@
+@import "common.scss";
+
+.container{
+  margin-bottom: 70px;
+}
+.heading{
+  text-align: center;
+  padding: 20px 0 20px
+}
+.wrapper{
+  background-color: $boundary_primary;
+}
+.form-group{
+  padding: 20px 8% 30px;
+}
+.form-control{
+  margin-bottom: 15px;
+}
+.btn{
+  width: 40%;
+  margin: 0 auto;
+  display: block;
+  margin: 0 auto;
+}
+.note{
+  font-size: 0.8rem;
+  text-align: center;
+  padding-top: 25px;
+}
+.lead{
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 40px 0 15px;
+}
+#big-login-btn{
+  width: 50%;
+  padding: 15px 0 15px;
+  border: solid 0.5px $dark_gray;
+  border-radius: 10px;
+}

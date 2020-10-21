@@ -1,40 +1,33 @@
 <%= render partial: 'shared/header' %>
 
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <h2 class="heading">新規会員登録</h2>
+    <div class="wrapper form-group">
+      <%= f.label :nickname, "ニックネーム" %>
+      <%= f.text_field :nickname, class: "form-control", autofocus: true %>
 
-<h2>Sign up</h2>
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control" %>
 
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
 
+      <%= f.label :password_confirmation, "パスワード確認" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
 
+      <%= f.submit "新規登録", class: "btn btn-light", id: "registration-btn" %>
+      <p class="note">アカウント登録せず機能を試したい方はこちら</p>
+      <button class="btn btn-success">
+        かんたんログイン
+      </button>
+    </div>
+    <h3 class="lead">ログインはこちらから</h3>
+    <button class="btn btn-light" id="big-login-btn">
+      ログイン
+    </button>
+  <% end %>
+</div>
 
-
-
-
-
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>

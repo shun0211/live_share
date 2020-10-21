@@ -19,6 +19,8 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
- @import "sub_footer.scss";
- @import "tickets/index.scss";
- @import "footer.scss";
+ @import "sub_footer";
+ @import "tickets/index";
+ @import "footer";
+ @import "header";
+ @import "users/sign_up";
