@@ -1,26 +1,29 @@
-<h2>Log in</h2>
+<%= render partial: "shared/header" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h2 class="heading">ログイン</h2>
+    <div class="wrapper form-group">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control", autofocus: true %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.submit "ログイン", class: "btn btn-light", id: "login-btn" %>
+      <a class="note" id="forget_password" href="#">パスワードをお忘れの方はこちら</a>
+
+      <p class="note">アカウント登録せず機能を試したい方はこちら</p>
+      <button class="btn btn-success">
+        かんたんログイン
+      </button>
     </div>
+    <h3 class="lead">はじめての方はこちらから会員登録</h3>
+    <button class="btn btn-light" id="big-login-btn">
+      新規登録
+    </button>
   <% end %>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<%= render partial: "shared/sub_footer" %>
+<%= render partial: "shared/footer" %>

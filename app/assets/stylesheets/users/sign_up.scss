@@ -1,5 +1,6 @@
 @import "common.scss";
 
+// 新規登録画面
 .container{
   margin-bottom: 70px;
 }
@@ -37,4 +38,14 @@
   padding: 15px 0 15px;
   border: solid 0.5px $dark_gray;
   border-radius: 10px;
+}
+// ログイン画面
+#forget_password{
+  text-align: center;
+  padding-top: 10px;
+  display: block;
+  color: #000;
+}
+#forget_password:hover{
+  color: $primary;
 }

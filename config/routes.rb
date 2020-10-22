@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
   devise_scope :user do
-    get 'sign_in', to: 'users/sessions#new'
-    delete 'sign_out', to: 'users/sessions#destroy'
+    get 'login', to: 'users/sessions#new'
+    delete 'logout', to: 'users/sessions#destroy'
     get 'sign_up', to: 'users/registrations#new'
   end
 
