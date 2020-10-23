@@ -4,6 +4,14 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <h2 class="heading">ログイン</h2>
     <div class="wrapper form-group">
+      <% if flash.any? %>
+        <div class="error_messages">
+          <% flash.each do |key, value| %>
+            <%= content_tag :div, value, class: "#{key} alert-danger" %>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= f.label :email, "メールアドレス" %>
       <%= f.email_field :email, class: "form-control", autofocus: true %>
 
@@ -19,9 +27,7 @@
       </button>
     </div>
     <h3 class="lead">はじめての方はこちらから会員登録</h3>
-    <button class="btn btn-light" id="big-login-btn">
-      新規登録
-    </button>
+    <%= link_to "新規登録", sign_up_path, class: "btn btn-light", id: "big-login-btn" %>
   <% end %>
 </div>
 

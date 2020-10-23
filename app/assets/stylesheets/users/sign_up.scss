@@ -29,9 +29,9 @@
   padding-top: 25px;
 }
 .lead{
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
-  padding: 40px 0 15px;
+  padding: 40px 0 10px;
 }
 #big-login-btn{
   width: 50%;
@@ -39,6 +39,11 @@
   border: solid 0.5px $dark_gray;
   border-radius: 10px;
 }
+// エラーメッセージ
+.error_messages{
+
+}
+
 // ログイン画面
 #forget_password{
   text-align: center;
