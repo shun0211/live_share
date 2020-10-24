@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, :controllers =>{
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions'
+  }
+  devise_scope :user do
+    get 'login', to: 'users/sessions#new'
+    delete 'logout', to: 'users/sessions#destroy'
+    get 'sign_up', to: 'users/registrations#new'
+  end
+
   resources :tickets
   root 'tickets#index'
-
 end
