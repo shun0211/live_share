@@ -10,11 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_135703) do
+ActiveRecord::Schema.define(version: 2020_10_25_075141) do
 
-  create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "event_name"
+    t.string "venue"
+    t.date "event_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "number_of_sheets"
+    t.string "sheet_type"
+    t.integer "price"
+    t.string "shipping"
+    t.string "delivery_method"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "event_id", null: false
+    t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -32,4 +48,5 @@ ActiveRecord::Schema.define(version: 2020_10_20_135703) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tickets", "events"
 end
