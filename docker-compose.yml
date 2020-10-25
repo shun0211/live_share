@@ -21,8 +21,13 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp
+      - bundle:/bundle
     ports:
       - "3000:3000"
     # depends_onでコンテナが起動する順番を制御する（この場合、db→web）
     depends_on:
       - db
+
+volumes:
+  bundle:
+    driver: local

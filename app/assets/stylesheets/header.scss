@@ -1,3 +1,15 @@
 .common-header{
   padding: 0 4%;
 }
+// ハンバーガーメニュー
+#hamburger-menu{
+  position: absolute;
+  top: 0;
+  right: -40%;
+  width: 40%;
+  height: 100vh;
+  transition: .7s;
+}
+.in{
+  transform: translateX(100%);
+}

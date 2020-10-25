@@ -6,10 +6,21 @@
         <li><i class="fas fa-search"></i></li>
         <li><i class="far fa-bell"></i></li>
         <li><i class="far fa-envelope"></i></li>
-        <li><i class="fas fa-bars"></i></li>
+        <li id="hamburger"><i class="fas fa-bars"></i></li>
         <%= link_to "ログアウト", logout_path, method: :delete %>
       </ul>
-
+    </nav>
+    <nav id="hamburger-menu">
+      <i class="fas fa-times"></i>
+      <ul>
+        <li>マイページ</li>
+        <li>メッセージ</li>
+        <li>購入希望したチケット</li>
+        <li>出品したチケット</li>
+        <li>行きたい!!リスト</li>
+        <li>お問い合わせ</li>
+        <li><a rel="nofollow" data-method="delete" href="/logout">ログアウト</a></li>
+      </ul>
     </nav>
   </header>
   <div class="home-content">
