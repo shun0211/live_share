@@ -6,12 +6,13 @@
         <li><i class="fas fa-search"></i></li>
         <li><i class="far fa-bell"></i></li>
         <li><i class="far fa-envelope"></i></li>
-        <li id="hamburger"><i class="fas fa-bars"></i></li>
-        <%= link_to "ログアウト", logout_path, method: :delete %>
+        <li><label for="hamburger-menu" class="open"><i class="fas fa-bars"></i></label></li>
       </ul>
     </nav>
-    <nav id="hamburger-menu">
-      <i class="fas fa-times"></i>
+    <input type="checkbox" id="hamburger-menu">
+    <label for="hamburger-menu" class="back"></label>
+    <aside class="menu">
+      <label for="hamburger-menu" class="close"><i class="fas fa-times"></i></label>
       <ul>
         <li>マイページ</li>
         <li>メッセージ</li>
@@ -21,7 +22,7 @@
         <li>お問い合わせ</li>
         <li><a rel="nofollow" data-method="delete" href="/logout">ログアウト</a></li>
       </ul>
-    </nav>
+    </aside>
   </header>
   <div class="home-content">
     <h1>WE'LL CONNECT MUSIC FANS</h1>

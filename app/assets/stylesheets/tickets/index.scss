@@ -6,31 +6,7 @@
   background-size: cover;
   background-position: right 20% center;
 }
-.wrapper{
-  padding: 0 4%;
-}
-.page-header h2{
-  font-family: 'Sriracha', sans-serif;
-  font-size: 48px;
-  margin-top: 5px;
-}
-.page-header a{
-  color: $dark_gray;
-}
-.top-nav{
-  display: flex;
-  font-size: 1.75rem;
-  margin-top: 10px;
-}
-.page-header{
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-.page-header li {
-  margin-left: 16px;
-  color: $dark_gray;
-}
+
 .home-content{
   text-align: center;
   color: $dark_gray;
