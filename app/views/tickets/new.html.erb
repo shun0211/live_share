@@ -1,15 +1,58 @@
 <%= render partial: 'shared/header' %>
 
-<div class="container">
+<div class="container listing-container">
   <%= form_for(@ticket) do |f| %>
     <div class="wrapper form-group">
-      <label>イベントの画像(手もとにない場合は右から選択してください)</label>
+      <%= f.label :thumbnail, "イベントの画像(手もとにない場合は右から選択してください)" %>
+      <div class="image-wrapper">
+        <i class="fas fa-camera"></i>
+        <p class="caption">クリックして画像を選択</p>
+        <%= f.file_field :thumbnail, class: "image-form"%>
+      </div>
+      <%= f.label :event_name, "公演名" %>
+      <%= f.collection_select :event_id, @events, :id, :event_name, {prompt: "選択してください"}, class: "form-control" %>
 
-      <%= f.label :event_name,  %>
+      <%= f.fields_for :events do |event| %>
+        <%= event.text_field :event_name, class: "form-control", placeholder: "例) COUNT DOWN JAPAN 2021" %>
 
+        <div class="flex-box">
+          <%= event.label :event_date, "公演日" %>
+          <%= event.date_field :event_date, class: "form-control" %>
+
+          <%= event.label :venue, "開催地" %>
+          <%= event.text_field :venue, class: "form-control"%>
+        </div>
+      <% end %>
+
+      <%= f.label :shipping, "送料" %>
+      <%= f.select :shipping, {"送料込み(出品者負担)": 1, "着払い(購入者負担)": 2, "配送料なし": 3}, {prompt: "選択してください"}, class: "form-control" %>
+
+      <%= f.label :delivery_method, "受け渡し方法" %>
+      <%= f.text_field :delivery_method, class: "form-control" %>
+
+      <div class="price-info">
+        <h2 class="title">価格</h2>
+        <div class="unit">
+          <%= f.label :price, "販売価格" %>
+          <span>¥</span>
+          <%= f.number_field :price, class: "form-control", max: 99999, min: 300, placeholder: 0 %>
+        </div>
+        <div class="unit">
+          <label>販売手数料 (5%)</label>
+          <p><span>¥</span>ー</p>
+        </div>
+        <div class="unit">
+          <label>出品者へのお礼</label>
+          <p><span>¥</span>ー</p>
+        </div>
+      </div>
+
+      <%= f.text_area :description, rows: 5, class: "form-control" %>
+
+      <%= button_tag "出品する", type: "submit", class: "btn btn-primary"%>
     </div>
-
-
-
   <% end %>
 </div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>
