@@ -27,3 +27,50 @@ input[type="file"]{
 label[for="ticket_event_name"]{
   padding-top: 20px;
 }
+.flex-box{
+  display: flex;
+  justify-content: space-between;
+}
+.listing-container .unit-1{
+  width: 30%;
+}
+.listing-container .unit-2{
+  width: 65%;
+}
+// 価格
+.price-info .title{
+  font-weight: normal;
+  font-size: 18px;
+}
+.price-info .unit{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+.price-info .small-unit{
+  width: 50%;
+  text-align: right;
+}
+input[name="ticket[price]"]{
+  display: inline;
+  width: 95%;
+}
+label[for="ticket_price"]{
+  padding-top: 7px;
+}
+
+hr{
+  margin: 45px 0;
+}
+.listing-container button{
+  background-color: #fff000;
+  border: none;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+  width: 30%;
+  margin: 30px auto;
+}
+.listing-container button:hover{
+  background-color: #ffcc00;
+  border: none;
+
+}
