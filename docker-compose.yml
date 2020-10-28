@@ -11,7 +11,7 @@ services:
     # MySQL8.0からデフォルトの認証方式が変更された(caching_sha2_password)ため、mysql_native_passwordに戻す
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
   web:
     build: .
@@ -23,11 +23,13 @@ services:
       - .:/myapp
       - bundle:/bundle
     ports:
-      - "3000:3000"
+      - "3100:3000"
     # depends_onでコンテナが起動する順番を制御する（この場合、db→web）
     depends_on:
       - db
 
 volumes:
   bundle:
+    driver: local
+  mysql-data:
     driver: local
