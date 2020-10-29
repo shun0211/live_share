@@ -7,8 +7,8 @@
       <div class="image-wrapper" id="thumbnail-wrapper">
         <i class="fas fa-camera"></i>
         <p class="caption">クリックして画像を選択</p>
-        <%= f.file_field :thumbnail, class: "image-form", id: "thumbnail-uploadButton" %>
       </div>
+      <%= f.file_field :thumbnail, class: "image-form", id: "thumbnail-uploadButton" %>
       <%= f.label :event_name, "公演名" %>
       <%= f.select :event_name, Ticket.all.collect { |p| [p.event_name, p.id] }, { include_blank: "公演名を選択してください"}, { class: "form-control" } %>
 

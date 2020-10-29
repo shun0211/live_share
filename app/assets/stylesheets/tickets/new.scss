@@ -21,6 +21,9 @@ label[for="ticket_thumbnail"]{
   font-size: 0.875rem;
   padding-top: 5px;
 }
+.image-wrapper .thumbnail{
+  line-height: 250px;
+}
 input[type="file"]{
   display: none;
 }
