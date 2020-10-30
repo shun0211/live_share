@@ -59,9 +59,9 @@ input[type="checkbox"]:checked ~ .back{
   height: 100vh;
   background-color: rgba(0,0,0,.3);
 }
-// input[type="checkbox"]:checked ~ html, body{
-//   overflow: hidden;
-// }
+input[type="checkbox"]:checked ~ body{
+  overflow: hidden;
+}
 
 .menu li{
   padding: 10px;
