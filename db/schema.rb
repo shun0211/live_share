@@ -13,18 +13,18 @@
 ActiveRecord::Schema.define(version: 2020_10_28_123839) do
 
   create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "number_of_sheets"
+    t.integer "number_of_sheets", null: false
     t.string "sheet_type"
-    t.integer "price"
-    t.string "shipping"
-    t.string "delivery_method"
+    t.integer "price", null: false
+    t.integer "shipping", null: false
+    t.string "delivery_method", null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "thumbnail"
-    t.string "event_name"
-    t.string "venue"
-    t.date "event_date"
+    t.string "thumbnail", null: false
+    t.string "event_name", null: false
+    t.string "venue", null: false
+    t.date "event_date", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -8,16 +8,20 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-    if @ticket.save!
-      redirect_to tickets_path
+    respond_to do |format|
+      if @ticket.valid?
+        @ticket.save!
+        format.html
+        format.json { render json: @ticket.errors.messages }
+      else
+        format.json { render json: @ticket.errors.messages }
+      end
     end
-
   end
 
   private
   def ticket_params
     params.require(:ticket).permit(:number_of_sheets, :sheet_type, :price, :shipping, :delivery_method, :description, :event_name, :venue, :event_date, :id, :thumbnail)
   end
-
 
 end
