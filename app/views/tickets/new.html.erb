@@ -1,31 +1,28 @@
 <%= render partial: 'shared/header' %>
 
-<%= form_for(@ticket) do |f| %>
+<%= form_with model: @ticket do |f| %>
   <div class="container listing-container">
     <div class="wrapper form-group">
       <%= f.label :thumbnail, "イベントの画像(手もとにない場合は右から選択してください)" %>
-      <div class="image-wrapper">
+      <div class="image-wrapper" id="thumbnail-wrapper">
         <i class="fas fa-camera"></i>
         <p class="caption">クリックして画像を選択</p>
-        <%= f.file_field :thumbnail, class: "image-form"%>
       </div>
-      <%= f.label :event_name, "公演名" %>
-      <%= f.collection_select :event_id, @events, :id, :event_name, {prompt: "選択してください"}, class: "form-control" %>
+      <%= f.file_field :thumbnail, class: "image-form", id: "thumbnail-uploadButton" %>
+      <%= f.label :event_name, "公演名 (選択肢にない場合は下空欄に入力してください。)" %>
+      <%= f.select :event_name, Ticket.all.collect { |p| [p.event_name, p.event_name] }, { include_blank: "公演名を選択してください"}, { class: "form-control", id: "event_name-select" } %>
 
-      <%= f.fields_for :events do |event| %>
-        <%= event.text_field :event_name, class: "form-control", placeholder: "例) COUNT DOWN JAPAN 2021" %>
-
-        <div class="flex-box">
-          <div class="unit-1">
-            <%= event.label :event_date, "公演日" %>
-            <%= event.date_field :event_date, class: "form-control" %>
-          </div>
-          <div class="unit-2">
-            <%= event.label :venue, "開催地" %>
-            <%= event.text_field :venue, class: "form-control"%>
-          </div>
+      <%= f.text_field :event_name, class: "form-control", id: "event_name-form", placeholder: "例) COUNT DOWN JAPAN 2021" %>
+      <div class="flex-box">
+        <div class="unit-1">
+          <%= f.label :event_date, "公演日" %>
+          <%= f.date_field :event_date, class: "form-control" %>
         </div>
-      <% end %>
+        <div class="unit-2">
+          <%= f.label :venue, "開催地" %>
+          <%= f.text_field :venue, class: "form-control"%>
+        </div>
+      </div>
 
       <%= f.label :sheet_type, "席種" %>
       <%= f.text_field :sheet_type, class: "form-control", placeholder: "例) 2階指定席 23列 123番" %>
@@ -49,11 +46,11 @@
         </div>
         <div class="unit">
           <label>販売手数料 (5%)</label>
-          <p><span>¥</span>ー</p>
+          <p id="sales-commition"><span>¥</span>ー</p>
         </div>
         <div class="unit">
           <label>出品者へのお礼</label>
-          <p><span>¥</span>ー</p>
+          <p id="sales-profit"><span>¥</span>ー</p>
         </div>
       </div>
 

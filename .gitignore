@@ -37,3 +37,4 @@ yarn-debug.log*
 
 /mysql-data/
 .DS_Store
+/public/uploads/

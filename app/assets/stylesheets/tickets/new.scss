@@ -21,11 +21,14 @@ label[for="ticket_thumbnail"]{
   font-size: 0.875rem;
   padding-top: 5px;
 }
+.image-wrapper .thumbnail{
+  line-height: 250px;
+}
 input[type="file"]{
   display: none;
 }
 label[for="ticket_event_name"]{
-  padding-top: 20px;
+  padding-top: 25px;
 }
 .flex-box{
   display: flex;
@@ -54,6 +57,8 @@ label[for="ticket_event_name"]{
 input[name="ticket[price]"]{
   display: inline;
   width: 95%;
+  text-align: right;
+  padding-right: 10px;
 }
 label[for="ticket_price"]{
   padding-top: 7px;

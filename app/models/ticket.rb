@@ -1,3 +1,3 @@
 class Ticket < ApplicationRecord
-  belongs_to :event
+  mount_uploader :thumbnail, ImageUploader
 end
