@@ -9,10 +9,10 @@
         <p class="caption">クリックして画像を選択</p>
       </div>
       <%= f.file_field :thumbnail, class: "image-form", id: "thumbnail-uploadButton" %>
-      <%= f.label :event_name, "公演名" %>
-      <%= f.select :event_name, Ticket.all.collect { |p| [p.event_name, p.id] }, { include_blank: "公演名を選択してください"}, { class: "form-control" } %>
+      <%= f.label :event_name, "公演名 (選択肢にない場合は下空欄に入力してください。)" %>
+      <%= f.select :event_name, Ticket.all.collect { |p| [p.event_name, p.event_name] }, { include_blank: "公演名を選択してください"}, { class: "form-control", id: "event_name-select" } %>
 
-      <%= f.text_field :event_name, class: "form-control", placeholder: "例) COUNT DOWN JAPAN 2021" %>
+      <%= f.text_field :event_name, class: "form-control", id: "event_name-form", placeholder: "例) COUNT DOWN JAPAN 2021" %>
       <div class="flex-box">
         <div class="unit-1">
           <%= f.label :event_date, "公演日" %>

@@ -23,5 +23,8 @@ window.onload = function(){
     document.getElementById('sales-profit').innerHTML = "<span>¥</span>" + sales_profit;
   });
 
-
+  // 公演名のセレクトボックス
+  document.getElementById('event_name-select').addEventListener('change', function(){
+    document.getElementById('event_name-form').value=this.value;
+  })
 };
