@@ -1,6 +1,6 @@
 <%= render partial: 'shared/header' %>
 
-<%= form_with model: @ticket do |f| %>
+<%= form_with model: @ticket, id: :new_ticket do |f| %>
   <div class="container listing-container">
     <div class="wrapper form-group">
       <%= f.label :thumbnail, "イベントの画像(手もとにない場合は右から選択してください)" %>
@@ -9,6 +9,7 @@
         <p class="caption">クリックして画像を選択</p>
       </div>
       <%= f.file_field :thumbnail, class: "image-form", id: "thumbnail-uploadButton" %>
+
       <%= f.label :event_name, "公演名 (選択肢にない場合は下空欄に入力してください。)" %>
       <%= f.select :event_name, Ticket.all.collect { |p| [p.event_name, p.event_name] }, { include_blank: "公演名を選択してください"}, { class: "form-control", id: "event_name-select" } %>
 
@@ -23,6 +24,9 @@
           <%= f.text_field :venue, class: "form-control"%>
         </div>
       </div>
+
+      <%= f.label :number_of_sheets, "枚数" %>
+      <%= f.select :number_of_sheets, {"1枚": 1, "2枚": 2, "3枚": 3, "4枚": 4}, {prompt: "選択してください"}, class: "form-control" %>
 
       <%= f.label :sheet_type, "席種" %>
       <%= f.text_field :sheet_type, class: "form-control", placeholder: "例) 2階指定席 23列 123番" %>
