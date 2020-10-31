@@ -1,0 +1,111 @@
+<%= render partial: 'shared/header' %>
+
+<div class="container detail-container">
+  <div class="wrapper">
+    <div class="info">
+      <h2>
+        <%= @ticket.event_name %>
+      </h2>
+      <div class="flex-box">
+        <div class="image">
+          <%= image_tag @ticket.thumbnail.url, class: "thumbnail" %>
+        </div>
+        <table class="table table-borderd">
+          <tr>
+            <th>
+              開催日
+            </th>
+            <td>
+              <%= @ticket.event_date %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              開催地
+            </th>
+            <td>
+              <%= @ticket.venue %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              枚数
+            </th>
+            <td>
+              <%= @ticket.number_of_sheets %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              席種
+            </th>
+            <td>
+              <%= @ticket.sheet_type %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              配送料の負担
+            </th>
+            <td>
+              <%= @ticket.shipping %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              受け渡し方法
+            </th>
+            <td>
+              <%= @ticket.delivery_method %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              価格
+            </th>
+            <td>
+              <%= @ticket.price %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <hr class="top">
+
+      <div class="more">
+        <% if @ticket.description.present? %>
+          <p>
+            <%= @ticket.description %>
+          </p>
+        <% end %>
+      </div>
+
+      <hr class="bottom">
+
+      <div class="flex-box">
+        <div class="seller">
+          <%= link_to root_path do %>
+            <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
+          <% end %>
+          <div class="seller-name">
+            <p class="lead">出品者</p>
+            <%= link_to root_path do %>
+              <p class="user-name">さかい</p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="group">
+          <i class="fas fa-heart" id="heart"></i>
+          <label for="heart">行きたい!!</label>
+          <span>シェアする</span>
+          <img src="../assets/instagram_icon.png" alt="Instagramアイコン" width="20px" height="20px">
+          <i class="fab fa-twitter"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>

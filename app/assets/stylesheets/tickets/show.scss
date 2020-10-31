@@ -1,0 +1,105 @@
+@import "common.scss";
+
+.detail-container{
+  h2{
+    text-align: center;
+  }
+  .wrapper{
+    padding: 20px 8% 30px;
+  }
+  .image{
+    width: 100%;
+    position: relative;
+  }
+  .image:before{
+    padding-top: 100%;
+    content: "";
+    display: block;
+  }
+  .thumbnail{
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .flex-box{
+    display: flex;
+    align-items: center;
+  }
+  .table{
+    margin-left: 25px;
+    text-align: center;
+  }
+  th{
+    background-color: #f8f8f8;
+    border: solid 1px #BDBDBD;
+  }
+  td{
+    background-color: #fff;
+  }
+  tr{
+    border: solid 1px #BDBDBD;
+  }
+
+  // 備考欄
+  // hr{
+  //   border-width: 2px 0 0 0;
+  //   border-color: $dark_gray;
+  // }
+  .top{
+    margin-bottom: 30px;
+  }
+  .bottom{
+    margin-top: 30px;
+  }
+  .more p{
+    text-align: left;
+    padding: 0 30px;
+  }
+
+  // 出品者情報
+  .flex-box{
+    padding: 0 30px;
+  }
+  .seller{
+    display: flex;
+  }
+  .seller img{
+    border-radius: 100%;
+  }
+  .seller-name p{
+    margin: 0 10px;
+    color: #000;
+  }
+  .lead{
+    font-size: 14px;
+    padding: 5px 0 0 0;
+  }
+  .user-name{
+    font-size: 16px;
+    padding: 0;
+  }
+  .user-name:hover{
+    color: $primary;
+  }
+
+  // 各種ボタン
+  i{
+    font-size: 20px;
+  }
+  .fa-heart{
+    color: $primary;
+  }
+  .group label{
+    padding-left: 5px;
+  }
+  span{
+    padding: 0 10px 0 20px;
+  }
+  .fa-twitter{
+    color: #6DB9FF;
+    padding-left: 5px;
+  }
+}

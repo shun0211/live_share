@@ -19,6 +19,10 @@ class TicketsController < ApplicationController
     end
   end
 
+  def show
+    @ticket = Ticket.find(params[:id])
+  end
+
   private
   def ticket_params
     params.require(:ticket).permit(:number_of_sheets, :sheet_type, :price, :shipping, :delivery_method, :description, :event_name, :venue, :event_date, :id, :thumbnail)
