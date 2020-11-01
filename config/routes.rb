@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get 'sign_up', to: 'users/registrations#new'
   end
 
-  resources :tickets
+  resources :tickets do
+    resources :comments, only: [:create, :destroy]
+  end
+
   root 'tickets#index'
 end

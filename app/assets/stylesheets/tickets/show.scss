@@ -1,0 +1,177 @@
+@import "common.scss";
+
+.detail-container{
+  h2{
+    text-align: center;
+    font-size: 2.4rem;
+    padding: 25px 0 20px;
+
+  }
+  .wrapper{
+    padding: 20px 8% 30px;
+  }
+  .image{
+    width: 100%;
+    position: relative;
+  }
+  .image:before{
+    padding-top: 100%;
+    content: "";
+    display: block;
+  }
+  .thumbnail{
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .flex-box{
+    display: flex;
+    align-items: center;
+  }
+  .table{
+    margin-left: 25px;
+    text-align: center;
+  }
+  th{
+    background-color: #f8f8f8;
+    border: solid 1px #BDBDBD;
+  }
+  td{
+    background-color: #fff;
+  }
+  tr{
+    border: solid 1px #BDBDBD;
+  }
+
+  // 備考欄
+  // hr{
+  //   border-width: 2px 0 0 0;
+  //   border-color: $dark_gray;
+  // }
+  .top{
+    margin-bottom: 30px;
+  }
+  .bottom{
+    margin: 30px 0 20px;
+  }
+  .more p{
+    text-align: left;
+    padding: 0 30px;
+  }
+
+  // 出品者情報
+  .flex-box{
+    padding: 0 30px;
+  }
+  .seller{
+    display: flex;
+  }
+  .seller img{
+    border-radius: 100%;
+  }
+  .seller-name p{
+    margin: 0 10px;
+    color: #000;
+  }
+  .lead{
+    font-size: 14px;
+    padding: 5px 0 0 0;
+  }
+  .user-name{
+    font-size: 16px;
+    padding: 0;
+  }
+  .user-name:hover{
+    color: $primary;
+  }
+
+  // 行きたい!!ボタン、シェアするボタン
+  i{
+    font-size: 20px;
+  }
+  .fa-heart{
+    color: $primary;
+  }
+  .group label{
+    padding-left: 5px;
+  }
+  span{
+    padding: 0 10px 0 20px;
+  }
+  .fa-twitter{
+    color: #6DB9FF;
+    padding-left: 5px;
+  }
+
+  // 購入、メッセージボタン
+  #want-button{
+    background-color: #fff000;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 40px auto 0;
+    height: 40px;
+    width: 30%;
+  }
+  #want-button:hover{
+    background-color: #ffcc00;
+    border: none;
+  }
+  #message-button{
+    background-color: $primary;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 25px auto;
+    height: 40px;
+    width: 30%;
+  }
+  #message-button:hover{
+    background-color: #ff9999;
+  }
+
+  // コメント
+  .comment-wrapper{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px 8% 15px;
+  }
+  .post-info{
+    display: flex;
+    align-items: center;
+  }
+  .post-info .icon{
+    border-radius: 100%;
+  }
+  .post-user{
+    margin-left: 15px;
+  }
+  .post-date{
+    color: $dark_gray;
+    font-size: 0.5rem;
+    margin-left: 10px;
+  }
+  .content{
+    padding: 5px 0 20px 50px;
+  }
+  form{
+    position: relative;
+  }
+  .form-group{
+    padding: 15px 0 0 0;
+  }
+  #comment_content{
+    width: 100%;
+  }
+  .submit-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: $dark_gray;
+    padding-top: 8px;
+    padding-right: 10px;
+  }
+}

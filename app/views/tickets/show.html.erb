@@ -1,0 +1,158 @@
+<%= render partial: 'shared/header' %>
+
+<div class="container detail-container">
+  <div class="wrapper">
+    <div class="info">
+      <h2>
+        <%= @ticket.event_name %>
+      </h2>
+      <div class="flex-box">
+        <div class="image">
+          <%= image_tag @ticket.thumbnail.url, class: "thumbnail" %>
+        </div>
+        <table class="table table-borderd">
+          <tr>
+            <th>
+              開催日
+            </th>
+            <td>
+              <%= @ticket.event_date %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              開催地
+            </th>
+            <td>
+              <%= @ticket.venue %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              枚数
+            </th>
+            <td>
+              <%= @ticket.number_of_sheets %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              席種
+            </th>
+            <td>
+              <%= @ticket.sheet_type %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              配送料の負担
+            </th>
+            <td>
+              <%= @ticket.shipping %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              受け渡し方法
+            </th>
+            <td>
+              <%= @ticket.delivery_method %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              価格
+            </th>
+            <td>
+              <%= @ticket.price %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <hr class="top">
+
+      <div class="more">
+        <% if @ticket.description.present? %>
+          <p>
+            <%= @ticket.description %>
+          </p>
+        <% end %>
+      </div>
+
+      <hr class="bottom">
+
+      <div class="flex-box">
+        <div class="seller">
+          <%= link_to root_path do %>
+            <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
+          <% end %>
+          <div class="seller-name">
+            <p class="lead">出品者</p>
+            <%= link_to root_path do %>
+              <p class="user-name">さかい</p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="group">
+          <i class="fas fa-heart" id="heart"></i>
+          <label for="heart">行きたい!!</label>
+          <span>シェアする</span>
+          <img src="../assets/instagram_icon.png" alt="Instagramアイコン" width="20px" height="20px">
+          <i class="fab fa-twitter"></i>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-light" id="want-button">
+      購入を希望する
+    </button>
+    <button type="button" class="btn btn-light" id="message-button">
+      メッセージを送る
+    </button>
+
+    <hr>
+
+    <div class="comment-wrapper">
+      <div class="posts">
+        <% if @ticket.comments.blank? %>
+          <p>コメントが投稿されていません。</p>
+        <% else %>
+          <% @comments.each do |comment| %>
+            <div class="post">
+              <div class="post-info">
+                <%= image_tag "/assets/avatar.jpg", alt: "コメント投稿者のプロフィール画像", size: "35", class: "icon" %>
+                <div class="post-user">
+                  さかい
+                  <%# <%= comment.user %>
+                </div>
+                <div class="post-date">
+                  2021年3月15日
+                  <%# <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                </div>
+              </div>
+              <div class="content">
+                <%= comment.content %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="form form-group">
+        <%= form_with(model: [@ticket, @comment]) do |f| %>
+          <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
+          <%= f.hidden_field :ticket_id, value: @ticket.id %>
+          <%= f.button type: "submit", class: "submit-btn" do %>
+            <i class="far fa-paper-plane"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>
