@@ -7,8 +7,14 @@
         <%= @ticket.event_name %>
       </h2>
       <div class="flex-box">
-        <div class="image">
-          <%= image_tag @ticket.thumbnail.url, class: "thumbnail" %>
+        <div class="left-wrapper">
+          <div class="image">
+            <%= image_tag @ticket.thumbnail.url, class: "thumbnail" %>
+          </div>
+          <div class="price">
+            <span>(税込)</span>
+            <%= "¥#{@ticket.price}" %>
+          </div>
         </div>
         <table class="table table-borderd">
           <tr>
@@ -57,14 +63,6 @@
             </th>
             <td>
               <%= @ticket.delivery_method %>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              価格
-            </th>
-            <td>
-              <%= @ticket.price %>
             </td>
           </tr>
         </table>
