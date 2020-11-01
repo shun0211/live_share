@@ -85,7 +85,7 @@
     color: $primary;
   }
 
-  // 各種ボタン
+  // 行きたい!!ボタン、シェアするボタン
   i{
     font-size: 20px;
   }
@@ -102,4 +102,26 @@
     color: #6DB9FF;
     padding-left: 5px;
   }
+
+  // 購入、メッセージボタン
+  #want-button{
+    background-color: #fff000;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 50px auto 0;
+  }
+  #want-button:hover{
+    background-color: #ffcc00;
+    border: none;
+  }
+  #message-button{
+    background-color: $primary;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 25px auto;
+  }
+  #message-button:hover{
+    background-color: #ff9999;
+  }
+
 }

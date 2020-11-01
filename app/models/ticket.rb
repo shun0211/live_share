@@ -1,6 +1,8 @@
 class Ticket < ApplicationRecord
   mount_uploader :thumbnail, ImageUploader
 
+  has_many :comments, dependent: :destroy
+
   validates :thumbnail, presence: true
   validates :event_name, presence: true, length: {maximum: 30}
   validates :event_date, presence: true
