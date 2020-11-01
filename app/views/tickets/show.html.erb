@@ -115,8 +115,36 @@
     <hr>
 
     <div class="comment-wrapper">
-      <div class="post">
+      <div class="posts">
+        <% if @ticket.comments.blank? %>
+          <p>コメントが投稿されていません。</p>
+        <% else %>
+          <% @comments.each do |comment| %>
+            <div class="post">
+              <div class="post-info">
+                <%= image_tag "/assets/avatar.jpg", alt: "コメント投稿者のプロフィール画像", size: "30", class: "icon" %>
+                <div class="post-user">
+                  <%= comment.user %>
+                </div>
+                <div class="post-date">
+                  <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                </div>
+              </div>
+              <div class="content">
+                <%= comment.content %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
+      <div class="form">
+        <%= form_with(model: [@ticket, @comment]) do |f| %>
+          <%= f.text_field :content, placeholder: "コメントを入力してください。" %>
+          <%= f.button type: "submit" do %>
+            <i class="far fa-paper-plane"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
