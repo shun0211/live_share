@@ -122,12 +122,14 @@
           <% @comments.each do |comment| %>
             <div class="post">
               <div class="post-info">
-                <%= image_tag "/assets/avatar.jpg", alt: "コメント投稿者のプロフィール画像", size: "30", class: "icon" %>
+                <%= image_tag "/assets/avatar.jpg", alt: "コメント投稿者のプロフィール画像", size: "35", class: "icon" %>
                 <div class="post-user">
-                  <%= comment.user %>
+                  さかい
+                  <%# <%= comment.user %>
                 </div>
                 <div class="post-date">
-                  <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                  2021年3月15日
+                  <%# <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
                 </div>
               </div>
               <div class="content">
@@ -138,10 +140,11 @@
         <% end %>
       </div>
 
-      <div class="form">
+      <div class="form form-group">
         <%= form_with(model: [@ticket, @comment]) do |f| %>
-          <%= f.text_field :content, placeholder: "コメントを入力してください。" %>
-          <%= f.button type: "submit" do %>
+          <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
+          <%= f.hidden_field :ticket_id, value: @ticket.id %>
+          <%= f.button type: "submit", class: "submit-btn" do %>
             <i class="far fa-paper-plane"></i>
           <% end %>
         <% end %>

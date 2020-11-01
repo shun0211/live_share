@@ -3,6 +3,9 @@
 .detail-container{
   h2{
     text-align: center;
+    font-size: 2.4rem;
+    padding: 25px 0 20px;
+
   }
   .wrapper{
     padding: 20px 8% 30px;
@@ -52,7 +55,7 @@
     margin-bottom: 30px;
   }
   .bottom{
-    margin-top: 30px;
+    margin: 30px 0 20px;
   }
   .more p{
     text-align: left;
@@ -108,7 +111,9 @@
     background-color: #fff000;
     border: none;
     box-shadow: 0 0 2px rgba(0, 0, 0, .4);
-    margin: 50px auto 0;
+    margin: 40px auto 0;
+    height: 40px;
+    width: 30%;
   }
   #want-button:hover{
     background-color: #ffcc00;
@@ -119,9 +124,54 @@
     border: none;
     box-shadow: 0 0 2px rgba(0, 0, 0, .4);
     margin: 25px auto;
+    height: 40px;
+    width: 30%;
   }
   #message-button:hover{
     background-color: #ff9999;
   }
 
+  // コメント
+  .comment-wrapper{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px 8% 15px;
+  }
+  .post-info{
+    display: flex;
+    align-items: center;
+  }
+  .post-info .icon{
+    border-radius: 100%;
+  }
+  .post-user{
+    margin-left: 15px;
+  }
+  .post-date{
+    color: $dark_gray;
+    font-size: 0.5rem;
+    margin-left: 10px;
+  }
+  .content{
+    padding: 5px 0 20px 50px;
+  }
+  form{
+    position: relative;
+  }
+  .form-group{
+    padding: 15px 0 0 0;
+  }
+  #comment_content{
+    width: 100%;
+  }
+  .submit-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: $dark_gray;
+    padding-top: 8px;
+    padding-right: 10px;
+  }
 }
