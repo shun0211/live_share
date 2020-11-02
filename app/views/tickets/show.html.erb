@@ -22,7 +22,7 @@
               開催日
             </th>
             <td>
-              <%= @ticket.event_date %>
+              <%= @ticket.event_date.strftime("%Y年%m月%d日") %>
             </td>
           </tr>
           <tr>
@@ -38,7 +38,7 @@
               枚数
             </th>
             <td>
-              <%= @ticket.number_of_sheets %>
+              <%= @ticket.number_of_sheets %> 枚
             </td>
           </tr>
           <tr>
@@ -54,7 +54,13 @@
               配送料の負担
             </th>
             <td>
-              <%= @ticket.shipping %>
+              <% if(@ticket.shipping === 1) %>
+                送料込み(出品者負担)
+              <% elsif(@ticket.shipping === 2) %>
+                着払い(購入者負担)
+              <% else %>
+                配送料なし
+              <% end %>
             </td>
           </tr>
           <tr>
