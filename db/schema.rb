@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_035238) do
+ActiveRecord::Schema.define(version: 2020_11_03_020233) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content", null: false
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 2020_11_01_035238) do
     t.string "event_name", null: false
     t.string "venue", null: false
     t.date "event_date", null: false
+    t.bigint "seller_id"
+    t.bigint "buyer_id"
+    t.index ["buyer_id"], name: "index_tickets_on_buyer_id"
+    t.index ["seller_id"], name: "index_tickets_on_seller_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,4 +58,6 @@ ActiveRecord::Schema.define(version: 2020_11_01_035238) do
 
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users"
+  add_foreign_key "tickets", "users", column: "buyer_id"
+  add_foreign_key "tickets", "users", column: "seller_id"
 end
