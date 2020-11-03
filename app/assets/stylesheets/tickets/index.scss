@@ -1,81 +1,70 @@
 @import "common.scss";
 
-.big-bg{
-  background-image: url(toppage-bg);
-  min-height: 100vh;
-  background-size: cover;
-  background-position: right 20% center;
-}
-
-.home-content{
-  text-align: center;
-  color: $dark_gray;
-  margin-top: 18%;
-}
-.home-content h1{
-  font-family: 'Sriracha', sans-serif;
-  font-size: 4.25rem;
-  margin-bottom: 0;
-}
-.home-content p{
-  font-size: 1.25rem;
-  margin-bottom: 48px;
-}
-.button{
-  color: #000;
-  background: #FFCDCD;
-  border-radius: 10px;
-  padding: 18px 32px;
-  font-size: 1.2rem;
-}
-
-// main-content
-.main-content{
-  background-color: #F4F4F4;
-  padding-bottom: 50px;
-}
-.main-content .wrapper{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 26px;
-  padding-bottom: 10px;
-}
-.main-content .title{
-  font-size: 34px;
-  font-weight: normal;
-  text-align: center;
-  margin-top: 0;
-  padding-top: 50px;
-}
-.main-content img{
-  width: 280px;
-  height: 220px;
-}
-.main-content .item{
-  height: 350px;
-  background-color: #fff;
-}
-.main-content .info{
-  padding: 10px;
-}
-.main-content .heading{
+.list-container{
+  display: flex;
   margin: 0;
-}
-.main-content .date,
-.main-content .text{
-  margin: 5px 0;
-}
-.main-content .heading{
-  font-size: 1.25rem
-}
-.main-content .date{
-  font-size: 0.8rem;
-  color: $dark-gray;
-}
-.main-content .more{
-  text-align: center;
-  font-size: 1.25rem;
-}
-.main-content .more a{
-  color: $primary;
+  .sidebar{
+    background-color: $boundary_primary;
+    width: 17%;
+    padding: 40px 10px;
+    text-align: center;
+  }
+  .sub-title{
+    font-size: 1.3rem;
+  }
+  a{
+    display: block;
+    color: #000;
+    padding: 7px;
+    font-size: 0.9rem;
+  }
+  a:hover{
+    color: $primary;
+  }
+  form{
+    padding-top: 10px;
+  }
+  label[for="search"]{
+    font-size: 0.8rem
+  }
+  input[type="submit"]{
+    display: none;
+  }
+  main{
+    width: 83%;
+    padding: 20px 3% 50px;
+    background-color: #fff;
+  }
+  .title{
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 20px 0 15px;
+  }
+  .grid{
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .item{
+    width: 100%;
+  }
+  .thumbnail{
+    height: 57%;
+    object-fit: cover;
+  }
+  .card-body{
+    padding: 0.5rem;
+  }
+  .card-title{
+    font-size: 1.1rem;
+    margin-bottom: 1px;
+  }
+  .date{
+    font-size: 0.7rem;
+    color: $dark_gray;
+    margin-bottom: 4px;
+  }
+  .card-text{
+    font-size: 0.7rem;
+  }
 }
