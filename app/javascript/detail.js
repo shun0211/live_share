@@ -33,6 +33,7 @@ $(function(){
     .done(function(comment){
       const commentHTML = buildHTML(comment);
       $('.posts').append(commentHTML);
+      document.getElementById("comment_content").value = "";
     });
   });
 })
