@@ -22,9 +22,16 @@
         <div class="item card">
           <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
           <div class="card-body">
-            <h5 class="card-title">
-              <%= ticket.event_name %>
-            </h5>
+            <div class="flex-box">
+              <h5 class="card-title">
+                <%= ticket.event_name %>
+              </h5>
+              <div class="like">
+                <i class="fas fa-heart"></i>
+                15
+                <%# <%= ticket.likes.length %>
+              </div>
+            </div>
             <p class="date">
               <%= ticket.event_date %>
             </p>

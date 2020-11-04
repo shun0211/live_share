@@ -55,7 +55,14 @@
     object-fit: cover;
   }
   .card-body{
-    padding: 0.5rem;
+    padding: 0.7rem;
+  }
+  .flex-box{
+    display: flex;
+  }
+  .like{
+    color: $primary;
+    font-size: 0.75rem;
   }
   .card-title{
     font-size: 1.1rem;
