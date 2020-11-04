@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_11_03_020233) do
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content", null: false
     t.bigint "user_id"
     t.bigint "ticket_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_020233) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "number_of_sheets", null: false
     t.string "sheet_type"
     t.integer "price", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_020233) do
     t.index ["seller_id"], name: "index_tickets_on_seller_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", default: "", null: false

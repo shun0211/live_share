@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
       format.html
       format.json
     end
-
   end
 
   private
