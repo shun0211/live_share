@@ -1,6 +1,6 @@
 class Ticket < ApplicationRecord
   mount_uploader :thumbnail, ImageUploader
-  enum number_of_sheets: { }
+  # enum number_of_sheets: { }
 
   has_many :comments, dependent: :destroy
 
