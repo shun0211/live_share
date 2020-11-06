@@ -42,6 +42,7 @@
         </div>
       <% end %>
     </div>
+    <%= will_paginate(@tickets, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination justify-content-end") %>
   </main>
 </div>
 

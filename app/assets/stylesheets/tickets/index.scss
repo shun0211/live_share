@@ -78,4 +78,15 @@
     overflow: hidden;
     height: 48px;
   }
+  nav{
+    margin-top: 30px;
+  }
+  .page-item{
+    width: 34px;
+    text-align: center;
+  }
+  .active .page-link{
+    background-color: $primary;
+    border: 1px solid #dee2e6;
+  }
 }

@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -8,7 +8,9 @@ class TicketsController < ApplicationController
   end
 
   def create
+    binding.pry
     @ticket = Ticket.new(ticket_params)
+
     respond_to do |format|
       if @ticket.valid?
         @ticket.save!

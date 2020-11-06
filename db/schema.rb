@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2020_11_03_020233) do
   end
 
   create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "number_of_sheets", null: false
     t.string "sheet_type"
     t.integer "price", null: false
     t.integer "shipping", null: false
     t.string "delivery_method", null: false
+    t.integer "number_of_sheets", null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
