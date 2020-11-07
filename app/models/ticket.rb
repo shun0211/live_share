@@ -3,6 +3,7 @@ class Ticket < ApplicationRecord
   # enum number_of_sheets: { }
 
   has_many :comments, dependent: :destroy
+  has_many :likes
 
   validates :thumbnail, presence: true
   validates :event_name, presence: true, length: {maximum: 30}
