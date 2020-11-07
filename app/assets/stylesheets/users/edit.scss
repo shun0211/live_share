@@ -1,0 +1,63 @@
+@import "common.scss";
+
+.profile-container{
+  margin: 20px auto 50px;
+  .bg-image{
+    background-image: url(profile-bg.jpeg);
+    background-size: cover;
+    height: 300px;
+    background-position: center bottom 10%;
+  }
+  .user-info{
+    text-align: center;
+    position: relative;
+    height: 100%;
+  }
+  img{
+    border-radius: 100%;
+    margin-top: 37px;
+    height: 170px;
+    width: 170px;
+  }
+  .inner{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(255, 255, 255, .7);
+    height: 60px;
+  }
+  .user-name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 4px 0 0 0;
+  }
+  .listing-number{
+    margin: 0;
+    font-size: 0.8rem;
+  }
+  .edit-wrapper{
+    padding: 40px 15% 50px;
+  }
+  #file-insert{
+    color: $dark_gray;
+    cursor: pointer;
+  }
+  #file-insert:hover{
+    color: $primary;
+  }
+  .update-btn{
+    border-radius: 20px;
+    background-color: #fff000;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    height: 40px;
+    width: 20%;
+    margin-top: 30px;
+  }
+  .update-btn:hover{
+    background-color: #ffcc00;
+    border: none;
+  }
+}
