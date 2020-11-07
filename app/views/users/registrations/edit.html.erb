@@ -3,9 +3,11 @@
 <div class="container profile-container">
   <div class="bg-image">
     <div class="user-info">
-      <%= image_tag "/assets/avatar.jpg", alt: "プロフィール画像", size: "50", class: "icon" %>
-      <p class="user-name">さかい</p>
-      <p class="listing-number">出品数 1枚</p>
+      <%= image_tag "/assets/avatar.jpg", alt: "プロフィール画像", class: "icon" %>
+      <div class="inner">
+        <p class="user-name">さかい</p>
+        <p class="listing-number">出品数 1枚</p>
+      </div>
     </div>
   </div>
   <div class="wrapper edit-wrapper form-group">
@@ -16,7 +18,7 @@
       <%= f.text_field :nickname, class: "form-control" %>
       <%= f.label :profile, "プロフィール" %>
       <%= f.text_area :profile, rows: 5, class: "form-control" %>
-      <%= button_tag "更新する", type: "submit", class: "btn btn-warning" %>
+      <%= button_tag "更新する", type: "submit", class: "btn btn-warning update-btn" %>
     <% end %>
   </div>
 </div>
