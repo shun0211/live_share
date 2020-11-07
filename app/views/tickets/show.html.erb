@@ -100,8 +100,10 @@
         </div>
 
         <div class="group">
-          <i class="fas fa-heart" id="heart"></i>
-          <label for="heart">行きたい!!</label>
+          <div id="like">
+            <%= render "likes/like", ticket: @ticket %>
+          </div>
+          <%# <label for="heart">行きたい!!</label> %>
           <span>シェアする</span>
           <img src="../assets/instagram_icon.png" alt="Instagramアイコン" width="20px" height="20px">
           <i class="fab fa-twitter"></i>

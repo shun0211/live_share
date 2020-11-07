@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_020233) do
+ActiveRecord::Schema.define(version: 2020_11_06_233437) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content", null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2020_11_03_020233) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ticket_id"], name: "index_comments_on_ticket_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "ticket_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ticket_id"], name: "index_likes_on_ticket_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -58,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_11_03_020233) do
 
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "tickets"
+  add_foreign_key "likes", "users"
   add_foreign_key "tickets", "users", column: "buyer_id"
   add_foreign_key "tickets", "users", column: "seller_id"
 end
