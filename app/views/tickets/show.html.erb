@@ -1,5 +1,7 @@
 <%= render partial: 'shared/header' %>
-
+<% if flash.each do |key, value|%>
+  <%= content_tag(:div, value, class: key) %>
+<% end %>
 <div class="container detail-container">
   <div class="wrapper">
     <div class="info">
