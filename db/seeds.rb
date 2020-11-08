@@ -11,3 +11,22 @@
     description: "仕事で行けなくなりました。無念です。\nどなたか代わりに楽しんでください。\nチケットは最初に購入希望してくださった方にお譲りします。"
   )
 end
+
+User.create!(
+  nickname: "木内",
+  email: "bbb@example.com",
+  password: "password1",
+  profile: "行けなくなったチケットを出品しようと思っています。
+  miwaをよく聴きます。
+  よろしくお願いします😄"
+)
+
+User.create!(
+  nickname: "たろう",
+  email: "ccc@example.com",
+  password: "password1",
+  profile: "RADWIMPSが大好きです。
+  毎日聴いています。
+  RAD好きの方いらっしゃったらフォローお願いします！
+  https://twitter.com/taro1234"
+)

@@ -1,0 +1,45 @@
+.profile-wrapper{
+  padding: 40px 15% 50px;
+  .heading{
+    padding: 0;
+    text-align: left;
+    font-size: 1rem;
+  }
+  .text{
+    width: 100%;
+    padding: 15px 25px;
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 10px;
+  }
+  .edit-btn{
+    border-radius: 20px;
+    background-color: #fff000;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    height: 40px;
+    width: 20%;
+    margin-top: 30px;
+  }
+  .edit-btn:hover{
+    background-color: #ffcc00;
+    border: none;
+  }
+  .message-btn{
+    border-radius: 20px;
+    background-color: $primary;
+    height: 40px;
+    width: 30%;
+    border: none;
+    margin-top: 30px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    color: $dark_gray;
+    padding-top: 8px;
+    .fa-envelope{
+      margin-right: 5px;
+      font-size: 1.2rem;
+    }
+  }
+  .message-btn:hover{
+    background-color: #ff9E9E;
+  }
+}

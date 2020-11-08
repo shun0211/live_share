@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     delete 'logout', to: 'users/sessions#destroy'
     get 'sign_up', to: 'users/registrations#new'
   end
+  resources :users, only: [:show]
 
   resources :tickets do
     resources :comments, only: [:create, :destroy]
