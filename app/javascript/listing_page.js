@@ -4,12 +4,12 @@ $(function(){
     document.getElementById('thumbnail-uploadButton').click();
   });
   document.getElementById('thumbnail-uploadButton').addEventListener('change', function(){
-    var file = this.files[0];
-    var fileReader = new FileReader();
+    let file = this.files[0];
+    let fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onloadend = function(){
-      var src = fileReader.result;
-      var html = `<div class="thumbnail">
+      let src = fileReader.result;
+      let html = `<div class="thumbnail">
                     <img src="${src}" alt="チケットのサムネイル写真" width="100%" height="100%">
                   </div>`
       document.getElementById('thumbnail-wrapper').innerHTML = html;

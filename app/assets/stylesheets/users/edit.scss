@@ -18,6 +18,15 @@
     margin-top: 37px;
     height: 170px;
     width: 170px;
+    cursor: pointer;
+    object-fit: cover;
+  }
+  #preview-alert{
+    margin: 0;
+    padding-top: 5px;
+    color: orangered;
+    font-size: 0.9rem;
+    font-weight: bold;
   }
   .inner{
     position: absolute;
@@ -43,6 +52,11 @@
   #file-insert{
     color: $dark_gray;
     cursor: pointer;
+    display: inline;
+  }
+  label[for="user_nickname"]{
+    display: block;
+    margin-top: 10px;
   }
   #file-insert:hover{
     color: $primary;

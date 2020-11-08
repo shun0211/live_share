@@ -1,9 +1,10 @@
 <%= render "shared/header" %>
-
 <div class="container profile-container">
   <div class="bg-image">
     <div class="user-info">
-      <%= image_tag resource.avatar.url, alt: "プロフィール画像", class: "icon" %>
+      <div id="avatar-preview">
+        <%= image_tag resource.avatar.url, alt: "プロフィール画像", class: "icon", id: "edit-avatar" %>
+      </div>
       <div class="inner">
         <p class="user-name">
           <%= resource.nickname %>
@@ -22,6 +23,8 @@
   </div>
   <div class="wrapper edit-wrapper form-group">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
       <%= f.file_field :avatar %>
       <p id="file-insert">プロフィール画像を変更する</p>
       <%= f.label :nickname, "ニックネーム" %>
