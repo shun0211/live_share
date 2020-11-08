@@ -79,7 +79,7 @@
       <div class="more">
         <% if @ticket.description.present? %>
           <p>
-            <%= @ticket.description %>
+            <%= safe_join(@ticket.description.split("\n"),tag(:br)) %>
           </p>
         <% end %>
       </div>

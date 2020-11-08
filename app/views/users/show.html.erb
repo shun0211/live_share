@@ -25,9 +25,16 @@
   <div class="wrapper profile-wrapper">
     <h3 class="heading">プロフィール</h3>
     <div class="text">
-      <%= @user.profile %>
+      <%= safe_join(@user.profile.split("\n"), tag(:br)) %>
     </div>
-    <%= link_to "編集する", edit_user_registration_path, class: "btn btn-warning" %>
+    <% if @user.id === current_user.id %>
+      <%= link_to "編集する", edit_user_registration_path, class: "btn btn-warning edit-btn" %>
+    <% else %>
+      <%= link_to "#", class: "btn btn-warning message-btn" do %>
+        <i class="far fa-envelope"></i>
+        メッセージを送る
+      <% end %>
+    <% end %>
   </div>
 </div>
 

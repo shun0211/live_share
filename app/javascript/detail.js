@@ -17,7 +17,6 @@ $(function(){
     return html;
   }
 
-
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
     const formData = new FormData(this);
