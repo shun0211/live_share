@@ -34,6 +34,7 @@ $(function(){
       const commentHTML = buildHTML(comment);
       $('.posts').append(commentHTML);
       document.getElementById("comment_content").value = "";
+      document.getElementById("empty-message").remove();
     });
   });
 })

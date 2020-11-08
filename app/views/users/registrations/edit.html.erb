@@ -23,8 +23,6 @@
   </div>
   <div class="wrapper edit-wrapper form-group">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
       <%= f.file_field :avatar %>
       <p id="file-insert">プロフィール画像を変更する</p>
       <%= f.label :nickname, "ニックネーム" %>
