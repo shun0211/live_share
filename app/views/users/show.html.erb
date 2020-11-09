@@ -27,7 +27,7 @@
     <div class="text">
       <%= safe_join(@user.profile.split("\n"), tag(:br)) %>
     </div>
-    <% if @user.id === current_user.id %>
+    <% if user_signed_in? && @user.id === current_user.id %>
       <%= link_to "編集する", edit_user_registration_path, class: "btn btn-warning edit-btn" %>
     <% else %>
       <%= link_to "#", class: "btn btn-warning message-btn" do %>

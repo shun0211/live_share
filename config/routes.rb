@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'sign_up', to: 'users/registrations#new'
   end
   resources :users, only: [:show]
+  get '/mypage' => 'users#mypage'
 
   resources :tickets do
     resources :comments, only: [:create, :destroy]
