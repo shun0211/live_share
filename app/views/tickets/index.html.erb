@@ -19,27 +19,29 @@
     <h2 class="title">チケット一覧</h2>
     <div class="cards grid">
       <% @tickets.each do |ticket|%>
-        <div class="item card">
-          <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
-          <div class="card-body">
-            <div class="flex-box">
-              <h5 class="card-title">
-                <%= ticket.event_name %>
-              </h5>
-              <div class="like">
-                <i class="fas fa-heart"></i>
-                15
-                <%# <%= ticket.likes.length %>
+        <%= link_to ticket_path(ticket.id) do %>
+          <div class="item card">
+            <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+            <div class="card-body">
+              <div class="flex-box">
+                <h5 class="card-title">
+                  <%= ticket.event_name %>
+                </h5>
+                <div class="like">
+                  <i class="fas fa-heart"></i>
+                  15
+                  <%# <%= ticket.likes.length %>
+                </div>
               </div>
+              <p class="date">
+                <%= ticket.event_date %>
+              </p>
+              <p class="card-text">
+                <%= ticket.description %>
+              </p>
             </div>
-            <p class="date">
-              <%= ticket.event_date %>
-            </p>
-            <p class="card-text">
-              <%= ticket.description %>
-            </p>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
     <%= will_paginate(@tickets, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination justify-content-end") %>
