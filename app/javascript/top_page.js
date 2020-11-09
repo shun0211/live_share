@@ -1,5 +1,6 @@
-window.onload = function(){
-  const checkbox = document.getElementById('hamburger-menu');
+$(function(){
+  let checkbox = document.getElementById('hamburger-menu');
+  console.log(checkbox);
   checkbox.addEventListener('change', function(){
     if(checkbox.checked){
       document.body.style.overflow = "hidden";
@@ -7,4 +8,4 @@ window.onload = function(){
       document.body.style.overflow = "visible";
     };
   });
-}
+});
