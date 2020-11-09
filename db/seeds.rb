@@ -13,6 +13,15 @@
 end
 
 User.create!(
+  nickname: "さかい",
+  email: "aaa@example.com",
+  password: "password1",
+  profile: "たまにチケットを出品してます。
+  sumikaが大好きです。
+  何卒、よろしくお願いします＼(^o^)／"
+)
+
+User.create!(
   nickname: "木内",
   email: "bbb@example.com",
   password: "password1",
