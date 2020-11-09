@@ -12,14 +12,21 @@
     <label for="hamburger-menu" class="back"></label>
     <aside class="menu">
       <label for="hamburger-menu" class="close"><i class="fas fa-times"></i></label>
-      <ul>
-        <li>マイページ</li>
-        <li>メッセージ</li>
-        <li>購入希望したチケット</li>
-        <li>出品したチケット</li>
-        <li>行きたい!!リスト</li>
-        <li>お問い合わせ</li>
-        <li><a rel="nofollow" data-method="delete" href="/logout">ログアウト</a></li>
-      </ul>
+      <% if user_signed_in? %>
+        <ul>
+          <li>マイページ</li>
+          <li>メッセージ</li>
+          <li>購入希望したチケット</li>
+          <li>出品したチケット</li>
+          <li>行きたい!!リスト</li>
+          <li>お問い合わせ</li>
+          <li><a rel="nofollow" data-method="delete" href="/logout">ログアウト</a></li>
+        </ul>
+      <% else %>
+        <ul>
+          <li><%= link_to "ログイン", login_path %></li>
+          <li>お問い合わせ</li>
+        </ul>
+      <% end %>
     </aside>
 </header>
