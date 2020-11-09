@@ -11,6 +11,15 @@
   text-align: center;
   color: $dark_gray;
   margin-top: 18%;
+  .btn{
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    border-radius: 20px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0;
+  }
 }
 .home-content h1{
   font-family: 'Sriracha', sans-serif;
@@ -21,13 +30,14 @@
   font-size: 1.25rem;
   margin-bottom: 48px;
 }
-.button{
-  color: #000;
-  background: #FFCDCD;
-  border-radius: 10px;
-  padding: 18px 32px;
-  font-size: 1.2rem;
-}
+
+// .button{
+//   color: #000;
+//   background: #FFCDCD;
+//   border-radius: 10px;
+//   padding: 18px 32px;
+//   font-size: 1.2rem;
+// }
 
 // main-content
 .main-content{

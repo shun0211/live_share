@@ -5,7 +5,9 @@
   <div class="home-content">
     <h1>WE'LL CONNECT MUSIC FANS</h1>
     <p>あなたのチケットを本当に好きなファンの下に届けませんか？</p>
-    <%= link_to "ログイン", login_path, class: "btn btn-light" %>
+    <% if !user_signed_in? %>
+      <%= link_to "ログイン", login_path, class: "btn btn-light" %>
+    <% end %>
   </div>
 </div>
 <main class="main-content">
