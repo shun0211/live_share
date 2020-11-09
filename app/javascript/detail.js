@@ -1,17 +1,22 @@
 $(function(){
   function buildHTML(comment){
-    const html = `<div class="post">
+    const html = `<div class="post data-comment-id="${comment.id}">
                     <div class="post-info">
                       <img alt="コメント投稿者のプロフィール画像" class="icon" src="/assets/avatar.jpg" width="35" height="35">
                       <div class="post-user">
                         さかい
                       </div>
                       <div class="post-date">
-                        2021年3月15日
+                        ${comment.created_at.strftime("%Y年%m月%d日 %H:%M")}
                       </div>
                     </div>
                     <div class="content">
-                      ${comment.content}
+                      <p class="comment">
+                        ${comment.content}
+                      </p>
+                      <div id="comment-delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </div>
                     </div>
                   </div>`
     return html;
@@ -36,4 +41,18 @@ $(function(){
       document.getElementById("empty-message").remove();
     });
   });
+  // コメント削除
+  $(document).on('click', '.delete-button', function(){
+    let comment = this.parentNode.parentNode.dataset.commentId
+    let url = gon.ticket.id + "/comments/" + comment
+    $.ajax({
+      url: url,
+      type: "DELETE",
+      data: comment,
+      dataType: "json"
+    })
+    .done(function(comment_id){
+      $('[data-comment-id = '+ comment_id + ']').remove();
+    })
+  })
 })

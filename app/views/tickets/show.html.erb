@@ -126,20 +126,25 @@
           <p id="empty-message">コメントが投稿されていません。</p>
         <% else %>
           <% @comments.each do |comment| %>
-            <div class="post">
+            <div class="post" data-comment-id="<%= comment.id %>">
               <div class="post-info">
-                <%= image_tag "/assets/avatar.jpg", alt: "コメント投稿者のプロフィール画像", size: "35", class: "icon" %>
+                <%= image_tag comment.user.avatar.url, alt: "コメント投稿者のプロフィール画像", size: "35", class: "icon" %>
                 <div class="post-user">
-                  さかい
-                  <%# <%= comment.user %>
+                  <%= comment.user.nickname %>
                 </div>
                 <div class="post-date">
-                  2021年3月15日
-                  <%# <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                  <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
                 </div>
               </div>
               <div class="content">
-                <%= comment.content %>
+                <p class="comment">
+                  <%= comment.content %>
+                </p>
+                <% if user_signed_in? && comment.user_id === current_user.id %>
+                  <div class="delete-button">
+                    <i class="fas fa-trash-alt"></i>
+                  </div>
+                <% end %>
               </div>
             </div>
           <% end %>

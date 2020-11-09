@@ -24,6 +24,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @comments = @ticket.comments
     @comment = Comment.new
+    gon.ticket = @ticket
   end
 
   private
