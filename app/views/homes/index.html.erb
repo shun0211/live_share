@@ -7,6 +7,8 @@
     <p>あなたのチケットを本当に好きなファンの下に届けませんか？</p>
     <% if !user_signed_in? %>
       <%= link_to "ログイン", login_path, class: "btn btn-light" %>
+    <% else %>
+      <i class="fas fa-chevron-down"></i>
     <% end %>
   </div>
 </div>
