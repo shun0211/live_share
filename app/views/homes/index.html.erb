@@ -1,165 +1,94 @@
 <div class="big-bg wrapper">
-  <header class="page-header">
-    <h2><a href="#">Live Share</a></h1>
-    <nav>
-      <ul class="top-nav">
-        <li><i class="fas fa-search"></i></li>
-        <li><i class="far fa-bell"></i></li>
-        <li><i class="far fa-envelope"></i></li>
-        <li><label for="hamburger-menu" class="open"><i class="fas fa-bars"></i></label></li>
-      </ul>
-    </nav>
-    <input type="checkbox" id="hamburger-menu">
-    <label for="hamburger-menu" class="back"></label>
-    <aside class="menu">
-      <label for="hamburger-menu" class="close"><i class="fas fa-times"></i></label>
-      <ul>
-        <li>マイページ</li>
-        <li>メッセージ</li>
-        <li>購入希望したチケット</li>
-        <li>出品したチケット</li>
-        <li>行きたい!!リスト</li>
-        <li>お問い合わせ</li>
-        <li><a rel="nofollow" data-method="delete" href="/logout">ログアウト</a></li>
-      </ul>
-    </aside>
-  </header>
+
+  <%= render "shared/header" %>
+
   <div class="home-content">
     <h1>WE'LL CONNECT MUSIC FANS</h1>
     <p>あなたのチケットを本当に好きなファンの下に届けませんか？</p>
-    <%= link_to "ログイン", login_path, class: "btn btn-light" %>
+    <% if !user_signed_in? %>
+      <%= link_to "ログイン", login_path, class: "btn btn-light" %>
+    <% else %>
+      <i class="fas fa-chevron-down"></i>
+    <% end %>
   </div>
 </div>
 <main class="main-content">
-  <section>
-    <h3 class="title">
-      行きたい!!が多いチケット
-    </h3>
-    <div class="wrapper">
-      <div class="item">
-        <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-        <div class="info">
-          <h4 class="heading">
-            YON FES 2021
-          </h4>
-          <p class="date">
-            2021年4月4日
-          </p>
-          <p class="text">
-            仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-        <div class="info">
-          <h4 class="heading">
-            YON FES 2021
-          </h4>
-          <p class="date">
-            2021年4月4日
-          </p>
-          <p class="text">
-            仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-        <div class="info">
-          <h4 class="heading">
-            YON FES 2021
-          </h4>
-          <p class="date">
-            2021年4月4日
-          </p>
-          <p class="text">
-            仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-          </p>
-        </div>
-      </div>
-      <div class="item">
-        <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-        <div class="info">
-          <h4 class="heading">
-            YON FES 2021
-          </h4>
-          <p class="date">
-            2021年4月4日
-          </p>
-          <p class="text">
-            仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-          </p>
-        </div>
-      </div>
-    </div>
-    <p class="more"><a href="#">もっとみる</a></p>
-  </section>
-  <section>
+  <section class="new_arrival">
     <h3 class="title">
       新着チケット
     </h3>
-      <div class="wrapper">
-        <div class="item">
-          <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-          <div class="info">
-            <h4 class="heading">
-              YON FES 2021
-            </h4>
-            <p class="date">
-              2021年4月4日
-            </p>
-            <p class="text">
-              仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-            </p>
+    <div class="cards grid">
+      <% @new_tickets.each do |ticket|%>
+        <%= link_to ticket_path(ticket.id) do %>
+          <div class="rectangle-wrapper">
+            <div class="item card">
+              <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+              <div class="card-body">
+                <div class="flex-box">
+                  <h5 class="card-title">
+                    <%= ticket.event_name %>
+                  </h5>
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                    <%= ticket.likes.length %>
+                  </div>
+                </div>
+                <p class="date">
+                  <%= ticket.event_date %>
+                </p>
+                <p class="card-text">
+                  <%= ticket.description %>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="item">
-          <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-          <div class="info">
-            <h4 class="heading">
-              YON FES 2021
-            </h4>
-            <p class="date">
-              2021年4月4日
-            </p>
-            <p class="text">
-              仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-            </p>
+        <% end %>
+      <% end %>
+    </div>
+    <p class="more"><%= link_to "もっとみる", tickets_path %></p>
+  </section>
+  <section class="popular_ticket">
+    <h3 class="title" id="popular_ticket_title">
+      行きたい!!が多いチケット
+    </h3>
+    <div class="cards grid">
+      <% @hot_tickets.each do |ticket|%>
+        <%= link_to ticket_path(ticket.id) do %>
+          <div class="rectangle-wrapper">
+            <div class="item card">
+              <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+              <div class="card-body">
+                <div class="flex-box">
+                  <h5 class="card-title">
+                    <%= ticket.event_name %>
+                  </h5>
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                    <%= ticket.likes.length %>
+                  </div>
+                </div>
+                <p class="date">
+                  <%= ticket.event_date %>
+                </p>
+                <p class="card-text">
+                  <%= ticket.description %>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="item">
-          <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-          <div class="info">
-            <h4 class="heading">
-              YON FES 2021
-            </h4>
-            <p class="date">
-              2021年4月4日
-            </p>
-            <p class="text">
-              仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-            </p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="../assets/thumbnails.jpeg" alt="イベントの写真">
-          <div class="info">
-            <h4 class="heading">
-              YON FES 2021
-            </h4>
-            <p class="date">
-              2021年4月4日
-            </p>
-            <p class="text">
-              仕事が入ってしまいました（泣）どなたか代わりに楽しんでください😄
-            </p>
-          </div>
-        </div>
-      </div>
-      <p class="more"><a href="#">もっとみる</a></p>
+        <% end %>
+      <% end %>
+    </div>
+  <p class="more"><%= link_to "もっとみる", tickets_path %></p>
   </section>
 </main>
+
+<% if user_signed_in? %>
+  <%= link_to new_ticket_path, class: "listing_button" do %>
+    <img src="../assets/handpointer.png" alt="出品ボタン">
+    <h3>出品する</h3>
+  <% end %>
+<% end %>
 
 <%= render partial: 'shared/sub_footer' %>
 <%= render partial: 'shared/footer' %>
