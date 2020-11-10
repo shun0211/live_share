@@ -89,3 +89,32 @@
 .main-content .more a{
   color: $primary;
 }
+
+// 出品ボタン
+.listing_button{
+  background-color: $primary;
+  border-radius: 100%;
+  width: 130px;
+  height: 130px;
+  position: fixed;
+  bottom: 50px;
+  right: 40px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .2);
+  text-align: center;
+  color: $dark_gray;
+  font-weight: bold;
+  font-family: 'Kosugi Maru', sans-serif;
+  h3{
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  img{
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+  }
+}
+.listing_button:hover{
+  background-color: #e2a6a6;
+  color: $dark_gray;
+}
