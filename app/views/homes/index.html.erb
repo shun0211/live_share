@@ -18,24 +18,26 @@
     <div class="cards grid">
       <% @new_tickets.each do |ticket|%>
         <%= link_to ticket_path(ticket.id) do %>
-          <div class="item card">
-            <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
-            <div class="card-body">
-              <div class="flex-box">
-                <h5 class="card-title">
-                  <%= ticket.event_name %>
-                </h5>
-                <div class="like">
-                  <i class="fas fa-heart"></i>
-                  <%= ticket.likes.length %>
+          <div class="rectangle-wrapper">
+            <div class="item card">
+              <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+              <div class="card-body">
+                <div class="flex-box">
+                  <h5 class="card-title">
+                    <%= ticket.event_name %>
+                  </h5>
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                    <%= ticket.likes.length %>
+                  </div>
                 </div>
+                <p class="date">
+                  <%= ticket.event_date %>
+                </p>
+                <p class="card-text">
+                  <%= ticket.description %>
+                </p>
               </div>
-              <p class="date">
-                <%= ticket.event_date %>
-              </p>
-              <p class="card-text">
-                <%= ticket.description %>
-              </p>
             </div>
           </div>
         <% end %>
@@ -44,30 +46,32 @@
     <p class="more"><%= link_to "もっとみる", tickets_path %></p>
   </section>
   <section class="popular_ticket">
-    <h3 class="title">
+    <h3 class="title" id="popular_ticket_title">
       行きたい!!が多いチケット
     </h3>
     <div class="cards grid">
       <% @hot_tickets.each do |ticket|%>
         <%= link_to ticket_path(ticket.id) do %>
-          <div class="item card">
-            <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
-            <div class="card-body">
-              <div class="flex-box">
-                <h5 class="card-title">
-                  <%= ticket.event_name %>
-                </h5>
-                <div class="like">
-                  <i class="fas fa-heart"></i>
-                  <%= ticket.likes.length %>
+          <div class="rectangle-wrapper">
+            <div class="item card">
+              <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+              <div class="card-body">
+                <div class="flex-box">
+                  <h5 class="card-title">
+                    <%= ticket.event_name %>
+                  </h5>
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                    <%= ticket.likes.length %>
+                  </div>
                 </div>
+                <p class="date">
+                  <%= ticket.event_date %>
+                </p>
+                <p class="card-text">
+                  <%= ticket.description %>
+                </p>
               </div>
-              <p class="date">
-                <%= ticket.event_date %>
-              </p>
-              <p class="card-text">
-                <%= ticket.description %>
-              </p>
             </div>
           </div>
         <% end %>
