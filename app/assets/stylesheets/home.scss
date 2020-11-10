@@ -1,5 +1,15 @@
 @import "common.scss";
 
+@keyframes wave{
+  0% {
+    transform: translate(0,0px);
+  }
+
+  100% {
+    transform: translate(0,-15px)
+  }
+}
+
 .big-bg{
   background-image: url(toppage-bg);
   min-height: 100vh;
@@ -20,9 +30,15 @@
     line-height: 45px;
     padding: 0;
   }
+  // 矢印アニメーション
   .fas{
     padding-top: 100px;
     font-size: 4rem;
+    animation-name: wave;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 1.5s;
   }
 }
 .home-content h1{
@@ -111,65 +127,6 @@
     padding-top: 35px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// .main-content .wrapper{
-//   display: grid;
-//   grid-template-columns: repeat(4, 1fr);
-//   gap: 26px;
-//   padding-bottom: 10px;
-// }
-// .main-content .title{
-//   font-size: 34px;
-//   font-weight: normal;
-//   text-align: center;
-//   margin-top: 0;
-//   padding-top: 50px;
-// }
-// .main-content img{
-//   width: 280px;
-//   height: 220px;
-// }
-// .main-content .item{
-//   height: 350px;
-//   background-color: #fff;
-// }
-// .main-content .info{
-//   padding: 10px;
-// }
-// .main-content .heading{
-//   margin: 0;
-// }
-// .main-content .date,
-// .main-content .text{
-//   margin: 5px 0;
-// }
-// .main-content .heading{
-//   font-size: 1.25rem
-// }
-// .main-content .date{
-//   font-size: 0.8rem;
-//   color: $dark-gray;
-// }
-// .main-content .more{
-//   text-align: center;
-//   font-size: 1.25rem;
-// }
-// .main-content .more a{
-//   color: $primary;
-// }
 
 // 出品ボタン
 .listing_button{
