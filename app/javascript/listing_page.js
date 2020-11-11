@@ -30,14 +30,15 @@ $(function(){
   })
 
   // バリデーションチェック
-  $('#new_ticket').on('submit', function(e){
+  $('.submit-button').on('click', function(e){
     const alerts = document.getElementsByClassName('alert');
     if(alerts.length){
       alerts.remove();
     }
     e.preventDefault();
-    const formData = new FormData(this);
-    const url = $(this).attr("action");
+    const formInfo = document.forms.new_ticket;
+    const formData = new FormData(formInfo);
+    const url = $(formInfo).attr("action");
     $.ajax({
         url: url,
         type: 'POST',

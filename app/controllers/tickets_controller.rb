@@ -13,11 +13,12 @@ class TicketsController < ApplicationController
       if @ticket.valid?
         @ticket.save!
         format.html
-        format.json { render json: @ticket.errors.messages }
+        format.json {render json: @ticket.errors.messages}
       else
-        format.json { render json: @ticket.errors.messages }
+        format.json {render json: @ticket.errors.messages}
       end
     end
+    redirect_to root_path
   end
 
   def show
@@ -25,6 +26,21 @@ class TicketsController < ApplicationController
     @comments = @ticket.comments
     @comment = Comment.new
     gon.ticket = @ticket
+  end
+
+  def edit
+    @ticket = Ticket.find(params[:id])
+  end
+
+  def update
+    @ticket = Ticket.find(params[:id])
+    if @ticket.valid?
+      @ticket.update(ticket_params)
+      format.html
+      format.json {render json: @ticket.errors.messages}
+    else
+      format.json {render json: @ticket.errors.messages}
+    end
   end
 
   private

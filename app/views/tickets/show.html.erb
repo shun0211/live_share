@@ -110,12 +110,17 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-light" id="want-button">
-      購入を希望する
-    </button>
-    <button type="button" class="btn btn-light" id="message-button">
-      メッセージを送る
-    </button>
+    <% if @ticket.seller_id === current_user.id %>
+      <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light" %>
+      <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light" %>
+    <% else %>
+      <button type="button" class="btn btn-light" id="want-button">
+        購入を希望する
+      </button>
+      <button type="button" class="btn btn-light" id="message-button">
+        メッセージを送る
+      </button>
+    <% end %>
 
     <hr>
 
