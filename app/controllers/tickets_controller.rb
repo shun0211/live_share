@@ -12,13 +12,12 @@ class TicketsController < ApplicationController
     respond_to do |format|
       if @ticket.valid?
         @ticket.save!
-        format.html
+        format.html {redirect_to root_path}
         format.json {render json: @ticket.errors.messages}
       else
         format.json {render json: @ticket.errors.messages}
       end
     end
-    redirect_to root_path
   end
 
   def show

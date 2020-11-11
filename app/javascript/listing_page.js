@@ -31,14 +31,14 @@ $(function(){
 
   // バリデーションチェック
   $('.submit-button').on('click', function(e){
-    const alerts = document.getElementsByClassName('alert');
+    let alerts = document.getElementsByClassName('alert');
     if(alerts.length){
       alerts.remove();
     }
     e.preventDefault();
-    const formInfo = document.forms.new_ticket;
-    const formData = new FormData(formInfo);
-    const url = $(formInfo).attr("action");
+    let formInfo = document.forms.new_ticket;
+    let formData = new FormData(formInfo);
+    let url = $(formInfo).attr("action");
     $.ajax({
         url: url,
         type: 'POST',
@@ -48,29 +48,34 @@ $(function(){
         contentType: false
     })
     .done(function(error_messages){
-      if(error_messages["thumbnail"]){
-        document.getElementById('thumbnail-wrapper').insertAdjacentHTML("afterend", '<div class="alert alert-danger" id="thumbnail-error">画像を挿入してください</div>');
-      }
-      if(error_messages["event_name"]){
-        document.getElementById('event_name-select').insertAdjacentHTML("afterend", '<div class="alert alert-danger id="event_name-error"">公演名を選択するか30文字以内で入力してください</div>');
-      }
-      if(error_messages["event_date"]){
-        document.getElementsByName('ticket[event_date]')[0].insertAdjacentHTML("afterend", '<div class="alert alert-danger" id="event_date-error">公演日を入力してください</div>');
-      }
-      if(error_messages["venue"]){
-        document.getElementsByName('ticket[venue]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger id="venue-error">開催地を30文字以下で入力してください</div>');
-      }
-      if(error_messages["number_of_sheets"]){
-        document.getElementsByName('ticket[number_of_sheets]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger id="number_of_sheets">枚数を選択してください</div>');
-      }
-      if(error_messages["shipping"]){
-        document.getElementsByName('ticket[shipping]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger" id="shipping-error">配送料の負担を選択してください</div>');
-      }
-      if(error_messages["delivery_method"]){
-        document.getElementsByName('ticket[delivery_method]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger" id="delivery_method-error">受け渡し方法を30文字以内で入力してください</div>');
-      }
-      if(error_messages["price"]){
-        document.getElementsByName('ticket[price]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger" id="price-error">販売価格を300 ~ 99,999円で入力してください</div>');
+      let messageNum = Object.keys(error_messages).length
+      if (messageNum === 0){
+        window.location.href = "/"
+      }else{
+        if(error_messages["thumbnail"]){
+          document.getElementById('thumbnail-wrapper').insertAdjacentHTML("afterend", '<div class="alert alert-danger" id="thumbnail-error">画像を挿入してください</div>');
+        }
+        if(error_messages["event_name"]){
+          document.getElementById('event_name-select').insertAdjacentHTML("afterend", '<div class="alert alert-danger id="event_name-error"">公演名を選択するか30文字以内で入力してください</div>');
+        }
+        if(error_messages["event_date"]){
+          document.getElementsByName('ticket[event_date]')[0].insertAdjacentHTML("afterend", '<div class="alert alert-danger" id="event_date-error">公演日を入力してください</div>');
+        }
+        if(error_messages["venue"]){
+          document.getElementsByName('ticket[venue]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger id="venue-error">開催地を30文字以下で入力してください</div>');
+        }
+        if(error_messages["number_of_sheets"]){
+          document.getElementsByName('ticket[number_of_sheets]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger id="number_of_sheets">枚数を選択してください</div>');
+        }
+        if(error_messages["shipping"]){
+          document.getElementsByName('ticket[shipping]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger" id="shipping-error">配送料の負担を選択してください</div>');
+        }
+        if(error_messages["delivery_method"]){
+          document.getElementsByName('ticket[delivery_method]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger" id="delivery_method-error">受け渡し方法を30文字以内で入力してください</div>');
+        }
+        if(error_messages["price"]){
+          document.getElementsByName('ticket[price]')[0].insertAdjacentHTML('afterend', '<div class="alert alert-danger" id="price-error">販売価格を300 ~ 99,999円で入力してください</div>');
+        }
       }
     });
   });
