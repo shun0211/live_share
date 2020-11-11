@@ -24,6 +24,11 @@ label[for="ticket_thumbnail"]{
 .image-wrapper .thumbnail{
   line-height: 250px;
 }
+.image-wrapper img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 input[type="file"]{
   display: none;
 }
