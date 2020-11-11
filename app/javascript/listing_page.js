@@ -18,9 +18,9 @@ $(function(){
 
   // 販売手数料と出品者へのお礼
   document.getElementsByName('ticket[price]')[0].addEventListener('keyup', function(){
-    const sales_commition = Number(this.value) * 0.05;
+    let sales_commition = Number(this.value) * 0.05;
     document.getElementById('sales-commition').innerHTML = "<span>¥</span>" + sales_commition;
-    const sales_profit = Number(this.value) - sales_commition;
+    let sales_profit = Number(this.value) - sales_commition;
     document.getElementById('sales-profit').innerHTML = "<span>¥</span>" + sales_profit;
   });
 
@@ -49,6 +49,7 @@ $(function(){
     })
     .done(function(error_messages){
       let messageNum = Object.keys(error_messages).length
+      console.log("hoge");
       if (messageNum === 0){
         window.location.href = "/"
       }else{
