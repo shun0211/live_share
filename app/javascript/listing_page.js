@@ -49,7 +49,6 @@ $(function(){
     })
     .done(function(error_messages){
       let messageNum = Object.keys(error_messages).length
-      console.log("hoge");
       if (messageNum === 0){
         window.location.href = "/"
       }else{
