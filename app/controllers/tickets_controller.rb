@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: ["show", "edit", "update"]
+  before_action :set_ticket, only: ["show", "edit", "update", "destroy"]
 
   def index
     @tickets = Ticket.paginate(page: params[:page], per_page: 20)
@@ -43,6 +43,11 @@ class TicketsController < ApplicationController
         format.json {render json: @ticket.errors.messages}
       end
     end
+  end
+
+  def destroy
+    @ticket.destroy
+    redirect_to root_path
   end
 
   private
