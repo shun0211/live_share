@@ -111,8 +111,8 @@
     </div>
 
     <% if @ticket.seller_id === current_user.id %>
-      <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light" %>
-      <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light" %>
+      <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
+      <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button" %>
     <% else %>
       <button type="button" class="btn btn-light" id="want-button">
         購入を希望する
