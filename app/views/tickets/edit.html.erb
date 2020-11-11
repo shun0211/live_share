@@ -5,8 +5,14 @@
     <div class="wrapper form-group">
       <%= f.label :thumbnail, "イベントの画像(手もとにない場合は右から選択してください)" %>
       <div class="image-wrapper" id="thumbnail-wrapper">
-        <i class="fas fa-camera"></i>
-        <p class="caption">クリックして画像を選択</p>
+        <% if @ticket.thumbnail.url.blank? %>
+          <i class="fas fa-camera"></i>
+          <p class="caption">クリックして画像を選択</p>
+        <% else %>
+          <div class="thumbnail">
+            <%= image_tag @ticket.thumbnail.url, alt: "チケットのサムネイル写真" %>
+          </div>
+        <% end %>
       </div>
       <%= f.file_field :thumbnail, class: "image-form", id: "thumbnail-uploadButton" %>
 
@@ -62,7 +68,7 @@
       <%= f.label :description, "備考" %>
       <%= f.text_area :description, rows: 5, class: "form-control" %>
 
-      <%= button_tag "出品する", type: "submit", class: "btn btn-warning submit-button" %>
+      <%= button_tag "編集する", type: "submit", class: "btn btn-warning submit-button" %>
     </div>
   </div>
 <% end %>
