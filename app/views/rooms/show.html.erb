@@ -1,4 +1,27 @@
 <%= render "shared/header" %>
+<div class="message-container">
+  <div class="side-bar">
+    <% @users.each do |user| %>
+      <div class="user-info">
+        <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", size: "40" %>
+        <div class="user-name">
+          <%= user.nickname %>
+        </div>
+        <div class="last-message">
+          ありがとうございました〜！！
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <main>
+    <div class="message-wrapper">
+      <div id="messages" data-room_id="<%= @room.id %>"></div>
+        <%= render @messages %>
+      </div>
+    </div>
+    <%= text_field_tag :content, nil, data: {behavior: 'room_speaker'} %>
+  </main>
+</div>
 
 <%= render "shared/sub_footer" %>
 <%= render "shared/footer" %>
