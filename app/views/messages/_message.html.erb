@@ -1,4 +1,6 @@
-<div id="message">
-  <p><%= message.user.nickname %></p>
-  <p><%= message.content %></p>
+<div class="massage-wrapper">
+  <%= image_tag message.user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+  <div class="speech-bubble">
+    <%= message.content %>
+  </div>
 </div>

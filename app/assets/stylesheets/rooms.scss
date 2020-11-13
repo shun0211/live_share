@@ -1,3 +1,41 @@
-// Place all the styles related to the rooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "common.scss";
+
+.message-container{
+  display: flex;
+  .side-bar{
+    background-color: $boundary_primary;
+    width: 25%;
+  }
+  .user-info{
+    display: flex;
+    padding: 15px 25px;
+  }
+  .avatar{
+    border-radius: 100%;
+  }
+  .wrapper{
+    background-color: none;
+    padding-left: 10px;
+  }
+  .user-name{
+
+  }
+  .last-message{
+    font-size: 0.75rem;
+    color: $dark_gray;
+    overflow: hidden;
+    height: 1rem;
+  }
+  main{
+    background-color: #6DA2F2;
+    width: 75%;
+    margin: 0 10px;
+    border-radius: 10px;
+  }
+  .massage-wrapper{
+    display: flex;
+  }
+  .speech-bubble{
+    background-color: #fff;
+  }
+}

@@ -3,13 +3,13 @@
 // 新規登録画面
 .container{
   margin-bottom: 70px;
+  .wrapper{
+    background-color: $boundary_primary;
+  }
 }
 .heading{
   text-align: center;
   padding: 20px 0 20px
-}
-.wrapper{
-  background-color: $boundary_primary;
 }
 .form-group{
   padding: 20px 8% 30px;
