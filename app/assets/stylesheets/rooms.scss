@@ -26,16 +26,70 @@
     overflow: hidden;
     height: 1rem;
   }
+  // メッセージ画面
   main{
-    background-color: #6DA2F2;
     width: 75%;
-    margin: 0 10px;
-    border-radius: 10px;
+    margin: 0 10px 5px;
+    border-radius: 0 0 5px 5px;
+
   }
-  .massage-wrapper{
+  .message-wrapper{
+    background-color: #89B8ff;
+    padding: 0 1% 7px;
+  }
+  .massage{
     display: flex;
+    padding: 10px 0 10px;
+  }
+  .partner{
+    height: 2rem;
+    line-height: 2rem;
+    padding-left: 20px;
+    background-color: #fff;
+    border-radius: 5px 5px 0 0;
+    border-top: 1px solid #c3c3c3;
+    border-right: 1px solid #c3c3c3;
+    border-left: 1px solid #c3c3c3;
   }
   .speech-bubble{
     background-color: #fff;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    padding: 10px;
+    margin-left: 14px;
+    position: relative;
   }
+  .speech-bubble:before{
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 100%;
+    border-right: 8px solid #FFF;
+    border-top: 6px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+  .message-form{
+    position: relative;
+  }
+  .fa-image{
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    font-size: 1.5rem;
+    color: $dark_gray
+  }
+  .form-control{
+    margin: 0;
+    padding-left: 36px
+  }
+  .fa-paper-plane{
+    position: absolute;
+    right: 0;
+    font-size: 1.3rem;
+    top: 9px;
+    right: 7px;
+    color: $dark_gray;
+  }
+
+
 }

@@ -16,12 +16,18 @@
     <% end %>
   </div>
   <main>
-    <div class="message-wrapper">
-      <div id="messages" data-room_id="<%= @room.id %>"></div>
-
+    <div class="partner">
+      木内
+    </div>
+    <div class="message-wrapper form-group">
+      <div id="messages" data-room_id="<%= @room.id %>">
         <%= render @messages %>
       </div>
-      <%= text_field_tag :content, nil, data: {behavior: 'room_speaker'} %>
+      <div class="message-form">
+        <i class="fas fa-image"></i>
+        <%= text_field_tag :content, nil, data: {behavior: 'room_speaker'}, class: "form-control" %>
+        <i class="far fa-paper-plane"></i>
+      </div>
     </div>
 
   </main>
