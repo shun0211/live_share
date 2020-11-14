@@ -117,9 +117,11 @@
       <button type="button" class="btn btn-light" id="want-button">
         購入を希望する
       </button>
-      <button type="button" class="btn btn-light" id="message-button">
-        メッセージを送る
-      </button>
+      <% if @exist_room === true %>
+        <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
+      <% else %>
+        <%= link_to "メッセージを送る", rooms_path(user_id: "#{@ticket.seller_id}"), method: :post, class: "btn btn-light", id: "message-button" %>
+      <% end %>
     <% end %>
 
     <hr>
