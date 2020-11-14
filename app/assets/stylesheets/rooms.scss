@@ -39,7 +39,7 @@
   }
   .massage{
     display: flex;
-    padding: 10px 0 10px;
+    padding: 6px 0 6px;
   }
   .partner{
     height: 2rem;
@@ -51,7 +51,7 @@
     border-right: 1px solid #c3c3c3;
     border-left: 1px solid #c3c3c3;
   }
-  .speech-bubble{
+  .speech-bubble-partner{
     background-color: #fff;
     border-radius: 10px;
     font-size: 0.85rem;
@@ -59,12 +59,29 @@
     margin-left: 14px;
     position: relative;
   }
-  .speech-bubble:before{
+  .speech-bubble-partner:before{
     content: "";
     position: absolute;
     top: 10px;
     right: 100%;
     border-right: 8px solid #FFF;
+    border-top: 6px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+  .speech-bubble-own{
+    background-color: #68FF68;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    padding: 10px;
+    margin: 0 20px 0 auto;
+    position: relative;
+  }
+  .speech-bubble-own:before{
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    border-left: 8px solid #68FF68;
     border-top: 6px solid transparent;
     border-bottom: 4px solid transparent;
   }
