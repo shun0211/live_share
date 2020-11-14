@@ -1,0 +1,37 @@
+<%= render "shared/header" %>
+<div class="message-container">
+  <div class="side-bar">
+    <% @users.each do |user| %>
+      <div class="user-info">
+        <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+        <div class="wrapper">
+          <div class="user-name">
+            <%= user.nickname %>
+          </div>
+          <div class="last-message">
+            すごく助かりました。ありがとうございました〜！！
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <main>
+    <div class="partner">
+      木内
+    </div>
+    <div class="message-wrapper form-group">
+      <div id="messages" data-room_id="<%= @room.id %>">
+        <%= render @messages %>
+      </div>
+      <div class="message-form">
+        <i class="fas fa-image"></i>
+        <%= text_field_tag :content, nil, data: {behavior: 'room_speaker'}, class: "form-control" %>
+        <i class="far fa-paper-plane"></i>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>

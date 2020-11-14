@@ -16,5 +16,7 @@ Rails.application.routes.draw do
     resource :likes, only: [:create, :destroy]
   end
 
+  resources :rooms, only: [:show]
+
   root 'homes#index'
 end
