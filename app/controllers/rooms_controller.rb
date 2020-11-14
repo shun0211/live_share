@@ -24,7 +24,8 @@ class RoomsController < ApplicationController
       partner_id << partner_entry.user_id
     end
     @users = User.where(id: partner_id).where.not(id: current_user.id)
-
+    # ログイン中のユーザが入っているすべてのRoom
+    @my_rooms = Room.where(id: my_room)
     @partner = Entry.where(room_id: params[:id]).where.not(user_id: current_user.id)
     @messages = @room.messages
   end

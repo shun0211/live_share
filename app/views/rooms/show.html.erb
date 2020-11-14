@@ -1,18 +1,21 @@
 <%= render "shared/header" %>
 <div class="message-container">
   <div class="side-bar">
-    <% @users.each do |user| %>
-      <div class="user-info">
-        <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
-        <div class="wrapper">
-          <div class="user-name">
-            <%= user.nickname %>
-          </div>
-          <div class="last-message">
-            すごく助かりました。ありがとうございました〜！！
+    <% @my_rooms.each do |my_room| %>
+      <% @users.each do |user| %>
+        <div class="user-info">
+          <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+          <div class="wrapper">
+            <div class="user-name">
+              <%= user.nickname %>
+            </div>
+            <div class="last-message">
+              <%# ルームでした最後のメッセージが表示される必要がある。 %>
+              <%= my_room.messages.order(created_at: :desc).take.content %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
   <main>
