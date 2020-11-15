@@ -1,0 +1,55 @@
+@import "common.scss";
+
+.notification-container{
+  display: flex;
+  .sidebar{
+    background-color: $boundary_primary;
+    padding: 30px 47px;
+    width: 27%;
+    min-height: calc(100vh - 70px);
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: $primary;
+    }
+  }
+  p{
+    padding-top: 20px;
+    margin: 0;
+  }
+  .user-info{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .user-name{
+    padding-left: 15px;
+    font-weight: bold;
+  }
+  // お知らせ画面
+  main{
+    width: 73%;
+  }
+  .notification-wrapper{
+    padding: 30px 40px;
+    background-color: #fff;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+  }
+  h2{
+    margin: 0;
+    font-size: 1.6rem;
+  }
+  .date{
+    font-size: 0.8rem;
+    color: $dark_gray;
+    margin: 0;
+  }
+  .content{
+    padding: 10px 0 20px;
+  }
+  hr{
+    margin: 0;
+  }
+}

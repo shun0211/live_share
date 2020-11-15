@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_013634) do
+ActiveRecord::Schema.define(version: 2020_11_15_063105) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content", null: false
@@ -49,6 +49,26 @@ ActiveRecord::Schema.define(version: 2020_11_14_013634) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "ravisited_id", null: false
+    t.integer "ticket_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "ticket_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ticket_id"], name: "index_requests_on_ticket_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -98,6 +118,8 @@ ActiveRecord::Schema.define(version: 2020_11_14_013634) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "requests", "tickets"
+  add_foreign_key "requests", "users"
   add_foreign_key "tickets", "users", column: "buyer_id"
   add_foreign_key "tickets", "users", column: "seller_id"
 end
