@@ -2,14 +2,14 @@ import consumer from "./consumer"
 
 $(document).on('turbolinks:load', function(){
   // createの中身でparamsの中に入るkeyが決まる
-  const chatCannel = consumer.subscriptions.create({ channel: "RoomChannel", room: $('#messages').data('room_id')}, {
+  consumer.subscriptions.create({ channel: "RoomChannel", room: $('#messages').data('room_id')}, {
     connected() {
-      document.
-        querySelector('input[data-behavior="room_speaker"]')
-        addEventListener('keypress', (event) => {
-          this.speak(event.target.value);
-          event.target.value = '';
-          return event.preventDefault();
+      document
+        .querySelector('[data-behavior="room_speaker"]')
+        .addEventListener('click', () => {
+          const form = $('input[data-behavior="form_data"]');
+          this.speak(form.val());
+          form.val('');
         })
     },
 
@@ -18,11 +18,13 @@ $(document).on('turbolinks:load', function(){
     },
 
     received(data) {
-      const element = document.querySelector('#message')
-      element.insertAdjacentHTML('beforeend', data['message'])
+      console.log(data);
+      const element = document.querySelector('#messages');
+      element.insertAdjacentHTML('beforeend', data['message']);
     },
 
     speak: function(message) {
+      // this.perform(...)でroom_channel.rbのspeakメソッドを呼び出す
       return this.perform('speak', {message: message});
     }
   });

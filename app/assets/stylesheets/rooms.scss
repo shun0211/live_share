@@ -30,12 +30,14 @@
   main{
     width: 75%;
     margin: 0 10px 5px;
-    border-radius: 0 0 5px 5px;
-
   }
   .message-wrapper{
     background-color: #89B8ff;
     padding: 0 1% 7px;
+    border-radius: 0 0 5px 5px;
+  }
+  #messages{
+    min-height: 80vh;
   }
   .massage{
     display: flex;

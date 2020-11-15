@@ -27,6 +27,16 @@ class TicketsController < ApplicationController
     @comments = @ticket.comments
     @comment = Comment.new
     gon.ticket = @ticket
+    @my_entries = Entry.where(user_id: current_user.id)
+    @partner_entries = Entry.where(user_id: @ticket.seller_id)
+    @my_entries.each do |my_entry|
+      @partner_entries.each do |partner_entry|
+        if my_entry.room_id === partner_entry.room_id
+          @exist_room = true
+          @room_id = my_entry.room_id
+        end
+      end
+    end
   end
 
   def edit
