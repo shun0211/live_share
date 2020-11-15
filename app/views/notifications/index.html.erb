@@ -1,0 +1,44 @@
+<%= render "shared/header" %>
+
+<div class="notification-container">
+  <div class="sidebar">
+    <div class="user-info">
+      <%= image_tag current_user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+      <div class="user-name">
+        <%= current_user.nickname %>
+      </div>
+    </div>
+    <%= link_to "メッセージ" %>
+    <%= link_to "お知らせ" %>
+    <%= link_to "口座登録" %>
+    <%= link_to "行きたい!!を押したリスト" %>
+    <%= link_to "口座登録" %>
+    <%= link_to "配送先住所" %>
+    <%= link_to "プロフィール編集" %>
+    <%= link_to "ログアウト" %>
+    <%= link_to "退会" %>
+  </div>
+  <main>
+    <div class="notification-wrapper">
+      <h2>お知らせ</h2>
+      <div class="notification">
+        <p class="date">2021年3月7日</p>
+        <p class="content">さかいさんから出品したYON FES 2021のチケットの購入希望がありました</p>
+        <hr>
+      </div>
+      <div class="notification">
+        <p class="date">2021年3月7日</p>
+        <p class="content">さかいさんから出品したYON FES 2021のチケットの購入希望がありました</p>
+        <hr>
+      </div>
+      <div class="notification">
+        <p class="date">2021年3月7日</p>
+        <p class="content">さかいさんから出品したYON FES 2021のチケットの購入希望がありました</p>
+        <hr>
+      </div>
+    </div>
+  </main>
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>
