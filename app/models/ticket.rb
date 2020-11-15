@@ -5,6 +5,7 @@ class Ticket < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes
   has_many :requests
+  has_many :notifications, dependent: :destroy
 
   def liked_by(user)
     likes.where(user_id: user.id).exists?
