@@ -1,3 +1,29 @@
-// Place all the styles related to the notifications controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "common.scss";
+
+.notification-container{
+  display: flex;
+  .sidebar{
+    background-color: $boundary_primary;
+    padding: 30px 47px;
+    width: 27%;
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: $primary;
+    }
+  }
+  p{
+    padding-top: 20px;
+    margin: 0;
+  }
+  .user-info{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .user-name{
+    padding-left: 15px;
+    font-weight: bold;
+  }
+}
