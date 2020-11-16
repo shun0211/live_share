@@ -11,6 +11,23 @@ class Ticket < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
+  def create_notification_like(current_user)
+    # すでに「通知」がされているか検索
+    like_notification = Notification.where("visitor_id = ? and visited_id = ? and ticket_id = ? and action = ?", current_user.id, seller_id, id, "like")
+    if like_notification.blank?
+      @notification = Notification.new(
+        visitor_id: current_user.id,
+        visited_id: seller_id,
+        ticket_id: id,
+        action: "like"
+      )
+      if @notification.visited_id === current_user.id
+        @notification.checked = true
+      end
+      @notification.save!
+    end
+  end
+
   validates :thumbnail, presence: true
   validates :event_name, presence: true, length: {maximum: 30}
   validates :event_date, presence: true

@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications
+    @notifications = current_user.passive_notifications
   end
 end
