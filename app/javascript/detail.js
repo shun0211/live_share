@@ -2,9 +2,9 @@ $(function(){
   function buildHTML(comment){
     const html = `<div class="post data-comment-id="${comment.id}">
                     <div class="post-info">
-                      <img alt="コメント投稿者のプロフィール画像" class="icon" src="/assets/avatar.jpg" width="35" height="35">
+                      <img alt="コメント投稿者のプロフィール画像" class="icon" src="${comment.userAvatar}" width="35" height="35">
                       <div class="post-user">
-                        さかい
+                        ${comment.userNickname}
                       </div>
                       <div class="post-date">
                         ${comment.created_at}

@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @listing_tickets = Ticket.find_by(seller_id: current_user.id)
+    @listing_tickets = Ticket.where(seller_id: current_user.id)
     super
   end
 
