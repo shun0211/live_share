@@ -7,7 +7,7 @@ $(function(){
                         さかい
                       </div>
                       <div class="post-date">
-                        ${comment.created_at.strftime("%Y年%m月%d日 %H:%M")}
+                        ${comment.created_at}
                       </div>
                     </div>
                     <div class="content">
@@ -22,10 +22,11 @@ $(function(){
     return html;
   }
 
-  $('#new_comment').on('submit', function(e){
+  $('.comment-submit').on('click', function(e){
     e.preventDefault();
-    const formData = new FormData(this);
-    const url = $(this).attr('action');
+    const formInfo = document.forms.new_comment;
+    const formData = new FormData(formInfo);
+    const url = $(formInfo).attr('action');
     $.ajax({
       url: url,
       type: 'POST',

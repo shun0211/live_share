@@ -27,23 +27,24 @@
             <p class="date">
               <%= notification.created_at.strftime("%Y年%m月%d日 %H:%M") %>
             </p>
-            <p class="content">
-              <%= notification.visitor.nickname %>さんがあなたの投稿にいいねしました。
-            </p>
-            <hr>
+            <% case notification.action %>
+            <% when "like" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたの投稿", ticket_path(notification.ticket_id) %>にいいねしました。
+              </p>
+              <hr>
+            <% when "comment" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたの投稿", ticket_path(notification.ticket_id) %>にコメントしました。
+              </p>
+              <p class="info">
+                <%= notification.comment.content %>
+              </p>
+              <hr>
+            <% end %>
           </div>
         <% end %>
       <% end %>
-      <div class="notification">
-        <p class="date">2021年3月7日</p>
-        <p class="content">さかいさんから出品したYON FES 2021のチケットの購入希望がありました</p>
-        <hr>
-      </div>
-      <div class="notification">
-        <p class="date">2021年3月7日</p>
-        <p class="content">さかいさんから出品したYON FES 2021のチケットの購入希望がありました</p>
-        <hr>
-      </div>
     </div>
   </main>
 </div>

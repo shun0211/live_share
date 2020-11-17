@@ -88,12 +88,12 @@
 
       <div class="flex-box">
         <div class="seller">
-          <%= link_to root_path do %>
+          <%= link_to user_path(@ticket.seller.id) do %>
             <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
           <% end %>
           <div class="seller-name">
             <p class="lead">出品者</p>
-            <%= link_to root_path do %>
+            <%= link_to user_path(@ticket.seller.id) do %>
               <p class="user-name">さかい</p>
             <% end %>
           </div>
@@ -159,7 +159,7 @@
         <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
           <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
           <%= f.hidden_field :ticket_id, value: @ticket.id %>
-          <%= f.button type: "submit", class: "submit-btn" do %>
+          <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
             <i class="far fa-paper-plane"></i>
           <% end %>
         <% end %>
