@@ -6,6 +6,12 @@ class RequestsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def destroy
+    @request = Request.find_by(request_params)
+    @request.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def request_params
