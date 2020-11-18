@@ -44,6 +44,16 @@ class Ticket < ApplicationRecord
     @notification.save!
   end
 
+  def create_notification_request(current_user)
+    @notification = Notification.new(
+      visitor_id: current_user.id,
+      visited_id: seller_id,
+      ticket_id: id,
+      action: "request"
+    )
+    @notification.save!
+  end
+
   validates :thumbnail, presence: true
   validates :event_name, presence: true, length: {maximum: 30}
   validates :event_date, presence: true

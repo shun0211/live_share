@@ -30,15 +30,20 @@
             <% case notification.action %>
             <% when "like" then %>
               <p class="content">
-                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたの投稿", ticket_path(notification.ticket_id) %>にいいねしました。
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>にいいねしました。
               </p>
               <hr>
             <% when "comment" then %>
               <p class="content">
-                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたの投稿", ticket_path(notification.ticket_id) %>にコメントしました。
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>にコメントしました。
               </p>
               <p class="info">
                 <%= notification.comment.content %>
+              </p>
+              <hr>
+            <% when "request" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんから<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>に購入希望がありました。
               </p>
               <hr>
             <% end %>
