@@ -5,6 +5,7 @@
   .side-bar{
     background-color: $boundary_primary;
     width: 25%;
+    min-height: calc(100vh - 70px);
   }
   .user-info{
     display: flex;
@@ -26,6 +27,11 @@
     overflow: hidden;
     height: 1rem;
   }
+  .attention{
+    color: $dark_gray;
+    padding: 20px 15px;
+
+  }
   // メッセージ画面
   main{
     width: 75%;
@@ -35,6 +41,7 @@
     background-color: #89B8ff;
     padding: 0 1% 7px;
     border-radius: 0 0 5px 5px;
+    min-height: calc(100vh - 70px);
   }
   #messages{
     min-height: 80vh;

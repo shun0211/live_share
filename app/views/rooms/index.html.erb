@@ -1,0 +1,54 @@
+<%= render "shared/header" %>
+<div class="message-container">
+  <div class="side-bar">
+    <% if @rooms.present? %>
+      <% @rooms.each do |room| %>
+        <% room.users.each do |user| %>
+          <% unless user.id === current_user.id %>
+            <div class="user-info">
+              <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+              <div class="wrapper">
+                <div class="user-name">
+                  <%= user.nickname %>
+                </div>
+                <div class="last-message">
+                  <%= room.messages.order(created_at: :desc).take.content %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="attention">まだメッセージをしているユーザはいません。</p>
+    <% end %>
+  </div>
+  <main>
+    <% if @rooms.present? %>
+      <% @active_room.users.each do |user| %>
+        <% unless user.id === current_user.id %>
+          <div class="partner">
+            <%= user.nickname %>
+          </div>
+          <div class="message-wrapper form-group">
+            <div id="messages" data-room_id="<%= @rooms[0].id %>">
+              <%= render @messages %>
+            </div>
+          <div class="message-form">
+            <i class="fas fa-image"></i>
+            <%= text_field_tag :content, nil, data: {behavior: 'form_data'}, class: "form-control" %>
+            <i class="far fa-paper-plane" data-behavior="room_speaker"></i>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="partner">
+      </div>
+      <div class="message-wrapper">
+      </div>
+    <% end %>
+  </main>
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>

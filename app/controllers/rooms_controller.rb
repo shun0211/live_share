@@ -1,4 +1,9 @@
 class RoomsController < ApplicationController
+  def index
+    @rooms = current_user.rooms.joins(:messages).order("messages.created_at DESC")
+    @active_room = @rooms.first
+  end
+
   def create
     @room = Room.create
     @entry_own = Entry.create(room_id: @room.id, user_id: current_user.id)
