@@ -145,7 +145,7 @@
                   <%= comment.content %>
                 </p>
                 <% if user_signed_in? && comment.user_id === current_user.id %>
-                  <div class="delete-button">
+                  <div id="comment-delete">
                     <i class="fas fa-trash-alt"></i>
                   </div>
                 <% end %>
