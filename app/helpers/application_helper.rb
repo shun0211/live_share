@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
+  def unchecked_notifications
+    @notifications = current_user.passive_notifications.where(checked: false)
   end
 end

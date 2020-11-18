@@ -3,9 +3,14 @@
   <nav>
     <ul class="top-nav">
       <li><i class="fas fa-search"></i></li>
-      <li>
+      <li class="bell">
         <%= link_to notifications_path do %>
-          <i class="far fa-bell"></i>
+          <% if unchecked_notifications.any? %>
+            <i class="far fa-bell"></i>
+            <i class="fas fa-circle"></i>
+          <% else %>
+            <i class="far fa-bell"></i>
+          <% end %>
         <% end %>
       </li>
       <li><i class="far fa-envelope"></i></li>
