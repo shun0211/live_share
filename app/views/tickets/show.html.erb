@@ -88,12 +88,12 @@
 
       <div class="flex-box">
         <div class="seller">
-          <%= link_to root_path do %>
+          <%= link_to user_path(@ticket.seller.id) do %>
             <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
           <% end %>
           <div class="seller-name">
             <p class="lead">出品者</p>
-            <%= link_to root_path do %>
+            <%= link_to user_path(@ticket.seller.id) do %>
               <p class="user-name">さかい</p>
             <% end %>
           </div>
@@ -114,7 +114,11 @@
       <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
       <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
     <% else %>
-      <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button" %>
+      <% if @my_request.present? %>
+        <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
+      <% else %>
+        <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
+      <% end %>
       <% if @exist_room === true %>
         <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
       <% else %>
@@ -145,7 +149,7 @@
                   <%= comment.content %>
                 </p>
                 <% if user_signed_in? && comment.user_id === current_user.id %>
-                  <div class="delete-button">
+                  <div id="comment-delete">
                     <i class="fas fa-trash-alt"></i>
                   </div>
                 <% end %>
@@ -159,7 +163,7 @@
         <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
           <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
           <%= f.hidden_field :ticket_id, value: @ticket.id %>
-          <%= f.button type: "submit", class: "submit-btn" do %>
+          <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
             <i class="far fa-paper-plane"></i>
           <% end %>
         <% end %>

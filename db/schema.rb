@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_11_15_063105) do
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "visitor_id", null: false
-    t.integer "ravisited_id", null: false
+    t.integer "visited_id", null: false
     t.integer "ticket_id"
     t.integer "comment_id"
     t.string "action", default: "", null: false

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :tickets do
     resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
-    resource :requests, only: [:create]
+    resource :requests, only: [:create, :destroy]
   end
 
   resources :notifications, only: :index

@@ -1,13 +1,13 @@
 $(function(){
   function buildHTML(comment){
-    const html = `<div class="post data-comment-id="${comment.id}">
+    const html = `<div class="post" data-comment-id="${comment.id}">
                     <div class="post-info">
-                      <img alt="コメント投稿者のプロフィール画像" class="icon" src="/assets/avatar.jpg" width="35" height="35">
+                      <img alt="コメント投稿者のプロフィール画像" class="icon" src="${comment.userAvatar}" width="35" height="35">
                       <div class="post-user">
-                        さかい
+                        ${comment.userNickname}
                       </div>
                       <div class="post-date">
-                        ${comment.created_at.strftime("%Y年%m月%d日 %H:%M")}
+                        ${comment.created_at}
                       </div>
                     </div>
                     <div class="content">
@@ -22,10 +22,11 @@ $(function(){
     return html;
   }
 
-  $('#new_comment').on('submit', function(e){
+  $('.comment-submit').on('click', function(e){
     e.preventDefault();
-    const formData = new FormData(this);
-    const url = $(this).attr('action');
+    const formInfo = document.forms.new_comment;
+    const formData = new FormData(formInfo);
+    const url = $(formInfo).attr('action');
     $.ajax({
       url: url,
       type: 'POST',
@@ -42,8 +43,9 @@ $(function(){
     });
   });
   // コメント削除
-  $(document).on('click', '.delete-button', function(){
+  $(document).on('click', '#comment-delete', function(){
     let comment = this.parentNode.parentNode.dataset.commentId
+    console.log("test");
     let url = gon.ticket.id + "/comments/" + comment
     $.ajax({
       url: url,

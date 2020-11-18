@@ -5,19 +5,15 @@ class LikesController < ApplicationController
 
     @like.save!
     @ticket = @like.ticket
-    # respond_to do |format|
-    #   format.json
-    # end
+    # モデルから作られたインスタンスからメソッドを参照する際は、元になっているモデルのメソッドしか使用できない
+    # メソッド内でインスタンスの値を「id」や「event_name」などのように書くことで持ってこれる
+    @ticket.create_notification_like(current_user)
   end
 
   def destroy
     @like = Like.find_by(user_id: params[:user_id], ticket_id: params[:ticket_id])
     @ticket = @like.ticket
     @like.destroy
-
-    # repond_to do |format|
-    #   format.json
-    # end
   end
 
   private

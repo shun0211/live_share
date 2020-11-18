@@ -23,6 +23,9 @@
     align-items: center;
     padding-bottom: 5px;
   }
+  .avatar{
+    border-radius: 100%;
+  }
   .user-name{
     padding-left: 15px;
     font-weight: bold;
@@ -47,9 +50,21 @@
     margin: 0;
   }
   .content{
-    padding: 10px 0 20px;
+    padding: 10px 0 5px;
+    a{
+      color: #3aacad;
+      font-weight: bold;
+    }
+    a:hover{
+      color: $primary;
+    }
+  }
+  .info{
+    padding: 0 0 5px;
+    color: $dark_gray;
+    font-size: 0.9rem;
   }
   hr{
-    margin: 0;
+    margin: 10px 0 0;
   }
 }

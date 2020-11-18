@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :requests
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id'
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id'
+  has_many :sold_tickets, class_name: "Ticket", foreign_key: 'seller_id', dependent: :destroy
+  has_many :buyed_tickets, class_name: "Ticket", foreign_key: 'buyer_id'
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: "を○○@○○.○○の形式で入力して下さい" }, length: { maximum: 255 }

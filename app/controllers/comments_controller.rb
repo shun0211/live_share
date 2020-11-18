@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.save!
+    @comment.ticket.create_notification_comment(current_user, @comment.id)
     respond_to do |format|
       format.html
       format.json

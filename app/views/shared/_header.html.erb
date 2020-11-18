@@ -3,7 +3,16 @@
   <nav>
     <ul class="top-nav">
       <li><i class="fas fa-search"></i></li>
-      <li><i class="far fa-bell"></i></li>
+      <li class="bell">
+        <%= link_to notifications_path do %>
+          <% if unchecked_notifications.any? %>
+            <i class="far fa-bell"></i>
+            <i class="fas fa-circle"></i>
+          <% else %>
+            <i class="far fa-bell"></i>
+          <% end %>
+        <% end %>
+      </li>
       <li><i class="far fa-envelope"></i></li>
       <li><label for="hamburger-menu" class="open"><i class="fas fa-bars"></i></label></li>
     </ul>

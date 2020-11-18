@@ -13,6 +13,16 @@
   display: flex;
   font-size: 1.75rem;
   margin-top: 10px;
+  .bell{
+    position: relative;
+  }
+  .fa-circle{
+    position: absolute;
+    top: 3px;
+    right: -2px;
+    color: #f67690;
+    font-size: 0.85rem;
+  }
 }
 .top-nav li i{
   cursor: pointer;

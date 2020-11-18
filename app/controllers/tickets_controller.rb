@@ -37,6 +37,7 @@ class TicketsController < ApplicationController
         end
       end
     end
+    @my_request = @ticket.requests.find_by(user_id: current_user.id, ticket_id: @ticket.id)
   end
 
   def edit
