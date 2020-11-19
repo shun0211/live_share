@@ -1,28 +1,6 @@
 <%= render "shared/header" %>
 <div class="message-container">
-  <div class="side-bar">
-    <% if @rooms.present? %>
-      <% @rooms.each do |room| %>
-        <% room.users.each do |user| %>
-          <% unless user.id === current_user.id %>
-            <div class="user-info">
-              <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
-              <div class="wrapper">
-                <div class="user-name">
-                  <%= user.nickname %>
-                </div>
-                <div class="last-message">
-                  <%= room.messages.order(created_at: :desc).take.content %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <p class="attention">まだメッセージをしているユーザはいません。</p>
-    <% end %>
-  </div>
+  <%= render partial: "sidebar" %>
   <main>
     <% if @rooms.present? %>
       <% @active_room.users.each do |user| %>
