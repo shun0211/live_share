@@ -1,4 +1,15 @@
 class RoomsController < ApplicationController
+  def index
+    @rooms = current_user.rooms.includes(:messages).order("messages.created_at DESC")
+    @active_room = @rooms.first
+    @messages = @active_room.messages.order("created_at DESC").paginate(page: params[:page], per_page: 30)
+    gon.current_user_id = current_user.id
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def create
     @room = Room.create
     @entry_own = Entry.create(room_id: @room.id, user_id: current_user.id)
@@ -9,25 +20,9 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    # ログイン中のユーザの持つentriesテーブルの全レコード
-    @my_entries = Entry.where(user_id: current_user.id)
-    # ログイン中のユーザが持つすべてのroom_id取得
-    my_room = []
-    @my_entries.each do |my_entry|
-      my_room << my_entry.room_id
-    end
-    # ログインユーザと同じ部屋を持つユーザのentriesテーブルの全レコード
-    @partner_entries = Entry.where(room_id: my_room)
-    # 同じ部屋を持つユーザのidを配列に格納
-    partner_id = []
-    @partner_entries.each do |partner_entry|
-      partner_id << partner_entry.user_id
-    end
-    @users = User.where(id: partner_id).where.not(id: current_user.id)
-    # ログイン中のユーザが入っているすべてのRoom
-    @my_rooms = Room.where(id: my_room)
-    @partner = Entry.where(room_id: params[:id]).where.not(user_id: current_user.id)
-    @messages = @room.messages
+    @rooms = current_user.rooms
+    @user = @room.users.where.not(id: current_user.id)
+    @messages = @room.messages.paginate(page: params[:page], per_page: 30)
   end
 
 end

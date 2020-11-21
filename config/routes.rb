@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: :index
 
-  resources :rooms, only: [:create, :show]
+  resources :rooms, only: [:create, :show, :index]
 
   root 'homes#index'
 end

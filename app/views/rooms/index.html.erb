@@ -1,0 +1,33 @@
+<%= render "shared/header" %>
+<div class="message-container">
+  <%= render partial: "sidebar" %>
+  <main>
+    <% if @rooms.present? %>
+      <% @active_room.users.each do |user| %>
+        <% unless user.id === current_user.id %>
+          <div class="partner">
+            <%= user.nickname %>
+          </div>
+          <div class="message-wrapper form-group">
+            <div id="messages" data-room_id="<%= @rooms[0].id %>">
+              <%= render @messages.sort %>
+            </div>
+            <%= will_paginate(@messages) %>
+          <div class="message-form">
+            <i class="fas fa-image"></i>
+            <%= text_field_tag :content, nil, data: {behavior: 'form_data'}, class: "form-control" %>
+            <i class="far fa-paper-plane" data-behavior="room_speaker"></i>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="partner">
+      </div>
+      <div class="message-wrapper">
+      </div>
+    <% end %>
+  </main>
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>

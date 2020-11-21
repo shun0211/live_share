@@ -1,0 +1,59 @@
+<div class="side-bar">
+    <% if @rooms.present? %>
+      <% @rooms.each do |room| %>
+        <% room.users.each do |user| %>
+          <% unless user.id === current_user.id %>
+            <div class="user-info">
+              <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+              <div class="wrapper">
+                <div class="user-name">
+                  <%= user.nickname %>
+                </div>
+                <div class="last-message">
+                  <% if room.messages.present? %>
+                    <%= room.messages.order(created_at: :desc).take.content %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="attention">まだメッセージをしているユーザはいません。</p>
+    <% end %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%# <div class="side-bar">
+    <% @my_rooms.each do |my_room| %>
+      <%# <% @users.each do |user| %>
+        <%# <div class="user-info"> %>
+          <%# <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+          <%# <div class="wrapper"> %>
+            <%# <div class="user-name"> %>
+              <%# <%= user.nickname %>
+            <%# </div> %>
+            <%# <div class="last-message"> %>
+              <%# <% if my_room.messages.present? %>
+                <%# <%= my_room.messages.order(created_at: :desc).take.content %>
+              <%# <% end %>
+            <%# </div> %>
+          <%# </div> %>
+        <%# </div> %>
+      <%# <% end %>
+    <%# <% end %>
+  <%# </div> %>

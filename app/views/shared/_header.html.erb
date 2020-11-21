@@ -3,17 +3,23 @@
   <nav>
     <ul class="top-nav">
       <li><i class="fas fa-search"></i></li>
-      <li class="bell">
-        <%= link_to notifications_path do %>
-          <% if unchecked_notifications.any? %>
-            <i class="far fa-bell"></i>
-            <i class="fas fa-circle"></i>
-          <% else %>
-            <i class="far fa-bell"></i>
+      <% if user_signed_in? %>
+        <li class="bell">
+          <%= link_to notifications_path do %>
+            <% if unchecked_notifications.any? %>
+              <i class="far fa-bell"></i>
+              <i class="fas fa-circle"></i>
+            <% else %>
+              <i class="far fa-bell"></i>
+            <% end %>
           <% end %>
-        <% end %>
-      </li>
-      <li><i class="far fa-envelope"></i></li>
+        </li>
+        <li>
+          <%= link_to rooms_path do %>
+            <i class="far fa-envelope"></i>
+          <% end %>
+        </li>
+      <% end %>
       <li><label for="hamburger-menu" class="open"><i class="fas fa-bars"></i></label></li>
     </ul>
   </nav>
