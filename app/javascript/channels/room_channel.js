@@ -31,7 +31,6 @@ $(document).on('turbolinks:load', function(){
 
   function buildMessageHTML(messages){
     let messageNum = Object.keys(messages).length
-    console.log(messageNum);
     for(let i=0; i<messageNum; i++){
       if(gon.current_user_id === messages[i].user_id){
         let html = `<div class="message">
@@ -58,46 +57,22 @@ $(document).on('turbolinks:load', function(){
     $(".message-wrapper").scrollTop(messageScreenHeight);
   };
   scrollToBottom();
-  let i = 1;
+  let nextPageNum = 2;
   $(".message-wrapper").scroll(function(){
     let messageScreenHeight = $(".message-wrapper")[0].scrollHeight;
     if ($('.message-wrapper').scrollTop() === 0){
-      let nextPageNum = parseInt($(".message-wrapper").find('.pagination .next_page a').attr("href").match(/\d/), 10);
-      if (nextPageNum > i){
-        let url = "/rooms?page=" + nextPageNum
-        console.log(url);
-        $.ajax({
-          url: url,
-          type: "GET",
-          dataType: "json"
-        })
-        .done(function(messages){
-          console.log(messages);
-          buildMessageHTML(messages);
-          let messagePosition = $(".message-wrapper")[0].scrollHeight - messageScreenHeight;
-          console.log(messagePosition);
-          $('.message-wrapper').scrollTop(messagePosition);
-          i = parseInt(messages[0].page, 10);
-          console.log(i);
-        });
-      }else{
-        nextPageNum = i + 1;
-        let url = "/rooms?page=" + nextPageNum
-        console.log(url);
-        $.ajax({
-          url: url,
-          type: "GET",
-          dataType: "json"
-        })
-        .done(function(messages){
-          console.log(messages);
-          buildMessageHTML(messages);
-          let messagePosition = $(".message-wrapper")[0].scrollHeight - messageScreenHeight;
-          console.log(messagePosition);
-          $('.message-wrapper').scrollTop(messagePosition);
-          i = parseInt(messages[0].page, 10);
-        });
-      }
-    };
+      let url = "/rooms?page=" + nextPageNum;
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json"
+      })
+      .done(function(messages){
+        buildMessageHTML(messages);
+        let messagePosition = $(".message-wrapper")[0].scrollHeight - messageScreenHeight;
+        $('.message-wrapper').scrollTop(messagePosition);
+        nextPageNum = nextPageNum + 1;
+      })
+    }
   })
 });
