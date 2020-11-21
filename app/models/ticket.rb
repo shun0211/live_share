@@ -7,7 +7,7 @@ class Ticket < ApplicationRecord
   has_many :requests
   has_many :notifications, dependent: :destroy
   belongs_to :seller, class_name: "User", foreign_key: 'seller_id'
-  belongs_to :buyer, class_name: "User", foreign_key: 'buyer_id'
+  belongs_to :buyer, class_name: "User", foreign_key: 'buyer_id', optional: true
 
   def liked_by(user)
     likes.where(user_id: user.id).exists?

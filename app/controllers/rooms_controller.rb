@@ -2,7 +2,12 @@ class RoomsController < ApplicationController
   def index
     @rooms = current_user.rooms.includes(:messages).order("messages.created_at DESC")
     @active_room = @rooms.first
-    @messages = @active_room.messages
+    @messages = @active_room.messages.order("created_at DESC").paginate(page: params[:page], per_page: 30)
+    gon.current_user_id = current_user.id
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
@@ -17,7 +22,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @rooms = current_user.rooms
     @user = @room.users.where.not(id: current_user.id)
-    @messages = @room.messages
+    @messages = @room.messages.paginate(page: params[:page], per_page: 30)
   end
 
 end

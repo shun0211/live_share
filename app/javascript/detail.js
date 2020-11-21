@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(comment){
     const html = `<div class="post" data-comment-id="${comment.id}">
                     <div class="post-info">
-                      <img alt="コメント投稿者のプロフィール画像" class="icon" src="${comment.userAvatar}" width="35" height="35">
+                      <img alt="コメント投稿者のプロフィール画像" class="icon" src="/assets/${comment.userAvatar}" width="35" height="35">
                       <div class="post-user">
                         ${comment.userNickname}
                       </div>
@@ -37,6 +37,7 @@ $(function(){
     })
     .done(function(comment){
       const commentHTML = buildHTML(comment);
+
       $('.posts').append(commentHTML);
       document.getElementById("comment_content").value = "";
       document.getElementById("empty-message").remove();

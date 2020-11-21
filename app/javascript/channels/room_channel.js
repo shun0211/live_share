@@ -28,4 +28,45 @@ $(document).on('turbolinks:load', function(){
       return this.perform('speak', {message: message});
     }
   });
+
+  function buildMessageHTML(messages){
+    for(let i=0; i<30; i++){
+      if(gon.current_user_id === messages[i].user_id){
+        let html = `<div class="message">
+                      <img alt="ユーザのプロフィール画像" class="avatar" src="/assets/${messages[i].user.avatar}" width="40" height="40">
+                      <div class="speech-bubble-own">
+                        ${messages[i].content}
+                      </div>
+                    </div>`
+        document.getElementById('messages').insertAdjacentHTML('afterbegin', html)
+      }else{
+        let html = `<div class="message">
+                      <img alt="ユーザのプロフィール画像" class="avatar" src="/assets/${messages[i].user.avatar}" width="40" height="40">
+                      <div class="speech-bubble-partner">
+                        ${messages[i].content}
+                      </div>
+                    </div>`
+        document.getElementById('messages').insertAdjacentHTML('afterbegin', html)
+      }
+    }
+  }
+
+  function scrollToBottom(){
+    let messageScreenHeight = $(".message-wrapper")[0].scrollHeight;
+    $(".message-wrapper").scrollTop(messageScreenHeight);
+  };
+  scrollToBottom();
+  $(".message-wrapper").scroll(function(){
+    if ($('.message-wrapper').scrollTop() === 0){
+      let url = $(".message-wrapper").find('.pagination .next_page a').attr("href");
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json"
+      })
+      .done(function(messages){
+        buildMessageHTML(messages);
+      });
+    };
+  })
 });

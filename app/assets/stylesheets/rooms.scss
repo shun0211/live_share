@@ -2,6 +2,7 @@
 
 .message-container{
   display: flex;
+  height: calc(100vh - 70px);
   .side-bar{
     background-color: $boundary_primary;
     width: 25%;
@@ -13,6 +14,7 @@
   }
   .avatar{
     border-radius: 100%;
+    display: block;
   }
   .wrapper{
     background-color: none;
@@ -41,12 +43,13 @@
     background-color: #89B8ff;
     padding: 0 1% 7px;
     border-radius: 0 0 5px 5px;
-    min-height: calc(100vh - 70px);
+    overflow: auto;
+    height: calc(100vh - 70px - 32px);
   }
   #messages{
     min-height: 80vh;
   }
-  .massage{
+  .message{
     display: flex;
     padding: 6px 0 6px;
   }
@@ -95,6 +98,9 @@
     border-left: 8px solid #68FF68;
     border-top: 6px solid transparent;
     border-bottom: 4px solid transparent;
+  }
+  .pagination{
+    display: none;
   }
   .message-form{
     position: relative;

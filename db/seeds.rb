@@ -67,3 +67,20 @@ Ticket.create!(
     seller_id: 1
   )
 end
+
+Room.create!
+Entry.create!(
+  user_id: 1,
+  room_id: 1
+)
+Entry.create!(
+  user_id: 2,
+  room_id: 1
+)
+100.times do |n|
+  Message.create!(
+    user_id: 2,
+    room_id: 1,
+    content: "Hello, World"
+  )
+end
