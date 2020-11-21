@@ -10,7 +10,7 @@
           </div>
           <div class="message-wrapper form-group">
             <div id="messages" data-room_id="<%= @rooms[0].id %>">
-              <%= render @messages %>
+              <%= render @messages.sort %>
             </div>
             <%= will_paginate(@messages) %>
           <div class="message-form">

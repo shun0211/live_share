@@ -30,7 +30,9 @@ $(document).on('turbolinks:load', function(){
   });
 
   function buildMessageHTML(messages){
-    for(let i=0; i<30; i++){
+    let messageNum = Object.keys(messages).length
+    console.log(messageNum);
+    for(let i=0; i<messageNum; i++){
       if(gon.current_user_id === messages[i].user_id){
         let html = `<div class="message">
                       <img alt="ユーザのプロフィール画像" class="avatar" src="/assets/${messages[i].user.avatar}" width="40" height="40">
@@ -56,17 +58,46 @@ $(document).on('turbolinks:load', function(){
     $(".message-wrapper").scrollTop(messageScreenHeight);
   };
   scrollToBottom();
+  let i = 1;
   $(".message-wrapper").scroll(function(){
+    let messageScreenHeight = $(".message-wrapper")[0].scrollHeight;
     if ($('.message-wrapper').scrollTop() === 0){
-      let url = $(".message-wrapper").find('.pagination .next_page a').attr("href");
-      $.ajax({
-        url: url,
-        type: "GET",
-        dataType: "json"
-      })
-      .done(function(messages){
-        buildMessageHTML(messages);
-      });
+      let nextPageNum = parseInt($(".message-wrapper").find('.pagination .next_page a').attr("href").match(/\d/), 10);
+      if (nextPageNum > i){
+        let url = "/rooms?page=" + nextPageNum
+        console.log(url);
+        $.ajax({
+          url: url,
+          type: "GET",
+          dataType: "json"
+        })
+        .done(function(messages){
+          console.log(messages);
+          buildMessageHTML(messages);
+          let messagePosition = $(".message-wrapper")[0].scrollHeight - messageScreenHeight;
+          console.log(messagePosition);
+          $('.message-wrapper').scrollTop(messagePosition);
+          i = parseInt(messages[0].page, 10);
+          console.log(i);
+        });
+      }else{
+        nextPageNum = i + 1;
+        let url = "/rooms?page=" + nextPageNum
+        console.log(url);
+        $.ajax({
+          url: url,
+          type: "GET",
+          dataType: "json"
+        })
+        .done(function(messages){
+          console.log(messages);
+          buildMessageHTML(messages);
+          let messagePosition = $(".message-wrapper")[0].scrollHeight - messageScreenHeight;
+          console.log(messagePosition);
+          $('.message-wrapper').scrollTop(messagePosition);
+          i = parseInt(messages[0].page, 10);
+        });
+      }
     };
   })
 });
