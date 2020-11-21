@@ -1,0 +1,26 @@
+#sub-footer{
+  background-image: url(sub_footer_bgi.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 270px;
+  padding-left: 20px;
+}
+#sub-footer h2{
+  padding-top: 20px;
+  font-family: 'Sriracha', sans-serif;
+  font-size: 36px;
+  margin: 0 0 10px;
+  color: #FFB6B6;
+  text-shadow: 1px 1px .5px #000;
+}
+.app-link{
+  display: flex;
+}
+.app-link img{
+  width: 200px;
+}
+.footer p {
+  font-size: 18px;
+  font-weight: bold;
+}

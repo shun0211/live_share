@@ -1,0 +1,12 @@
+<div class="message">
+  <% if message.user.id === current_user.id %>
+    <div class="speech-bubble-own">
+      <%= message.content %>
+    </div>
+  <% else %>
+    <%= image_tag message.user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+    <div class="speech-bubble-partner">
+      <%= message.content %>
+    </div>
+  <% end %>
+</div>

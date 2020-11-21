@@ -34,3 +34,7 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/mysql-data/
+.DS_Store
+/public/uploads/

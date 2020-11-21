@@ -1,0 +1,37 @@
+@import "common.scss";
+
+footer {
+  background-color: $boundary_black;
+  text-align: center;
+}
+
+footer ul{
+  padding-left: 0;
+  margin: 0 0 35px;
+  padding-top: 20px;
+}
+footer li{
+  list-style: none inside;
+  padding: 8px;
+}
+footer a{
+  color: #000;
+}
+footer a:hover{
+  color: $primary;
+}
+footer .grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+footer h2{
+  margin: 0;
+  font-family: 'Sriracha', sans-serif;
+  font-size: 28px;
+  color: $dark_gray;
+}
+footer p{
+  margin: 0;
+  padding-bottom: 10px;
+  color: $dark_gray;
+}

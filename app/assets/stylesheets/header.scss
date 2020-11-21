@@ -1,0 +1,87 @@
+@import "common";
+
+// ヘッダー
+.page-header h2{
+  font-family: 'Sriracha', sans-serif;
+  font-size: 48px;
+  margin-top: 5px;
+}
+.page-header a{
+  color: $dark_gray;
+}
+.top-nav{
+  display: flex;
+  font-size: 1.75rem;
+  margin-top: 10px;
+  .bell{
+    position: relative;
+  }
+  .fa-circle{
+    position: absolute;
+    top: 3px;
+    right: -2px;
+    color: #f67690;
+    font-size: 0.85rem;
+  }
+}
+.top-nav li i{
+  cursor: pointer;
+}
+.page-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4%;
+  position: relative;
+}
+.page-header li {
+  margin-left: 16px;
+  color: $dark_gray;
+}
+
+// ハンバーガーメニュー
+input[type="checkbox"]{
+  position: absolute;
+  left: -50vw;
+}
+aside{
+  min-width: 300px !important;
+  position: absolute;
+  height: 100vh;
+  right: -300px;
+  transition: all 0.3s ease-in-out;
+  background-color: $thin_primary;
+  z-index: 100;
+}
+aside li{
+  list-style: none inside;
+}
+.back{
+  display: none;
+}
+input[type="checkbox"]:checked ~ aside{
+  right: 0;
+}
+input[type="checkbox"]:checked ~ .back{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,.3);
+  z-index: 99;
+}
+.menu li{
+  padding: 10px;
+  margin-left: 0;
+  font-size: 1.15rem;
+}
+.menu li:hover,
+.menu li a:hover{
+  color: #FFF;
+}
+.menu .close{
+  padding: 20px;
+  font-size: 1.75rem;
+  cursor: pointer;
+}

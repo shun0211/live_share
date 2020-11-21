@@ -1,0 +1,177 @@
+<%= render partial: 'shared/header' %>
+
+<div class="container detail-container">
+  <div class="wrapper">
+    <div class="info">
+      <h2>
+        <%= @ticket.event_name %>
+      </h2>
+      <div class="flex-box">
+        <div class="left-wrapper">
+          <div class="image">
+            <%= image_tag @ticket.thumbnail.url, class: "thumbnail" %>
+          </div>
+          <div class="price">
+            <span>(税込)</span>
+            <%= "¥#{@ticket.price}" %>
+          </div>
+        </div>
+        <table class="table table-borderd">
+          <tr>
+            <th>
+              開催日
+            </th>
+            <td>
+              <%= @ticket.event_date.strftime("%Y年%m月%d日") %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              開催地
+            </th>
+            <td>
+              <%= @ticket.venue %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              枚数
+            </th>
+            <td>
+              <%= @ticket.number_of_sheets %> 枚
+            </td>
+          </tr>
+          <tr>
+            <th>
+              席種
+            </th>
+            <td>
+              <%= @ticket.sheet_type %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              配送料の負担
+            </th>
+            <td>
+              <% if(@ticket.shipping === 1) %>
+                送料込み(出品者負担)
+              <% elsif(@ticket.shipping === 2) %>
+                着払い(購入者負担)
+              <% else %>
+                配送料なし
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              受け渡し方法
+            </th>
+            <td>
+              <%= @ticket.delivery_method %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <hr class="top">
+
+      <div class="more">
+        <% if @ticket.description.present? %>
+          <p>
+            <%= safe_join(@ticket.description.split("\n"),tag(:br)) %>
+          </p>
+        <% end %>
+      </div>
+
+      <hr class="bottom">
+
+      <div class="flex-box">
+        <div class="seller">
+          <%= link_to user_path(@ticket.seller.id) do %>
+            <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
+          <% end %>
+          <div class="seller-name">
+            <p class="lead">出品者</p>
+            <%= link_to user_path(@ticket.seller.id) do %>
+              <p class="user-name">さかい</p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="group">
+          <div id="like">
+            <%= render "likes/like", ticket: @ticket %>
+          </div>
+          <span>シェアする</span>
+          <img src="../assets/instagram_icon.png" alt="Instagramアイコン" width="20px" height="20px">
+          <i class="fab fa-twitter"></i>
+        </div>
+      </div>
+    </div>
+
+    <% if @ticket.seller_id === current_user.id %>
+      <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
+      <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
+    <% else %>
+      <% if @my_request.present? %>
+        <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
+      <% else %>
+        <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
+      <% end %>
+      <% if @exist_room === true %>
+        <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
+      <% else %>
+        <%= link_to "メッセージを送る", rooms_path(user_id: "#{@ticket.seller_id}"), method: :post, class: "btn btn-light", id: "message-button" %>
+      <% end %>
+    <% end %>
+
+    <hr>
+
+    <div class="comment-wrapper">
+      <div class="posts">
+        <% if @ticket.comments.blank? %>
+          <p id="empty-message">コメントが投稿されていません。</p>
+        <% else %>
+          <% @comments.each do |comment| %>
+            <div class="post" data-comment-id="<%= comment.id %>">
+              <div class="post-info">
+                <%= image_tag comment.user.avatar.url, alt: "コメント投稿者のプロフィール画像", size: "35", class: "icon" %>
+                <div class="post-user">
+                  <%= comment.user.nickname %>
+                </div>
+                <div class="post-date">
+                  <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                </div>
+              </div>
+              <div class="content">
+                <p class="comment">
+                  <%= comment.content %>
+                </p>
+                <% if user_signed_in? && comment.user_id === current_user.id %>
+                  <div id="comment-delete">
+                    <i class="fas fa-trash-alt"></i>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="form form-group">
+        <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
+          <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
+          <%= f.hidden_field :ticket_id, value: @ticket.id %>
+          <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
+            <i class="far fa-paper-plane"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>

@@ -1,0 +1,47 @@
+<header class="page-header common-header">
+  <h2><a href="/">Live Share</a></h2>
+  <nav>
+    <ul class="top-nav">
+      <li><i class="fas fa-search"></i></li>
+      <% if user_signed_in? %>
+        <li class="bell">
+          <%= link_to notifications_path do %>
+            <% if unchecked_notifications.any? %>
+              <i class="far fa-bell"></i>
+              <i class="fas fa-circle"></i>
+            <% else %>
+              <i class="far fa-bell"></i>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to rooms_path do %>
+            <i class="far fa-envelope"></i>
+          <% end %>
+        </li>
+      <% end %>
+      <li><label for="hamburger-menu" class="open"><i class="fas fa-bars"></i></label></li>
+    </ul>
+  </nav>
+  <input type="checkbox" id="hamburger-menu" class="hamburger-menu">
+    <label for="hamburger-menu" class="back"></label>
+    <aside class="menu">
+      <label for="hamburger-menu" class="close"><i class="fas fa-times"></i></label>
+      <% if user_signed_in? %>
+        <ul>
+          <li><%= link_to "マイページ", mypage_path %></li>
+          <li>メッセージ</li>
+          <li>購入希望したチケット</li>
+          <li>出品したチケット</li>
+          <li>行きたい!!リスト</li>
+          <li>お問い合わせ</li>
+          <li><a rel="nofollow" data-method="delete" href="/logout">ログアウト</a></li>
+        </ul>
+      <% else %>
+        <ul>
+          <li><%= link_to "ログイン", login_path %></li>
+          <li>お問い合わせ</li>
+        </ul>
+      <% end %>
+    </aside>
+</header>

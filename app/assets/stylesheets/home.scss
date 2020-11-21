@@ -1,0 +1,161 @@
+@import "common.scss";
+
+@keyframes wave{
+  0% {
+    transform: translate(0,0px);
+  }
+  100% {
+    transform: translate(0,-15px)
+  }
+}
+.big-bg{
+  background-image: url(toppage-bg);
+  min-height: 100vh;
+  background-size: cover;
+  background-position: right 20% center;
+}
+.home-content{
+  text-align: center;
+  color: $dark_gray;
+  margin-top: 18%;
+  .btn{
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    border-radius: 20px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0;
+  }
+  // 矢印アニメーション
+  .fas{
+    padding-top: 100px;
+    font-size: 4rem;
+    animation-name: wave;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 1.5s;
+  }
+}
+.home-content h1{
+  font-family: 'Sriracha', sans-serif;
+  font-size: 4.25rem;
+  margin-bottom: 0;
+}
+.home-content p{
+  font-size: 1.25rem;
+  margin-bottom: 48px;
+}
+
+// メイン画面
+.main-content{
+  background-color: #F4F4F4;
+  padding-bottom: 50px;
+  .title{
+    text-align: center;
+    padding: 70px 0 8px;
+  }
+  .cards{
+    margin: 0 4% 0;
+    a{
+      color: $dark_gray;
+    }
+  }
+  .grid{
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .rectangle-wrapper{
+    position: relative;
+  }
+  .rectangle-wrapper:before{
+    content: "";
+    display: block;
+    padding-top: 125%;
+  }
+  .item{
+    width: 100%;
+    margin-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: 0.3s;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .2);
+  }
+  .item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
+  }
+  .thumbnail{
+    height: 57%;
+    object-fit: cover;
+  }
+  .card-body{
+    padding: 0.5rem 0.7rem;
+  }
+  .flex-box{
+    display: flex;
+  }
+  .like{
+    color: $primary;
+    font-size: 0.75rem;
+  }
+  .card-title{
+    font-size: 1.1rem;
+    margin-bottom: 1px;
+  }
+  .date{
+    font-size: 0.7rem;
+    color: $dark_gray;
+    margin-bottom: 4px;
+  }
+  .card-text{
+    font-size: 0.7rem;
+    overflow: hidden;
+    height: 48px;
+  }
+  .more{
+    text-align: center;
+    font-size: 1.25rem;
+    padding-top: 26px;
+    a{
+      color: $primary;
+    }
+  }
+  #popular_ticket_title{
+    padding-top: 35px;
+  }
+}
+
+// 出品ボタン
+.listing_button{
+  background-color: $primary;
+  border-radius: 100%;
+  width: 130px;
+  height: 130px;
+  position: fixed;
+  bottom: 50px;
+  right: 40px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .2);
+  text-align: center;
+  color: $dark_gray;
+  font-weight: bold;
+  font-family: 'Kosugi Maru', sans-serif;
+  h3{
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  img{
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+  }
+}
+.listing_button:hover{
+  background-color: #e2a6a6;
+  color: $dark_gray;
+}

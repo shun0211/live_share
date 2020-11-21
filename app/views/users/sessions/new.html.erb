@@ -1,0 +1,35 @@
+<%= render partial: "shared/header" %>
+
+<div class="container session-container">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h2 class="heading">ログイン</h2>
+    <div class="wrapper form-group">
+      <% if flash[:alert] %>
+        <div class="error_messages">
+          <% flash.each do |key, value| %>
+            <%= content_tag :div, value, class: "#{key} alert-danger" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control", autofocus: true %>
+
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.submit "ログイン", class: "btn btn-light", id: "login-btn" %>
+      <a class="note" id="forget_password" href="#">パスワードをお忘れの方はこちら</a>
+
+      <p class="note">アカウント登録せず機能を試したい方はこちら</p>
+      <button class="btn btn-success">
+        かんたんログイン
+      </button>
+    </div>
+    <h3 class="lead">はじめての方はこちらから会員登録</h3>
+    <%= link_to "新規登録", sign_up_path, class: "btn btn-light", id: "big-login-btn" %>
+  <% end %>
+</div>
+
+<%= render partial: "shared/sub_footer" %>
+<%= render partial: "shared/footer" %>

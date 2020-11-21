@@ -1,0 +1,263 @@
+@import "common.scss";
+
+.detail-container{
+  h2{
+    text-align: center;
+    font-size: 2.4rem;
+    padding: 25px 0 20px;
+  }
+  .wrapper{
+    padding: 20px 8% 30px;
+    background-color: $boundary_primary;
+  }
+
+  .left-wrapper{
+    width: 52%;
+  }
+  .image{
+    width: 100%;
+    position: relative;
+  }
+  .image:before{
+    padding-top: 100%;
+    content: "";
+    display: block;
+  }
+  .thumbnail{
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .price{
+    width: 90%;
+    background-color: #fff;
+    color: #ff5e8e;
+    font-size: 2.2rem;
+    text-align: right;
+    padding: 5px 10px;
+    margin: 15px 0 0 auto;
+    font-weight: bold;
+    span{
+      font-size: 0.5rem;
+      padding: 0;
+      font-weight: normal;
+    }
+  }
+  .flex-box{
+    display: flex;
+    align-items: start;
+  }
+  .table{
+    margin-left: 25px;
+    text-align: center;
+  }
+  th{
+    background-color: #b2ff83;
+    border: solid 1px #BDBDBD;
+    width: 27%;
+    font-weight: normal;
+  }
+  td{
+    background-color: #fff;
+    width: 73%;
+    text-align: left;
+    padding-left: 10px;
+  }
+  tr{
+    border: solid 1px #BDBDBD;
+  }
+
+  // 備考欄
+  .top{
+    margin-bottom: 30px;
+  }
+  .bottom{
+    margin: 30px 0 20px;
+  }
+  .more p{
+    text-align: left;
+    padding: 0 30px;
+  }
+
+  // 出品者情報
+  .flex-box{
+    padding: 0 30px;
+  }
+  .seller{
+    display: flex;
+  }
+  .seller img{
+    border-radius: 100%;
+  }
+  .seller-name p{
+    margin: 0 10px;
+    color: #000;
+  }
+  .lead{
+    font-size: 14px;
+    padding: 5px 0 0 0;
+  }
+  .user-name{
+    font-size: 16px;
+    padding: 0;
+  }
+  .user-name:hover{
+    color: $primary;
+  }
+
+  // 行きたい!!ボタン、シェアするボタン
+  #like{
+    display: inline;
+    font-size: 18px;
+    a{
+      color: $primary;
+    }
+    span{
+      color: #000;
+      font-size: 1rem;
+      padding: 0 0 0 5px;
+    }
+  }
+  i{
+    font-size: 18px;
+  }
+  .fa-heart{
+    color: $primary;
+  }
+  .group label{
+    padding-left: 5px;
+  }
+  span{
+    padding: 0 10px 0 20px;
+  }
+  .fa-twitter{
+    color: #6DB9FF;
+    padding-left: 5px;
+  }
+
+  // 編集する、削除するボタン
+  .edit-button{
+    background-color: #68F065;
+    border-radius: 20px;
+    width: 26%;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    margin-top: 35px;
+  }
+  .edit-button:hover{
+    background-color: #27D823;
+    border: none;
+  }
+  .delete-button{
+    background-color: #C4C4C4;
+    border-radius: 20px;
+    width: 26%;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    margin-top: 16px;
+  }
+  .delete-button:hover{
+    background-color: #ABAAAA;
+  }
+
+  // 購入、メッセージボタン
+  #want-button{
+    background-color: #fff000;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 40px auto 0;
+    height: 40px;
+    width: 26%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    border-radius: 20px;
+  }
+  #want-button:hover{
+    background-color: #ffcc00;
+    border: none;
+  }
+  #cancel-button{
+    background-color: #ddd;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 40px auto 0;
+    height: 40px;
+    width: 26%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    border-radius: 20px;
+  }
+  #cancel-button:hover{
+    background-color: #aaaaaa;
+  }
+  #message-button{
+    background-color: $primary;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    margin: 25px auto;
+    height: 40px;
+    width: 26%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    border-radius: 20px;
+  }
+  #message-button:hover{
+    background-color: #ff9999;
+  }
+
+  // コメント
+  .comment-wrapper{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px 8% 15px;
+  }
+  .post-info{
+    display: flex;
+    align-items: center;
+  }
+  .post-info .icon{
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .post-user{
+    margin-left: 15px;
+  }
+  .post-date{
+    color: $dark_gray;
+    font-size: 0.5rem;
+    margin-left: 10px;
+  }
+  .content{
+    padding: 5px 0 20px 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .comment{
+    margin: 0;
+  }
+  .fa-trash-alt{
+    color: #808080;
+    font-size: 0.9rem;
+    padding: 6px 5px 5px;
+    cursor: pointer;
+  }
+  form{
+    position: relative;
+  }
+  .form-group{
+    padding: 15px 0 0 0;
+  }
+  #comment_content{
+    width: 100%;
+  }
+  .submit-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: $dark_gray;
+    padding-top: 8px;
+    padding-right: 10px;
+  }
+}

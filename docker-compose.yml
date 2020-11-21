@@ -7,20 +7,29 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - 3306:3306
+      - 4306:3306
     # MySQL8.0からデフォルトの認証方式が変更された(caching_sha2_password)ため、mysql_native_passwordに戻す
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
   web:
     build: .
+    tty: true
+    stdin_open: true
     # rails sした際に、A server is already running.というエラーが出ることがある。これを防ぐため、rm -f tmp/pids/server.pidしている。
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp
+      - bundle:/usr/local/bundle
     ports:
-      - "3000:3000"
+      - "3100:3000"
     # depends_onでコンテナが起動する順番を制御する（この場合、db→web）
     depends_on:
       - db
+
+volumes:
+  bundle:
+    driver: local
+  mysql-data:
+    driver: local

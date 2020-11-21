@@ -1,0 +1,58 @@
+<%= render "shared/header" %>
+
+<div class="notification-container">
+  <div class="sidebar">
+    <div class="user-info">
+      <%= image_tag current_user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+      <div class="user-name">
+        <%= current_user.nickname %>
+      </div>
+    </div>
+    <p><%= link_to "メッセージ" %></p>
+    <p><%= link_to "お知らせ" %></p>
+    <p><%= link_to "口座登録" %></p>
+    <p><%= link_to "行きたい!!を押したリスト" %></p>
+    <p><%= link_to "口座登録" %></p>
+    <p><%= link_to "配送先住所" %></p>
+    <p><%= link_to "プロフィール編集" %></p>
+    <p><%= link_to "ログアウト" %></p>
+    <p><%= link_to "退会" %></p>
+  </div>
+  <main>
+    <div class="notification-wrapper">
+      <h2>お知らせ</h2>
+      <% if @notifications.exists? %>
+        <% @notifications.each do |notification| %>
+          <div class="notification">
+            <p class="date">
+              <%= notification.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+            </p>
+            <% case notification.action %>
+            <% when "like" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>にいいねしました。
+              </p>
+              <hr>
+            <% when "comment" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんが<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>にコメントしました。
+              </p>
+              <p class="info">
+                <%= notification.comment.content %>
+              </p>
+              <hr>
+            <% when "request" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんから<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>に購入希望がありました。
+              </p>
+              <hr>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </main>
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>
