@@ -62,6 +62,10 @@
   #file-insert:hover{
     color: $primary;
   }
+  textarea::placeholder{
+    color: $dark_gray;
+    font-size: 0.9rem;
+  }
   .update-btn{
     border-radius: 20px;
     background-color: #fff000;
