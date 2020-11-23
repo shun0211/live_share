@@ -28,7 +28,7 @@
       <%= f.label :nickname, "ニックネーム" %>
       <%= f.text_field :nickname, class: "form-control" %>
       <%= f.label :profile, "プロフィール" %>
-      <%= f.text_area :profile, rows: 5, class: "form-control" %>
+      <%= f.text_area :profile, rows: 5, class: "form-control", placeholder: "例) [Alexandros]が大好きです！\n仕事で行けなくなったときなどに時々出品しています。\nよろしくお願いします😌" %>
       <%= f.submit "更新する", class: "btn btn-warning update-btn" %>
     <% end %>
   </div>
