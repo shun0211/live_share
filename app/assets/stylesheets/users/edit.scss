@@ -3,7 +3,7 @@
 .profile-container{
   margin: 20px auto 50px;
   .bg-image{
-    background-image: url(profile-bg.jpeg);
+    background-image: image-url(profile-bg);
     background-size: cover;
     height: 300px;
     background-position: center bottom 10%;
@@ -61,6 +61,10 @@
   }
   #file-insert:hover{
     color: $primary;
+  }
+  textarea::placeholder{
+    color: $dark_gray;
+    font-size: 0.9rem;
   }
   .update-btn{
     border-radius: 20px;

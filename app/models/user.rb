@@ -22,4 +22,12 @@ class User < ApplicationRecord
   validates :nickname, presence: true, length: { in: 2..20 }
   VALID_PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*\d)[a-z\d]{8,}+\z/
   validates :password, length: { maximum: 75 }, format: { with: VALID_PASSWORD_REGEX, message: "を半角英数字8文字以上で入力して下さい" }, on: :create
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = "password0"
+      user.nickname = "ゲストユーザ"
+    end
+  end
+
 end
