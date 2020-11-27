@@ -61,13 +61,14 @@ GEM
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.1)
-    autoprefixer-rails (10.0.1.0)
+    autoprefixer-rails (10.0.3.0)
       execjs
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.0.1)
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
-    bootstrap (5.0.0.alpha1)
+    bootstrap (4.5.3)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
@@ -111,6 +112,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    ed25519 (1.2.4)
     erb2haml (0.1.5)
       html2haml
     erubi (1.9.0)
@@ -343,8 +345,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
   bootsnap (>= 1.4.2)
-  bootstrap (~> 5.0.0.alpha1)
+  bootstrap (~> 4.5.0)
   bootstrap-will_paginate (= 1.0.0)
   byebug
   capistrano
@@ -355,6 +358,7 @@ DEPENDENCIES
   carrierwave (~> 2.0)
   devise
   dotenv-rails
+  ed25519
   erb2haml
   factory_bot_rails
   faker (= 2.1.2)
@@ -375,6 +379,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sass-rails (>= 6)
+  sassc (= 2.4.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

@@ -5,6 +5,7 @@ set :application, "conefan"
 set :repo_url, "git@github.com:shun0211/live_share.git"
 
 # Default branch is :master
+set :branch, "main"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
@@ -36,13 +37,23 @@ set :deploy_to, "/var/www/rails/live_share"
 set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-set :ssh_options, auth_method: ['publickey'], keys: ['~/.ssh/live_share_key_rsa']
+# set :ssh_options, { keys: %w(/root/.ssh/live_share_key_rsa), forward_agent: true, auth_methods: %w(publickey) }
+set :ssh_options, {
+  # capistranoコマンド実行者の秘密鍵
+  port: 22,
+  keys: %w(~/.ssh/live_share_key_rsa),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}
+
+# set :ssh_options, auth_methods: ['publickey'],
+#                   keys: ['/root/.ssh/live_share_key_rsa']
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
-set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
+set :unicorn_config_path, -> { "#{current_path}/config/unicorn.conf.rb" }
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do

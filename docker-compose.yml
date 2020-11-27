@@ -22,6 +22,7 @@ services:
     volumes:
       - .:/myapp
       - bundle:/usr/local/bundle
+      - ~/.ssh:/root/.ssh
     ports:
       - "3100:3000"
     # depends_onでコンテナが起動する順番を制御する（この場合、db→web）

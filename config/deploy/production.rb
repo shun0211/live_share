@@ -49,14 +49,5 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server "https://conefan.com",
-  user: "ec2-user",
-  roles: %w{web app},
-# }
-#   ssh_options: {
-#     user: "user_name", # overrides user setting above
-#     keys: %w(/home/user_name/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: "please use keys"
-#   }
+server "18.178.91.188", user: "ec2-user", roles: %w{web app}
+# , ssh_options: {keys: %w(~/.ssh/live_share_key_rsa), forward_agent: true, auth_methods: %w(publickey)}
