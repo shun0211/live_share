@@ -60,6 +60,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'sassc', '2.4.0'
 gem 'haml-rails'
 # erbからhamlに一括変換するGem
 gem 'erb2haml'
@@ -77,4 +78,3 @@ gem 'gon'
 gem 'dotenv-rails'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
-gem 'sassc', '2.4.0'
