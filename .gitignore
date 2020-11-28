@@ -38,3 +38,5 @@ yarn-debug.log*
 /mysql-data/
 .DS_Store
 /public/uploads/
+
+/config/credentials/production.key
