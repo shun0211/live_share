@@ -1,5 +1,4 @@
 # config valid for current version and patch releases of Capistrano
-app_path = File.expand_path('../../../', __FILE__)
 
 lock "~> 3.14.1"
 
@@ -52,8 +51,8 @@ append :linked_files, 'config/credentials/production.key'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
-set :unicorn_pid, -> { "#{app_path}/shared/tmp/pids/unicorn.pid" }
-set :unicorn_config_path, -> { "#{app_path}/current/config/unicorn.conf.rb" }
+set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
+set :unicorn_config_path, -> { "#{current_path}/config/unicorn.conf.rb" }
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
