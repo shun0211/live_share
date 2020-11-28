@@ -11,13 +11,23 @@ app_path = File.expand_path('../../../', __FILE__)
 # set config
 worker_processes 2
 working_directory "#{app_path}/current"
-stderr_path "#{app_path}/shared/log/unicorn.log"
-stdout_path "#{app_path}/shared/log/unicorn.log"
+stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
+stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
 timeout 30
 listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
 pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 # loading booster
 preload_app true
+
+GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
+
+check_client_connection false
+
+run_once = true
+
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
+end
 # before starting processes
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
