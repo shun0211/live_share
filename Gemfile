@@ -60,13 +60,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'sassc', '2.4.0'
+gem 'sassc', '~> 2.1.2'
 gem 'haml-rails'
 # erbからhamlに一括変換するGem
 gem 'erb2haml'
 gem 'font-awesome-sass'
 gem 'devise'
-gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'carrierwave', '~> 2.0'
