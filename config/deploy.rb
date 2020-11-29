@@ -35,7 +35,7 @@ set :deploy_to, "/var/www/rails/live_share"
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-set :keep_releases, 5
+set :keep_releases, ２
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, { keys: %w(/root/.ssh/live_share_key_rsa), forward_agent: true, auth_methods: %w(publickey) }
