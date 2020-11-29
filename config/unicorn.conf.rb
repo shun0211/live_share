@@ -14,7 +14,7 @@ working_directory "#{app_path}/current"
 stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
 stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
 timeout 30
-listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
+listen "#{app_path}/shared/tmp/sockets/.unicorn.sock"
 pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 # loading booster
 preload_app true
