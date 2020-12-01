@@ -10,7 +10,9 @@ FactoryBot.define do
     event_name { "YON FES 2021" }
     venue { "モリコロパーク" }
     event_date { "2021-04-03" }
-    seller { FactoryBot.create(:user) }
-    buyer { FactoryBot.create(:user) }
+    seller
+    buyer
+    association :seller
+    association :buyer
   end
 end

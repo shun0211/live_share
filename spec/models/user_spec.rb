@@ -93,7 +93,8 @@ RSpec.describe User, type: :model do
   end
 
   it "sold_ticketsでユーザが販売したチケットが取得できること" do
-    ticket = FactoryBot.create(:ticket)
+    ticket = FactoryBot.build(:ticket, seller: @user)
+    ticket.save!
     expect(@user.sold_tickets.count).to eq 1
   end
 
