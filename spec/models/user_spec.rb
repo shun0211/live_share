@@ -99,14 +99,20 @@ RSpec.describe User, type: :model do
   end
 
   it "buyed_ticketsでユーザが購入したチケットが取得できること" do
-
+    ticket = FactoryBot.build(:ticket, buyer: @user)
+    ticket.save!
+    expect(@user.buyed_tickets.count).to eq 1
   end
 
   it "passive_ticketsでユーザが受信したお知らせが取得できること" do
-
+    notification = FactoryBot.build(:notification, visited: @user)
+    notification.save!
+    expect(@user.passive_notifications.count).to eq 1
   end
 
   it "active_notificationsでユーザが送信したお知らせが取得できること" do
-
+    notification = FactoryBot.build(:notification, visitor: @user)
+    notification.save!
+    expect(@user.active_notifications.count).to eq 1
   end
 end
