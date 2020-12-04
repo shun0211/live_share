@@ -23,10 +23,9 @@ class Ticket < ApplicationRecord
         ticket_id: id,
         action: "like"
       )
-      if @notification.visited_id === current_user.id
-        @notification.checked = true
+      unless @notification.visited_id === @notification.visitor_id then
+        @notification.save!
       end
-      @notification.save!
     end
   end
 
@@ -38,10 +37,9 @@ class Ticket < ApplicationRecord
       comment_id: comment_id,
       action: "comment"
     )
-    if @notification.visited_id === current_user.id
-      @notification.checked = true
+    unless @notification.visited_id === current_user.id then
+      @notification.save!
     end
-    @notification.save!
   end
 
   def create_notification_request(current_user)
