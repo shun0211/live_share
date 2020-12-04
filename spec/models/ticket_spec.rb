@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
+
   describe "モデルのバリデーション" do
     # letは遅延評価されるという特徴を持ち、呼ばれるまで呼び出されない
     let(:ticket){ FactoryBot.build(:ticket) }
@@ -134,5 +135,104 @@ RSpec.describe Ticket, type: :model do
         expect(ticket).to_not be_valid
       end
     end
+  end
+
+  describe "#liked_by" do
+    before do
+      @ticket = FactoryBot.build(:ticket)
+      @user = FactoryBot.build(:user)
+    end
+
+    context "ユーザがチケットにいいね済みの場合" do
+      it "trueを返すこと" do
+        like = FactoryBot.build(:like, ticket: @ticket, user: @user)
+        like.save!
+        expect(@ticket.liked_by(@user)).to eq true
+      end
+    end
+
+    context "ユーザがチケットにいいねしてない場合" do
+      it "falseを返すこと" do
+        like = FactoryBot.build(:like, ticket: @ticket)
+        like.save!
+        expect(@ticket.liked_by(@user)).to eq false
+      end
+    end
+  end
+
+  describe "#create_notification_like" do
+    before do
+      @ticket = FactoryBot.create(:ticket)
+      @current_user = FactoryBot.create(:user)
+      @visited = FactoryBot.create(:user)
+    end
+
+    context "ユーザが既に通知を受けていた場合" do
+      it "レコードが保存されないこと" do
+        notification = Notification.create(visitor: @current_user, visited: @visited, ticket: @ticket, action: "like")
+        @ticket.create_notification_like(@current_user)
+        expect(@current_user.passive_notifications.count).to eq 0
+      end
+    end
+
+    context "ユーザが通知を受けておらず、かつ送信者と受信者が同じユーザでない場合" do
+      it "レコードが保存されること" do
+        @ticket.create_notification_like(@current_user)
+        expect(@current_user.active_notifications.count).to eq 1
+      end
+    end
+
+    context "ユーザが通知を受けておらずかつ通知受信者と送信者が同じ場合" do
+      it "レコードが保存されないこと" do
+        @ticket.seller_id = @current_user.id
+        @ticket.create_notification_like(@current_user)
+        expect(@current_user.active_notifications.count).to eq 0
+      end
+    end
+  end
+
+  describe "#create_notification_comment" do
+    before do
+      @ticket = FactoryBot.create(:ticket)
+      @current_user = FactoryBot.create(:user)
+      @comment = FactoryBot.create(:comment)
+    end
+
+    context "コメント送信者がチケット出品者でないとき" do
+      it "お知らせレコードが保存されること" do
+        @ticket.create_notification_comment(@current_user, @comment.id)
+        expect(@current_user.active_notifications.count).to eq 1
+      end
+    end
+
+    context "コメント送信者がチケット出品者であるとき" do
+      it "お知らせレコードが保存されないこと" do
+        @ticket.seller_id = @current_user.id
+        @ticket.create_notification_comment(@current_user, @comment.id)
+        expect(@current_user.active_notifications.count).to eq 0
+      end
+    end
+  end
+
+  describe "#create_notification_request" do
+    before do
+      @ticket = FactoryBot.create(:ticket)
+      @current_user = FactoryBot.create(:user)
+    end
+    it "お知らせレコードが保存されること" do
+      @ticket.create_notification_request(@current_user)
+      expect(@current_user.active_notifications.count).to eq 1
+    end
+  end
+
+  it "visitorで通知送信者が取得できること" do
+    user = FactoryBot.build(:user)
+    notification = FactoryBot.build(:notification)
+    expect(notification.visitor).to be_present
+  end
+  it "visitedで通知受信者が取得できること" do
+    user = FactoryBot.build(:user)
+    notification = FactoryBot.build(:notification)
+    expect(notification.visited).to be_present
   end
 end
