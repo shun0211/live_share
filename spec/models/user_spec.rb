@@ -115,4 +115,20 @@ RSpec.describe User, type: :model do
     notification.save!
     expect(@user.active_notifications.count).to eq 1
   end
+
+  describe "#self.guest" do
+    context "usersテーブルにゲストユーザが登録済みの場合" do
+      User.create(email: "guest@example.com", password: "password0", nickname: "ゲストユーザ")
+      it "ゲストユーザを取得すること" do
+        guest_user = User.guest
+        expect(guest_user.nickname).to eq "ゲストユーザ"
+      end
+    end
+    context "usersテーブルにゲストユーザが登録されていない場合" do
+      it "ゲストユーザを作成すること" do
+        guest_user = User.guest
+        expect(guest_user.nickname).to eq "ゲストユーザ"
+      end
+    end
+  end
 end
