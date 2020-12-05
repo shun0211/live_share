@@ -8,6 +8,26 @@
     transform: translate(0,-15px)
   }
 }
+// フラッシュメッセージ
+.flash{
+  opacity: 1;
+  transition: 2s;
+  height: 30px;
+  background-color: #FFE8E8;
+  text-align: center;
+  font-size: 1.1rem;
+  color: $dark_gray;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.slideUp{
+  opacity: 0;
+  position: absolute;
+  top: -30px;
+}
+
 .big-bg{
   background-image: image-url(toppage-bg);
   min-height: 100vh;
