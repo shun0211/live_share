@@ -23,7 +23,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @rooms = current_user.rooms
     @user = @room.users.where.not(id: current_user.id)
-    @messages = @room.messages.paginate(page: params[:page], per_page: 30)
+    @messages = @room.messages.order("created_at DESC").paginate(page: params[:page], per_page: 30)
   end
 
 end

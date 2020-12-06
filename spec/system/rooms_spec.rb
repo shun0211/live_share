@@ -4,10 +4,10 @@ RSpec.describe "Room", type: :system do
   let(:user){ FactoryBot.create(:user, nickname: "さかい") }
   let(:friend){ FactoryBot.create(:user, nickname: "木内") }
   let(:other_friend){ FactoryBot.create(:user, nickname: "ひろちょ") }
-  describe "DMテスト" do
-    before do
-      sign_in user
-    end
+  before do
+    sign_in user
+  end
+  describe "メッセージ一覧画面" do
     context "DMをしたことがない場合" do
       it "サイドバーにユーザが表示されないこと" do
         visit rooms_path
@@ -35,6 +35,28 @@ RSpec.describe "Room", type: :system do
         expect(page).to have_selector '.partner', text: 'ひろちょ'
         expect(page).to have_selector 'input#content'
         expect(page).to have_content "購入希望させてもらいました！"
+      end
+    end
+  end
+
+  describe "メッセージ詳細画面" do
+    before do
+      @room = Room.create
+      Entry.create(user: user, room: @room)
+      Entry.create(user: friend, room: @room)
+      Message.create(user: user, room: @room, content: "住所をお聞きしてもよろしいですか？")
+
+      @active_room = Room.create
+      Entry.create(user: user, room: @active_room)
+      Entry.create(user: other_friend, room: @active_room)
+    end
+    context "メッセージが100件ある場合" do
+      before do
+        FactoryBot.create_list(:message, 100, user: user, room: @active_room)
+        visit room_path(@active_room.id)
+      end
+      it "メッセージが30件のみ表示されること" do
+        expect(all('.message').size).to eq 30
       end
     end
   end

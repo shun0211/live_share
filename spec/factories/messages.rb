@@ -4,4 +4,10 @@ FactoryBot.define do
     association :user
     association :room
   end
+
+  factory :messages do
+    sequence(:content) { |n| "Hello, World!! #{n}個目" }
+    association :user
+    association :room
+  end
 end
