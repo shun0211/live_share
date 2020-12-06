@@ -24,6 +24,11 @@ class RoomsController < ApplicationController
     @rooms = current_user.rooms
     @user = @room.users.where.not(id: current_user.id)
     @messages = @room.messages.order("created_at DESC").paginate(page: params[:page], per_page: 30)
+    gon.current_user_id = current_user.id
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
 end

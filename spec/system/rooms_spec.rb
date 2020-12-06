@@ -58,6 +58,12 @@ RSpec.describe "Room", type: :system do
       it "メッセージが30件のみ表示されること" do
         expect(all('.message').size).to eq 30
       end
+      it "最新のメッセージが表示されていること" do
+        expect(page).to have_content "Hello, World!! 200個目"
+      end
+      it "最新のメッセージがメッセージ欄の一番下に表示されていること" do
+        expect(first(:css, '.message').text).to eq "Hello, World!! 271個目"
+      end
     end
   end
 end
