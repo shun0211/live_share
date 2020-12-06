@@ -25,6 +25,16 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.file_field :avatar %>
       <p id="file-insert">プロフィール画像を変更する</p>
+
+      <%# エラーメッセージ %>
+      <% if resource.errors.full_messages.any? %>
+        <div class="error_messages">
+          <% resource.errors.full_messages.each do |error_message| %>
+            <%= content_tag :div, error_message, class:"alert alert-danger" %>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= f.label :nickname, "ニックネーム" %>
       <%= f.text_field :nickname, class: "form-control" %>
       <%= f.label :profile, "プロフィール" %>

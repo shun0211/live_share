@@ -1,4 +1,5 @@
 $(function(){
+  setTimeout("$('.flash').addClass('slideUp')", 2000);
   let checkbox = document.getElementById('hamburger-menu');
   checkbox.addEventListener('change', function(){
     if(checkbox.checked){

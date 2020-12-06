@@ -9,9 +9,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    flash[:notice] = "ログインに成功しました。"
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -21,6 +22,7 @@ class Users::SessionsController < Devise::SessionsController
   def guest_user
     user = User.guest
     sign_in user
+    flash[:notice] = "ログインに成功しました。"
     redirect_to root_path
   end
 
