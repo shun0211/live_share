@@ -63,6 +63,17 @@ RSpec.describe "User", type: :system do
       end
     end
   end
+
+  describe "ログアウト" do
+    before do
+      sign_in user
+    end
+    context "ログアウトボタンをクリックした場合" do
+      it "ログアウトしトップページが表示されること" do
+
+      end
+    end
+  end
   describe "マイページ" do
     let(:user){ FactoryBot.create(:user) }
     before do
@@ -107,8 +118,14 @@ RSpec.describe "User", type: :system do
           find('.btn.btn-warning.update-btn').click
           expect(page).to have_content "アカウント情報を変更しました。"
           expect(page).to have_content "さかい"
-          expect(page).to have_field 'プロフィール', with: "よろしくお願いします！"
+          expect(page).to have_content "よろしくお願いします！"
           expect(current_path).to eq user_path(user)
+        end
+        it "編集に失敗する" do
+          fill_in "ニックネーム", with: ""
+          find('.btn.btn-warning.update-btn').click
+          expect(page).to have_content "ニックネームを入力してください"
+          expect(page).to have_content "プロフィール画像を変更する"
         end
       end
     end
