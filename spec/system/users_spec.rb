@@ -67,10 +67,13 @@ RSpec.describe "User", type: :system do
   describe "ログアウト" do
     before do
       sign_in user
+      visit root_path
     end
     context "ログアウトボタンをクリックした場合" do
       it "ログアウトしトップページが表示されること" do
-
+        find('.logout-button').click
+        expect(page).to have_content('ログアウトしました。')
+        expect(current_path).to eq root_path
       end
     end
   end
