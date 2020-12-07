@@ -66,6 +66,20 @@ RSpec.configure do |config|
       FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads_#{Rails.env}/"])
     end
   end
+  config.after do |example|
+    if example.metadata[:type] == :system and example.exception.present? and example.metadata[:open_on_error] == true
+      save_and_open_page
+    end
+  end
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :system
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      if example.metadata[:js]
+        driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+      else
+        driven_by :rack_test
+      end
+    end
+  end
 end

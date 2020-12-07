@@ -9,6 +9,9 @@
 .page-header a{
   color: $dark_gray;
 }
+.page-header a:hover{
+  text-decoration: none;
+}
 .top-nav{
   display: flex;
   font-size: 1.75rem;

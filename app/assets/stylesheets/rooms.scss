@@ -7,10 +7,16 @@
     background-color: $boundary_primary;
     width: 25%;
     min-height: calc(100vh - 70px);
+    a:hover{
+      text-decoration: none;
+    }
   }
   .user-info{
     display: flex;
     padding: 15px 25px;
+  }
+  .user-info:hover{
+    background-color: #e6e5e0;
   }
   .avatar{
     border-radius: 100%;
@@ -21,7 +27,7 @@
     padding-left: 10px;
   }
   .user-name{
-
+    color: black;
   }
   .last-message{
     font-size: 0.75rem;
@@ -32,7 +38,6 @@
   .attention{
     color: $dark_gray;
     padding: 20px 15px;
-
   }
   // メッセージ画面
   main{
