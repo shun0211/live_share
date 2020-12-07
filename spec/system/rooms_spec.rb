@@ -49,6 +49,7 @@ RSpec.describe "Room", type: :system do
       @active_room = Room.create
       Entry.create(user: user, room: @active_room)
       Entry.create(user: other_friend, room: @active_room)
+      Message.create(user: user, room: @active_room, content: "購入希望させてもらいました！")
     end
     context "メッセージが100件ある場合" do
       before do
@@ -64,6 +65,22 @@ RSpec.describe "Room", type: :system do
       it "最新のメッセージがメッセージ欄の一番下に表示されていること" do
         expect(first(:css, '.message').text).to eq "Hello, World!! 271個目"
       end
+    end
+    context 'サイドバーのユーザをクリックした場合' do
+      before do
+        visit room_path(@active_room.id)
+      end
+      it "クリックしたユーザとのメッセージ画面が表示されること" do
+        click_on '木内'
+        expect(current_path).to eq room_path(@room.id)
+        expect(page).to have_content('住所をお聞きしてもよろしいですか？')
+      end
+    end
+    it 'メッセージが送信できること', js: true do
+      visit room_path(@active_room.id)
+      fill_in 'content', with: 'はじめまして'
+      find('.far.fa-paper-plane').click
+      expect(page).to have_content 'はじめまして'
     end
   end
 end
