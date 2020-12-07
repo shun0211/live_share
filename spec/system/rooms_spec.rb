@@ -36,6 +36,11 @@ RSpec.describe "Room", type: :system do
         expect(page).to have_selector 'input#content'
         expect(page).to have_content "購入希望させてもらいました！"
       end
+      it 'メッセージが送信できること', js: true do
+        fill_in 'content', with: 'はじめまして'
+        find('.far.fa-paper-plane').click
+        expect(page).to have_content 'はじめまして'
+      end
     end
   end
 
