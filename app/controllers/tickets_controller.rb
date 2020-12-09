@@ -48,9 +48,9 @@ class TicketsController < ApplicationController
         @ticket.valid?
         format.html
         format.json { render json: @ticket.errors.messages }
-      # else
-      #   @ticket.valid?
-      #   format.json { render json: @ticket.errors.messages }
+        # else
+        #   @ticket.valid?
+        #   format.json { render json: @ticket.errors.messages }
       end
     end
   end

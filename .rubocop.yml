@@ -19,6 +19,16 @@ AllCops:
 Rails:
   Enabled: true
 
+# issueにも上がっているが解決していないよう
+# https://github.com/rubocop-hq/rubocop-rails/issues/343
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+
+# 自動修正するとエラーになる
+Rails/DynamicFindBy:
+  Enabled: true
+
 Style/AsciiComments:
   Enabled: false
 
@@ -34,6 +44,9 @@ Metrics/BlockLength:
     - Gemfile
     - spec/**/*
 
+Metrics/MethodLength:
+  Max: 14
+
 Metrics/AbcSize:
   Max: 23
 
@@ -48,3 +61,6 @@ RSpec/MultipleExpectations:
 
 RSpec/ContextWording:
   Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
