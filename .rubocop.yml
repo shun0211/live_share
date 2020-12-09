@@ -15,6 +15,36 @@ AllCops:
     - 'tmp/**/*'
     - 'node_modules/**/*'
     - 'lib/**/*'
+    - 'config/puma.rb'
+Rails:
+  Enabled: true
 
-  Style/AsciiComments:
-    Enabled: false
+Style/AsciiComments:
+  Enabled: false
+
+# ドキュメントの無い public class を許可する
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - Gemfile
+    - spec/**/*
+
+Metrics/AbcSize:
+  Max: 23
+
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false

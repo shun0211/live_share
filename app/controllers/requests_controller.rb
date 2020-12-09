@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
@@ -17,5 +19,4 @@ class RequestsController < ApplicationController
   def request_params
     params.permit(:ticket_id).merge(user_id: current_user.id)
   end
-
 end

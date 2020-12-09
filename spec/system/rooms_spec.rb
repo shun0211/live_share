@@ -68,7 +68,7 @@ RSpec.describe "Room", type: :system do
         expect(page).to have_content "Hello, World!! 200個目"
       end
       it "最新のメッセージがメッセージ欄の一番下に表示されていること" do
-        expect(first(:css, '.message').text).to eq "Hello, World!! 271個目"
+        expect(first(:css, '.message').text).to eq "Hello, World!! 273個目"
       end
     end
     context 'サイドバーのユーザをクリックした場合' do

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :users, :controllers =>{
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
   }
   devise_scope :user do
     get 'login', to: 'users/sessions#new'
@@ -13,14 +15,14 @@ Rails.application.routes.draw do
   get '/mypage' => 'users#mypage'
 
   resources :tickets do
-    resources :comments, only: [:create, :destroy]
-    resource :likes, only: [:create, :destroy]
-    resource :requests, only: [:create, :destroy]
+    resources :comments, only: %i[create destroy]
+    resource :likes, only: %i[create destroy]
+    resource :requests, only: %i[create destroy]
   end
 
   resources :notifications, only: :index
 
-  resources :rooms, only: [:create, :show, :index]
+  resources :rooms, only: %i[create show index]
 
   root 'homes#index'
 end
