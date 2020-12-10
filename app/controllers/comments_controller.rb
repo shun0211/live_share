@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
@@ -14,13 +16,13 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.json {render json: @comment.id}
+      format.json { render json: @comment.id }
     end
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:id, :content, :ticket_id, :created_at, :updated_at)
   end
-
 end

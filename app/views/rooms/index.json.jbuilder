@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array! @messages do |message|
   json.page params[:page]
   json.id message.id

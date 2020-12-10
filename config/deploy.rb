@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 # config valid for current version and patch releases of Capistrano
 
-lock "~> 3.14.1"
+lock '~> 3.14.1'
 
-set :application, "conefan"
-set :repo_url, "git@github.com:shun0211/live_share.git"
+set :application, 'conefan'
+set :repo_url, 'git@github.com:shun0211/live_share.git'
 
 # Default branch is :master
-set :branch, "main"
+set :branch, 'main'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/rails/live_share"
+set :deploy_to, '/var/www/rails/live_share'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -42,9 +44,9 @@ set :keep_releases, 2
 set :ssh_options, {
   # capistranoコマンド実行者の秘密鍵
   port: 22,
-  keys: %w(~/.ssh/live_share_key_rsa),
+  keys: ['~/.ssh/live_share_key_rsa'],
   forward_agent: true,
-  auth_methods: %w(publickey)
+  auth_methods: ['publickey']
 }
 
 append :linked_files, 'config/credentials/production.key'
