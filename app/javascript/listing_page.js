@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener('turbolinks:load', function(){
   // サムネイルのプレビュー挿入
   document.getElementById('thumbnail-wrapper').addEventListener('click', function(){
     document.getElementById('thumbnail-uploadButton').click();
