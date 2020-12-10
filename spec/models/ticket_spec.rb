@@ -9,7 +9,7 @@ RSpec.describe Ticket, type: :model do
     let(:user) { FactoryBot.build(:user) }
 
     it 'thumbnail, event_name, event_date, venue, number_of_sheets, shipping, delivery_method, priceがあれば有効な状態であること' do
-      a_ticket = described_class.new(thumbnail: Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'thumbnail.jpeg')),
+      a_ticket = described_class.new(thumbnail: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/thumbnail.jpeg')),
                                      event_name: 'YON FES 2021',
                                      event_date: '2021-04-03',
                                      venue: 'モリコロパーク',

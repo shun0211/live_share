@@ -31,7 +31,7 @@ class TicketsController < ApplicationController
     @partner_entries = Entry.where(user_id: @ticket.seller_id)
     @my_entries.each do |my_entry|
       @partner_entries.each do |partner_entry|
-        if my_entry.room_id === partner_entry.room_id
+        if my_entry.room_id == partner_entry.room_id
           @exist_room = true
           @room_id = my_entry.room_id
         end

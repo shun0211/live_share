@@ -16,15 +16,15 @@ class Ticket < ApplicationRecord
   def create_notification_like(current_user)
     # すでに「通知」がされているか検索
     like_notification = Notification.where('visitor_id = ? and visited_id = ? and ticket_id = ? and action = ?', current_user.id, seller_id, id, 'like')
-    if like_notification.blank? && !(current_user.id == seller_id)
-      notification = Notification.new(
-        visitor_id: current_user.id,
-        visited_id: seller_id,
-        ticket_id: id,
-        action: 'like'
-      )
-      notification.save!
-    end
+    return unless like_notification.blank? && current_user.id != seller_id
+
+    notification = Notification.new(
+      visitor_id: current_user.id,
+      visited_id: seller_id,
+      ticket_id: id,
+      action: 'like'
+    )
+    notification.save!
   end
 
   def create_notification_comment(current_user, comment_id)
@@ -35,7 +35,7 @@ class Ticket < ApplicationRecord
       comment_id: comment_id,
       action: 'comment'
     )
-    notification.save! unless notification.visited_id === current_user.id
+    notification.save! unless notification.visited_id == current_user.id
   end
 
   def create_notification_request(current_user)

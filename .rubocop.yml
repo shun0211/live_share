@@ -50,8 +50,12 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 23
 
+# エラーが起きた際、spec/rails_helper.rb内のsave_and_open_pageメソッドを実行する設定を見直す必要がある
+Lint/Debugger:
+  Enabled: false
+
 RSpec/ExampleLength:
-  Max: 8
+  Max: 10
 
 RSpec/InstanceVariable:
   Enabled: false

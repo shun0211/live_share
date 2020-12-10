@@ -8,7 +8,7 @@ FactoryBot.define do
     delivery_method { '名古屋駅手渡し' }
     number_of_sheets { 2 }
     description { "複数チケットが当たったので、出品します。\nできればフォーリミのファンの方に譲りたいと思っています。\nよろしくお願いします！" }
-    thumbnail { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'thumbnail.jpeg')) }
+    thumbnail { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/thumbnail.jpeg')) }
     event_name { 'YON FES 2021' }
     venue { 'モリコロパーク' }
     event_date { '2021-04-03' }
