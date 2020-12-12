@@ -91,4 +91,24 @@ RSpec.describe 'Notification', type: :system do
       end
     end
   end
+
+  describe '購入希望関連の通知' do
+    before do
+      sign_in friend
+      visit ticket_path(ticket)
+    end
+
+    context '他ユーザが購入希望をした場合' do
+      before do
+        click_on '購入を希望する'
+      end
+
+      it 'チケット投稿者に通知がいくこと' do
+        sign_out friend
+        sign_in user
+        visit notifications_path
+        expect(page).to have_content 'ひろちょさんからあなたのチケットに購入希望がありました。'
+      end
+    end
+  end
 end
