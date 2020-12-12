@@ -5,7 +5,7 @@ RSpec.describe 'Notification', type: :system do
   let(:ticket) { FactoryBot.create(:ticket, seller: user) }
   let(:friend) { FactoryBot.create(:user, nickname: 'ひろちょ') }
 
-  describe '行きたい!!ボタン関連の通知機能' do
+  describe '行きたい!!機能関連の通知' do
     before do
       sign_in friend
       visit ticket_path(ticket)
@@ -46,6 +46,43 @@ RSpec.describe 'Notification', type: :system do
         sign_in user
         visit ticket_path(ticket)
         click_on '行きたい!!'
+        sleep 2
+      end
+
+      it '通知がこないこと', js: true do
+        expect(Notification.all.count).to eq 0
+      end
+    end
+  end
+
+  describe 'コメント機能関連の通知' do
+    before do
+      sign_in friend
+      visit ticket_path(ticket)
+    end
+
+    context '他ユーザがコメントした場合' do
+      before do
+        fill_in 'comment_content', with: '最高だね！'
+        find('.far.fa-paper-plane').click
+        sleep 2
+      end
+
+      it 'チケット投稿者に通知がいくこと', js: true do
+        sign_out friend
+        sign_in user
+        visit notifications_path
+        expect(page).to have_content 'ひろちょさんがあなたのチケットにコメントしました。'
+      end
+    end
+
+    context 'ログイン中のユーザが自分の投稿チケットにコメントした場合' do
+      before do
+        sign_out friend
+        sign_in user
+        visit ticket_path(ticket)
+        fill_in 'comment_content', with: '最高だね！'
+        find('.far.fa-paper-plane').click
         sleep 2
       end
 
