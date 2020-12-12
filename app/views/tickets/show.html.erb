@@ -161,15 +161,17 @@
         <% end %>
       </div>
 
-      <div class="form form-group">
-        <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
-          <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
-          <%= f.hidden_field :ticket_id, value: @ticket.id %>
-          <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
-            <i class="far fa-paper-plane"></i>
+      <% if user_signed_in? %>
+        <div class="form form-group">
+          <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
+            <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
+            <%= f.hidden_field :ticket_id, value: @ticket.id %>
+            <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
+              <i class="far fa-paper-plane"></i>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
 
   </div>
