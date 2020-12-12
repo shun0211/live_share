@@ -110,19 +110,21 @@
       </div>
     </div>
 
-    <% if @ticket.seller_id === current_user.id %>
-      <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
-      <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
-    <% else %>
-      <% if @my_request.present? %>
-        <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
+    <% if user_signed_in? %>
+      <% if @ticket.seller_id === current_user.id %>
+        <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
+        <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
       <% else %>
-        <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
-      <% end %>
-      <% if @exist_room === true %>
-        <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
-      <% else %>
-        <%= link_to "メッセージを送る", rooms_path(user_id: "#{@ticket.seller_id}"), method: :post, class: "btn btn-light", id: "message-button" %>
+        <% if @my_request.present? %>
+          <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
+        <% else %>
+          <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
+        <% end %>
+        <% if @exist_room === true %>
+          <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
+        <% else %>
+          <%= link_to "メッセージを送る", rooms_path(user_id: "#{@ticket.seller_id}"), method: :post, class: "btn btn-light", id: "message-button" %>
+        <% end %>
       <% end %>
     <% end %>
 
