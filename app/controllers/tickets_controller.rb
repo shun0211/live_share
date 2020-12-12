@@ -9,6 +9,7 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
+    gon.ticket = 'new_ticket'
   end
 
   def create
@@ -40,7 +41,9 @@ class TicketsController < ApplicationController
     @my_request = @ticket.requests.find_by(user_id: current_user.id, ticket_id: @ticket.id)
   end
 
-  def edit; end
+  def edit
+    gon.ticket = @ticket
+  end
 
   def update
     respond_to do |format|
@@ -48,9 +51,9 @@ class TicketsController < ApplicationController
         @ticket.valid?
         format.html
         format.json { render json: @ticket.errors.messages }
-        # else
-        #   @ticket.valid?
-        #   format.json { render json: @ticket.errors.messages }
+      else
+        @ticket.valid?
+        format.json { render json: @ticket.errors.messages }
       end
     end
   end
