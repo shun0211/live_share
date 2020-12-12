@@ -11,5 +11,6 @@ class RoomChannel < ApplicationCable::Channel
 
   def speak(data)
     Message.create!(content: data['message'], user_id: current_user.id, room_id: params[:room])
+    message = Message.where(room_id: params[:room]).order('created_at DESC').take
   end
 end
