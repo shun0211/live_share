@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener('turbolinks:load', function(){
   // サムネイルのプレビュー挿入
   document.getElementById('thumbnail-wrapper').addEventListener('click', function(){
     document.getElementById('thumbnail-uploadButton').click();
@@ -50,7 +50,11 @@ $(function(){
     .done(function(error_messages){
       let messageNum = Object.keys(error_messages).length
       if (messageNum === 0){
-        window.location.href = "/"
+        if (gon.ticket == 'new_ticket'){
+          window.location.href = "/";
+        }else{
+        window.location.href = "/tickets/" + gon.ticket.id;
+        }
       }else{
         if(error_messages["thumbnail"]){
           document.getElementById('thumbnail-wrapper').insertAdjacentHTML("afterend", '<div class="alert alert-danger" id="thumbnail-error">画像を挿入してください</div>');

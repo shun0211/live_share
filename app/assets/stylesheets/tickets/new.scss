@@ -39,6 +39,10 @@ label[for="ticket_event_name"]{
   display: flex;
   justify-content: space-between;
 }
+.listing-container{
+  background-color: $boundary_primary;
+  padding: 20px 8% 30px;
+}
 .listing-container .unit-1{
   width: 30%;
 }
