@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_111031) do
+ActiveRecord::Schema.define(version: 2020_12_12_231359) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content", null: false
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2020_12_09_111031) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "message_id"
+    t.index ["message_id"], name: "index_notifications_on_message_id"
   end
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -119,6 +121,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_111031) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "messages"
   add_foreign_key "requests", "tickets"
   add_foreign_key "requests", "users"
   add_foreign_key "tickets", "users", column: "buyer_id"

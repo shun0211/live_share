@@ -50,7 +50,7 @@ RSpec.describe 'Notification', type: :system do
       end
 
       it '通知がこないこと', js: true do
-        expect(Notification.all.count).to eq 0
+        expect(user.passive_notifications.all.count).to eq 0
       end
     end
   end
@@ -73,21 +73,23 @@ RSpec.describe 'Notification', type: :system do
         sign_in user
         visit notifications_path
         expect(page).to have_content 'ひろちょさんがあなたのチケットにコメントしました。'
+        expect(user.passive_notifications.all.count).to eq 1
       end
     end
 
     context 'ログイン中のユーザが自分の投稿チケットにコメントした場合' do
       before do
         sign_out friend
-        sign_in user
+        sleep 2
+        sign_in ticket.seller
         visit ticket_path(ticket)
-        fill_in 'comment_content', with: '最高だね！'
+        fill_in 'comment_content', with: '最高だね!！'
         find('.far.fa-paper-plane').click
         sleep 2
       end
 
       it '通知がこないこと', js: true do
-        expect(Notification.all.count).to eq 0
+        expect(ticket.seller.passive_notifications.all.count).to eq 0
       end
     end
   end
@@ -108,6 +110,36 @@ RSpec.describe 'Notification', type: :system do
         sign_in user
         visit notifications_path
         expect(page).to have_content 'ひろちょさんからあなたのチケットに購入希望がありました。'
+      end
+    end
+  end
+
+  describe 'メッセージ関連の通知' do
+    let(:room) { Room.create! }
+
+    before do
+      sign_in friend
+      Entry.create!(user: user, room: room)
+      Entry.create!(user: friend, room: room)
+      visit room_path(room)
+    end
+
+    context '他ユーザがメッセージを送信した場合' do
+      before do
+        fill_in 'content', with: 'はじめまして'
+        find('.far.fa-paper-plane').click
+        sleep 2
+      end
+
+      it '送信者のユーザに通知がこないこと', js: true do
+        expect(friend.passive_notifications.count).to eq 0
+      end
+
+      it '送信先のユーザに通知がいくこと', js: true do
+        sign_out friend
+        sign_in user
+        visit notifications_path
+        expect(page).to have_content 'ひろちょさんからあなたにメッセージがありました。'
       end
     end
   end

@@ -46,6 +46,14 @@
                 <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんから<%= link_to "あなたのチケット", ticket_path(notification.ticket_id) %>に購入希望がありました。
               </p>
               <hr>
+            <% when "message" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんからあなたに<%= link_to "メッセージ", room_path(notification.message.room.id) %>がありました。
+              </p>
+              <p class="info">
+                <%= notification.message.content %>
+              </p>
+              <hr>
             <% end %>
           </div>
         <% end %>
