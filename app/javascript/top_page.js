@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener('turbolinks:load', function(){
   setTimeout("$('.flash').addClass('slideUp')", 2000);
   let checkbox = document.getElementById('hamburger-menu');
   checkbox.addEventListener('change', function(){
@@ -8,4 +8,4 @@ $(function(){
       document.body.style.overflow = "visible";
     };
   });
-});
+})

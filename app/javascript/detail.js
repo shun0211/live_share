@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener('turbolinks:load', function(){
   function buildHTML(comment){
     const html = `<div class="post" data-comment-id="${comment.id}">
                     <div class="post-info">

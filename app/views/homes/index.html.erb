@@ -85,7 +85,7 @@
 
 <% if user_signed_in? %>
   <%= link_to new_ticket_path, class: "listing_button" do %>
-    <img src="../assets/handpointer.png" alt="出品ボタン">
+    <%= image_tag asset_path("handpointer.png", alt: "出品ボタン") %>
     <h3>出品する</h3>
   <% end %>
 <% end %>
