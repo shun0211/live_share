@@ -19,6 +19,7 @@ footer a{
 }
 footer a:hover{
   color: $primary;
+  text-decoration: none;
 }
 footer .grid{
   display: grid;

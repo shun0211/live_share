@@ -85,6 +85,7 @@ input[type="checkbox"]:checked ~ .back{
 .menu li:hover,
 .menu li a:hover{
   color: #FFF;
+  cursor: pointer;
 }
 .menu .close{
   padding: 20px;
