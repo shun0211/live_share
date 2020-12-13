@@ -15,6 +15,56 @@ AllCops:
     - 'tmp/**/*'
     - 'node_modules/**/*'
     - 'lib/**/*'
+    - 'config/puma.rb'
+Rails:
+  Enabled: true
 
-  Style/AsciiComments:
-    Enabled: false
+# issueにも上がっているが解決していないよう
+# https://github.com/rubocop-hq/rubocop-rails/issues/343
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+
+# 自動修正するとエラーになる
+Rails/DynamicFindBy:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+# ドキュメントの無い public class を許可する
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - Gemfile
+    - spec/**/*
+
+Metrics/MethodLength:
+  Max: 14
+
+Metrics/AbcSize:
+  Max: 23
+
+# エラーが起きた際、spec/rails_helper.rb内のsave_and_open_pageメソッドを実行する設定を見直す必要がある
+Lint/Debugger:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4

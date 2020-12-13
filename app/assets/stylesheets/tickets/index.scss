@@ -11,15 +11,18 @@
   }
   .sub-title{
     font-size: 1.3rem;
+    padding-bottom: 10px;
   }
   .pagination, .sidebar{
     a{
       color: #000;
-      padding: 7px;
+      padding: 10px 0 10px;
       font-size: 0.9rem;
+      display: block;
     }
     a:hover{
       color: $primary;
+      text-decoration: none;
     }
   }
   form{
@@ -44,6 +47,7 @@
   .cards{
     a{
       color: $dark_gray;
+      text-decoration: none;
     }
   }
   .grid{

@@ -3,19 +3,21 @@
       <% @rooms.each do |room| %>
         <% room.users.each do |user| %>
           <% unless user.id === current_user.id %>
-            <div class="user-info">
-              <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
-              <div class="wrapper">
-                <div class="user-name">
-                  <%= user.nickname %>
-                </div>
-                <div class="last-message">
-                  <% if room.messages.present? %>
-                    <%= room.messages.order(created_at: :desc).take.content %>
-                  <% end %>
+            <%= link_to room_path(room.id) do %>
+              <div class="user-info">
+                <%= image_tag user.avatar.url, alt: "ユーザのプロフィール画像", class: "avatar", size: "40" %>
+                <div class="wrapper">
+                  <div class="user-name">
+                    <%= user.nickname %>
+                  </div>
+                  <div class="last-message">
+                    <% if room.messages.present? %>
+                      <%= room.messages.order(created_at: :desc).take.content %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>

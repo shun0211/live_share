@@ -96,6 +96,9 @@
     margin: 0 10px;
     color: #000;
   }
+  .seller-name a:hover{
+    text-decoration: none;
+  }
   .lead{
     font-size: 14px;
     padding: 5px 0 0 0;
@@ -114,6 +117,7 @@
     font-size: 18px;
     a{
       color: $primary;
+      text-decoration: none;
     }
     span{
       color: #000;
@@ -132,6 +136,10 @@
   }
   span{
     padding: 0 10px 0 20px;
+  }
+  .instagram-icon{
+    width: 20px;
+    height: 20px;
   }
   .fa-twitter{
     color: #6DB9FF;

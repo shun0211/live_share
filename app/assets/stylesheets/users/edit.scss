@@ -49,6 +49,12 @@
   .edit-wrapper{
     padding: 40px 15% 50px;
     background-color: $boundary_primary;
+    .error_messages{
+      margin-top: 18px;
+      .alert{
+        margin: 0;
+      }
+    }
   }
   #file-insert{
     color: $dark_gray;

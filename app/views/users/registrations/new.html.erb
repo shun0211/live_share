@@ -28,9 +28,7 @@
 
       <%= f.submit "新規登録", class: "btn btn-light", id: "registration-btn" %>
       <p class="note">アカウント登録せず機能を試したい方はこちら</p>
-      <button class="btn btn-success">
-        かんたんログイン
-      </button>
+      <%= link_to "かんたんログイン", users_guest_sign_in_path, method: :post, class: "btn btn-success", id: "easy-login-registration" %>
     </div>
     <h3 class="lead">ログインはこちらから</h3>
     <%= link_to "ログイン", login_path, class: "btn btn-light", id: "big-login-btn" %>

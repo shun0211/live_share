@@ -22,7 +22,7 @@
               開催日
             </th>
             <td>
-              <%= @ticket.event_date.strftime("%Y年%m月%d日") %>
+              <%= @ticket.event_date.strftime("%Y年%-m月%-d日") %>
             </td>
           </tr>
           <tr>
@@ -89,7 +89,7 @@
       <div class="flex-box">
         <div class="seller">
           <%= link_to user_path(@ticket.seller.id) do %>
-            <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
+            <%= image_tag @ticket.seller.avatar.url, alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
           <% end %>
           <div class="seller-name">
             <p class="lead">出品者</p>
@@ -104,25 +104,27 @@
             <%= render "likes/like", ticket: @ticket %>
           </div>
           <span>シェアする</span>
-          <img src="../assets/instagram_icon.png" alt="Instagramアイコン" width="20px" height="20px">
+          <%= image_tag asset_path("instagram_icon.png", alt: "Instagramアイコン"), class: "instagram-icon" %>
           <i class="fab fa-twitter"></i>
         </div>
       </div>
     </div>
 
-    <% if @ticket.seller_id === current_user.id %>
-      <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
-      <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
-    <% else %>
-      <% if @my_request.present? %>
-        <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
+    <% if user_signed_in? %>
+      <% if @ticket.seller_id === current_user.id %>
+        <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
+        <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
       <% else %>
-        <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
-      <% end %>
-      <% if @exist_room === true %>
-        <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
-      <% else %>
-        <%= link_to "メッセージを送る", rooms_path(user_id: "#{@ticket.seller_id}"), method: :post, class: "btn btn-light", id: "message-button" %>
+        <% if @my_request.present? %>
+          <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
+        <% else %>
+          <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
+        <% end %>
+        <% if @exist_room === true %>
+          <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
+        <% else %>
+          <%= link_to "メッセージを送る", rooms_path(user_id: "#{@ticket.seller_id}"), method: :post, class: "btn btn-light", id: "message-button" %>
+        <% end %>
       <% end %>
     <% end %>
 
@@ -159,15 +161,17 @@
         <% end %>
       </div>
 
-      <div class="form form-group">
-        <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
-          <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
-          <%= f.hidden_field :ticket_id, value: @ticket.id %>
-          <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
-            <i class="far fa-paper-plane"></i>
+      <% if user_signed_in? %>
+        <div class="form form-group">
+          <%= form_with(model: [@ticket, @comment], id: "new_comment") do |f| %>
+            <%= f.text_field :content, placeholder: "コメントを入力してください。", class: "form-control" %>
+            <%= f.hidden_field :ticket_id, value: @ticket.id %>
+            <%= f.button type: "submit", class: "submit-btn comment-submit" do %>
+              <i class="far fa-paper-plane"></i>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
 
   </div>

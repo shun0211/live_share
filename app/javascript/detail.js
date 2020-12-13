@@ -1,4 +1,4 @@
-$(function(){
+document.addEventListener('turbolinks:load', function(){
   function buildHTML(comment){
     const html = `<div class="post" data-comment-id="${comment.id}">
                     <div class="post-info">
@@ -37,7 +37,6 @@ $(function(){
     })
     .done(function(comment){
       const commentHTML = buildHTML(comment);
-
       $('.posts').append(commentHTML);
       document.getElementById("comment_content").value = "";
       document.getElementById("empty-message").remove();
@@ -46,7 +45,6 @@ $(function(){
   // コメント削除
   $(document).on('click', '#comment-delete', function(){
     let comment = this.parentNode.parentNode.dataset.commentId
-    console.log("test");
     let url = gon.ticket.id + "/comments/" + comment
     $.ajax({
       url: url,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -29,52 +31,57 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :production, :staging do
-    gem 'unicorn'
+  gem 'unicorn'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 4.0.0'
-  gem 'factory_bot_rails'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capistrano'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano3-unicorn'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'sassc', '~> 2.1.0'
-gem 'haml-rails'
-# erbからhamlに一括変換するGem
-gem 'erb2haml'
-gem 'font-awesome-sass'
-gem 'devise'
+gem 'bcrypt_pbkdf'
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
-gem 'pry-rails'
-gem 'carrierwave', '~> 2.0'
-gem 'mini_magick'
-gem 'will_paginate', '3.1.8'
 gem 'bootstrap-will_paginate', '1.0.0'
-gem 'faker', '2.1.2'
-gem 'gon'
+gem 'carrierwave', '~> 2.0'
+gem 'devise'
 gem 'dotenv-rails'
 gem 'ed25519'
-gem 'bcrypt_pbkdf'
+gem 'erb2haml'
+gem 'faker', '2.1.2'
+gem 'font-awesome-sass'
+gem 'gon'
+gem 'haml-rails'
+gem 'jquery-rails'
+gem 'mini_magick'
+gem 'pry-rails'
+gem 'sassc', '~> 2.1.0'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'will_paginate', '3.1.8'
