@@ -12,6 +12,7 @@
     }
     a:hover{
       color: $primary;
+      text-decoration: none;
     }
   }
   p{
@@ -57,6 +58,7 @@
     }
     a:hover{
       color: $primary;
+      text-decoration: none;
     }
   }
   .info{
@@ -66,5 +68,10 @@
   }
   hr{
     margin: 10px 0 0;
+  }
+  .note{
+    text-align: left;
+    font-size: 1.05rem;
+    padding-top: 30px;
   }
 }

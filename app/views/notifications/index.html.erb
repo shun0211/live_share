@@ -14,7 +14,7 @@
     <p><%= link_to "行きたい!!を押したリスト" %></p>
     <p><%= link_to "口座登録" %></p>
     <p><%= link_to "配送先住所" %></p>
-    <p><%= link_to "プロフィール編集" %></p>
+    <p><%= link_to "プロフィール編集", edit_user_registration_path %></p>
     <p><%= link_to "ログアウト" %></p>
     <p><%= link_to "退会" %></p>
   </div>
@@ -57,6 +57,10 @@
             <% end %>
           </div>
         <% end %>
+      <% else %>
+        <p class="note">
+          まだお知らせは届いていません。
+        </p>
       <% end %>
     </div>
   </main>

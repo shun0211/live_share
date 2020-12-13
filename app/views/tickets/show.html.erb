@@ -89,7 +89,7 @@
       <div class="flex-box">
         <div class="seller">
           <%= link_to user_path(@ticket.seller.id) do %>
-            <%= image_tag "/assets/avatar.jpg", alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
+            <%= image_tag @ticket.seller.avatar.url, alt: "出品者のプロフィール画像", size: "50", class: "icon" %>
           <% end %>
           <div class="seller-name">
             <p class="lead">出品者</p>

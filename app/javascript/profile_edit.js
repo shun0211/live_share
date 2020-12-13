@@ -1,4 +1,4 @@
-window.onload = function(){
+document.addEventListener('turbolinks:load', function(){
   document.getElementById('file-insert').addEventListener('click', function(){
     document.getElementById('user_avatar').click();
   });
@@ -18,4 +18,4 @@ window.onload = function(){
       document.getElementById('avatar-preview').insertAdjacentHTML('afterend', "<p id='preview-alert'>まだ変更されていません。更新するボタンを押してください</p>")
     }
   })
-};
+})
