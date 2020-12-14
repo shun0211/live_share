@@ -94,7 +94,7 @@
           <div class="seller-name">
             <p class="lead">出品者</p>
             <%= link_to user_path(@ticket.seller.id) do %>
-              <p class="user-name">さかい</p>
+              <p class="user-name"><%= @ticket.seller.nickname %></p>
             <% end %>
           </div>
         </div>

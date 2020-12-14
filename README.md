@@ -1,24 +1,94 @@
-# README
+README.md
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![](https://i.imgur.com/qxwZJui.jpg)
 
-Things you may want to cover:
+## 概要
+行けなくなった音楽ライブやフェスのチケットをそのライブへ行きたい人に向けて譲ることができるサービスです。
 
-* Ruby version
+## URL
+https://conefan.com
 
-* System dependencies
+【かんたんログイン】ボタンからゲストユーザーとしてログインできます。
 
-* Configuration
+## 制作の背景
+心ない人によってライブやフェスのチケットが高値で転売されていることを知っている人も多いのではないでしょうか。私の大好きなアーティストも転売目的での購入や転売されたチケットの購入をやめてほしいということをTwitterなどで発信しているのをよく見かけます。
+こういった転売を無くしていくためには、転売できない仕組みを作ってしまうことが効果的なのではと考えこのサービスを作成しました。
 
-* Database creation
+## 既存サービスとの違い
+「チケット流通センター」や「チケットストリート」など行けなくなったチケットを出品することができるプラットフォームは既に存在します。そういった既存サービスとの違いはチケット出品側がだれに売るかという決定権を持っているところです。チケット購入希望者は行きたいライブやフェスのチケットに購入希望という形で出品者へ向かって意思表明します。出品者は購入希望があったユーザから譲りたい人を選択することができます。これにより、出品者は濃いファンや知り合いに対してConefanを通じてチケットを譲ることができるようになります。
 
-* Database initialization
+## 主な利用シーン
+### チケット出品者
 
-* How to run the test suite
+とっていたライブに仕事や急用で行けなくなってしまったとき
 
-* Services (job queues, cache servers, search engines, etc.)
+### チケット購入者
 
-* Deployment instructions
+チケットの抽選に外れてしまったが、どうしてもそのライブやフェスへの参戦をあきらめきれないとき
 
-* ...
+## 機能一覧
+- ログイン機能
+ログインした状態でなくともチケット情報を閲覧することはできます。ただし、コメントや行きたい!！機能や購入希望などの機能を使うことはできません。
+- チケット出品機能
+- ダイレクトメッセージ(DM)機能
+リアルタイム通信でのDMができます。
+- 行きたい!!機能
+そのライブやフェスに行きたいと思ったら、行きたい!!ボタンを押すことができます。SNSでのいいね機能に相当するものです。
+- コメント機能
+出品されているチケットにコメントを投稿することができます。出品者にライブやフェスにおける補足情報を聞くことができます。
+- 通知機能
+自分の出品したチケットへのコメントや行きたい!!、購入希望があった際、またDMが届いた際に通知が来ます。
+
+
+## 実装予定
+- フォロー機能
+- 決済機能
+- 検索機能
+- レスポンシブ対応
+- Googleマップ表示
+- Twitterに投稿機能
+
+## 環境・使用技術
+### フロントエンド
+Bootstrap 4.3.1
+SCSS
+JavaScript、jQuery、Ajax
+### バックエンド
+Ruby 2.7.1
+Rails 6.0.1
+### 開発環境
+Docker/Docker-compose
+MySQL2
+### 本番環境
+AWS (EC2、RDS for MySQL、Route53、ELB)
+Nginx
+Unicorn
+Capictrano
+インフラ構成図
+
+![](https://i.imgur.com/ynlaUwM.png)
+
+
+### テスト
+Rspec (単体／結合） 計130以上
+
+### その他使用技術
+非同期通信 (コメント、行きたい!!、購入希望など各種ボタン、DM機能等)
+ActionCable
+Rubocop
+HTTPS接続
+チーム開発を意識したGitHubの活用 （マイルストーン、イシュー、プルリク、マージ）
+ER図&テーブル定義
+
+![](https://i.imgur.com/qj4xVQK.png)
+
+
+## About me
+新卒で2年と5か月間、自動車部品メーカーで品質管理の仕事をしておりました。その後、SESの会社で4か月間FileMakerでのシステム開発の仕事に携わりました。
+
+Qiita
+https://qiita.com/shun0211
+Twitter
+https://twitter.com/sakai_1910
+はてなブログ
+https://shun-0211.hatenablog.com/
