@@ -126,6 +126,7 @@ GEM
       html2haml
     erubi (1.9.0)
     erubis (2.7.0)
+    excon (0.78.1)
     execjs (2.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
@@ -135,8 +136,25 @@ GEM
     faker (2.1.2)
       i18n (>= 0.8)
     ffi (1.13.1)
+    fog-aws (3.7.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (2.2.3)
+      builder
+      excon (~> 0.71)
+      formatador (~> 0.2)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.3)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
+    formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gon (6.4.0)
@@ -163,6 +181,7 @@ GEM
     image_processing (1.12.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    ipaddress (0.8.3)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     jquery-rails (4.4.0)
@@ -183,6 +202,9 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2020.1104)
     mimemagic (0.3.5)
     mini_magick (4.10.1)
     mini_mime (1.0.2)
@@ -386,6 +408,7 @@ DEPENDENCIES
   erb2haml
   factory_bot_rails
   faker (= 2.1.2)
+  fog-aws
   font-awesome-sass
   gon
   haml-rails

@@ -1,24 +1,13 @@
-# README
+README.md
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## 概要
+行けなくなったライブや音楽フェスのチケットをそのライブへ行きたいファンに向けて売ることができるサービスです。
 
-* Ruby version
+## URL
+https://conefan.com
 
-* System dependencies
+【かんたんログイン】ボタンからテストユーザーとしてログインできます。
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 制作の背景
+ライブやフェスのチケットが高値で転売されています。
