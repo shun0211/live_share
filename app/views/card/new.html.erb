@@ -1,0 +1,26 @@
+<%= render partial: 'shared/header' %>
+
+<div class="card-registration-container">
+  <%= render partial: 'shared/sidebar' %>
+
+  <main>
+    <%= form_with model: @card, id: 'card-form' do %>
+      <div class="card-registration-wrapper form-group">
+        <h2>クレジットカード情報登録</h2>
+        <%= f.label :number, 'クレジットカード番号' %>
+        <%= f.text_field :number, class: 'form-control number', maxlength: '16', placeholder: '半角数字のみ' %>
+
+        <%= f.label :cvc, 'セキュリティーコード' %>
+        <%= f.number_field :cvc, class: 'form-control cvc', maxlength: '4', placeholder: 'カード背面3~4桁の番号' %>
+
+        <%= f.label :exp_month, '有効期限' %>
+        <%= f.number_field :exp_month, class: 'form-control exp_month', maxlength: '2', placeholder: '月' %>
+        <%= f.number_field :exp_year, class: 'form-control exp_year', maxlength: '4', placeholder: '年' %>
+
+        <%= f.submit '送信', id: 'regist_card' %>
+        <div id="card_token"></div>
+
+      </div>
+    <% end %>
+  </main>
+</div>
