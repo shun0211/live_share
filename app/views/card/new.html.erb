@@ -4,11 +4,14 @@
   <%= render partial: 'shared/sidebar' %>
 
   <main>
-    <%= form_with model: @card, id: 'card-form' do %>
+    <%= form_with model: @card, id: 'card-form' do |f| %>
       <div class="card-registration-wrapper form-group">
         <h2>クレジットカード情報登録</h2>
+
+        <%= image_tag asset_path("creditcards.png", alt: "使用可能なクレジットカードのロゴ") %>
+
         <%= f.label :number, 'クレジットカード番号' %>
-        <%= f.text_field :number, class: 'form-control number', maxlength: '16', placeholder: '半角数字のみ' %>
+        <%= f.text_field :number, class: 'form-control number', maxlength: '16', placeholder: '例) 0123 4567 8901 2345 (半角数字のみ)' %>
 
         <%= f.label :cvc, 'セキュリティーコード' %>
         <%= f.number_field :cvc, class: 'form-control cvc', maxlength: '4', placeholder: 'カード背面3~4桁の番号' %>
@@ -24,3 +27,6 @@
     <% end %>
   </main>
 </div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>
