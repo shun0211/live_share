@@ -24,5 +24,14 @@ Rails.application.routes.draw do
 
   resources :rooms, only: %i[create show index]
 
+  # 要確認
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+    end
+  end
+
   root 'homes#index'
 end
