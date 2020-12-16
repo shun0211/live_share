@@ -1,4 +1,4 @@
-class CardController < ApplicationController
+class CardsController < ApplicationController
   require 'payjp'
 
   def new
@@ -28,7 +28,7 @@ class CardController < ApplicationController
     card = Card.where(user_id: current_user.id).first
     if card.blank?
       # カード登録画面にリダイレクトされる
-      redirect_to action: 'new'
+      # redirect_to action: 'new'
     else
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       # Payjp::Customer.retrieveメソッドは顧客情報を取得するメソッド

@@ -1,0 +1,83 @@
+@import "common.scss";
+
+.card-information-container{
+  display: flex;
+  .sidebar{
+    background-color: $boundary_primary;
+    padding: 30px 47px;
+    width: 27%;
+    min-height: calc(100vh - 70px);
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+  p{
+    padding-top: 20px;
+    margin: 0;
+  }
+  .user-info{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .avatar{
+    border-radius: 100%;
+  }
+  .user-name{
+    padding-left: 15px;
+    font-weight: bold;
+  }
+  // クレジット情報
+  main{
+    background-color: #fff;
+    width: 73%;
+  }
+  .card-information-wrapper{
+    padding: 50px 8% 30px;
+    img{
+      width: 100px;
+      display: block;
+      object-fit: contain;
+    }
+  }
+  h2{
+    font-size: 1.6rem;
+  }
+  .credit-card{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  .credit-card-info{
+    display: flex;
+  }
+  .unit{
+    margin-left: 30px;
+  }
+  .card-num{
+    padding: 0;
+  }
+  .expiration-date{
+    padding: 0;
+  }
+  .credit-card-delete{
+    background-color: #C4C4C4;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color: black;
+    width: 100px;
+    text-align: center;
+  }
+  .credit-card-delete:hover{
+    background-color: #ABAAAA;
+    text-decoration: none;
+  }
+
+
+}
