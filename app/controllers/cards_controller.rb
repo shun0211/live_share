@@ -25,17 +25,17 @@ class CardsController < ApplicationController
   end
 
   def show
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
+    @card = Card.where(user_id: current_user.id).first
+    if @card.blank?
       # カード登録画面にリダイレクトされる
-      redirect_to action: 'new'
+      redirect_to new_card_path
     else
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       # Payjp::Customer.retrieveメソッドは顧客情報を取得するメソッド
-      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
       # cardsは顧客に紐づけられたカードオブジェクトのlistオブジェクト
       # 上で定義したcardからcard_idを取得し、retrieveでカード情報を取得している
-      @registration_card = customer.cards.retrieve(card.card_id)
+      @registration_card = customer.cards.retrieve(@card.card_id)
       brand = @registration_card.brand
       case brand
       when "Visa"
@@ -52,5 +52,15 @@ class CardsController < ApplicationController
         @card_src = "discover.png"
       end
     end
+  end
+
+  def destroy
+    @card = Card.find(params[:id])
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    customer.delete
+    @card.delete
+    flash[:notice] = "登録されていたクレジットカードが削除されました。"
+    redirect_to new_card_path
   end
 end
