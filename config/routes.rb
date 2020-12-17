@@ -24,7 +24,6 @@ Rails.application.routes.draw do
 
   resources :rooms, only: %i[create show index]
 
-  # 要確認
   resources :cards, only: [:new, :show, :destroy, :create]
 
   root 'homes#index'
