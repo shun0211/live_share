@@ -6,20 +6,20 @@ class CardsController < ApplicationController
     redirect_to action: 'show' if @card.present?
   end
 
-  def pay
-    # 公開鍵を登録し、起点となるオブジェクトを取得する
+  def create
+    # 秘密鍵を登録し、起点となるオブジェクトを取得する
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if params['payjp-token'].blank?
-      redirect_to action: 'new'
+      redirect_to action: 'new', alert: 'クレジットカードを登録できませんでした。'
     else
-      customer = Payjp::customer.create(
+      customer = Payjp::Customer.create(
         card: params['payjp-token']
       )
-      @card = Card.new(user_id: current_user.id, customer_id: customer.default_card)
+      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: 'show'
+        render :show
       else
-        redirect_to action: 'pay'
+        render :new
       end
     end
   end
@@ -28,7 +28,7 @@ class CardsController < ApplicationController
     card = Card.where(user_id: current_user.id).first
     if card.blank?
       # カード登録画面にリダイレクトされる
-      # redirect_to action: 'new'
+      redirect_to action: 'new'
     else
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       # Payjp::Customer.retrieveメソッドは顧客情報を取得するメソッド
