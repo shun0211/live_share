@@ -1,0 +1,19 @@
+<h2>購入希望者</h2>
+<% if @ticket.requests.blank? %>
+  <div class="note">まだ購入希望がありません。</div>
+<% else %>
+  <% @ticket.requests.each do |request| %>
+    <div class="request-user">
+      <%= link_to user_path(request.user) do %>
+        <%= image_tag request.user.avatar.url, alt: "購入希望者のプロフィール画像" %>
+        <div class="request-user-name">
+          <%= request.user.nickname %>
+        </div>
+        <div class="request-user-profile">
+          <%= request.user.profile %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to "譲る", class: "btn btn-light", id: "give-button", data: {confirm: "本当に譲りますか？\nこの操作は取り消せません。"} %>
+  <% end %>
+<% end %>

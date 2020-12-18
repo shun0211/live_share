@@ -114,6 +114,7 @@
       <% if @ticket.seller_id === current_user.id %>
         <%= link_to "編集する", edit_ticket_path(@ticket.id), class: "btn btn-light edit-button" %>
         <%= link_to "削除する", ticket_path(@ticket.id), method: :delete, class: "btn btn-light delete-button", data: {confirm: "本当に削除しますか？"} %>
+        <%= render partial: "shared/request_list" %>
       <% else %>
         <% if @my_request.present? %>
           <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
