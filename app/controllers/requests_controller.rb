@@ -2,11 +2,10 @@
 
 class RequestsController < ApplicationController
   def create
-    binding.pry
     @request = Request.new(request_params)
     @request.save!
     @request.ticket.create_notification_request(current_user)
-    redirect_back(fallback_location: root_path)
+    redirect_to ticket_path(params[:ticket_id])
   end
 
   def destroy

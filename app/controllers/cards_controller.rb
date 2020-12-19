@@ -71,7 +71,8 @@ class CardsController < ApplicationController
     )
     @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
     @card.save!
-    redirect_to controller: :requests, action: :create, ticket_id: params["ticket_id"]
+    @ticket = Ticket.find(params[:ticket_id])
+    render "shared/for_redirect_to_request", layout: false
   end
 
 end
