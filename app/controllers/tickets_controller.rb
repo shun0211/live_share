@@ -67,7 +67,6 @@ class TicketsController < ApplicationController
   end
 
   def purchase
-    binding.pry
     ticket = Ticket.find(params[:id])
     taker = User.find(params[:taker_id])
     card = taker.cards.first
@@ -78,6 +77,7 @@ class TicketsController < ApplicationController
       currency: 'jpy'
     )
     ticket.buyer_id = taker.id
+    ticket.save!
     flash[:notice] = "#{taker.nickname}さんに譲る処理が完了しました。"
     redirect_to ticket_path(ticket)
   end

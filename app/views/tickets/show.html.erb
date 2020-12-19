@@ -10,6 +10,9 @@
         <div class="left-wrapper">
           <div class="image">
             <%= image_tag @ticket.thumbnail.url, class: "thumbnail" %>
+            <% if @ticket.buyer_id.present? %>
+              <div class="tag">Sold Out</div>
+            <% end %>
           </div>
           <div class="price">
             <span>(税込)</span>
