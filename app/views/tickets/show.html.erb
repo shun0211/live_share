@@ -122,7 +122,25 @@
         <% if @my_request.present? %>
           <%= link_to "購入希望を取り消す", ticket_requests_path(@ticket.id), method: :delete, class: "btn btn-light", id: "cancel-button", data: {confirm: "本当に購入希望を取り消しますか？"} %>
         <% else %>
-          <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
+          <% if current_user.cards.first.present? %>
+            <%= link_to "購入を希望する", ticket_requests_path(@ticket.id), method: :post, class: "btn btn-light", id: "want-button", data: {confirm: "購入を希望しますか？\n出品者が承諾すると自動で決済が行われます。"} %>
+          <% else %>
+            <%= form_with url: checkout_cards_path, method: :post do |f| %>
+              <%= f.hidden_field :ticket_id, value: @ticket.id %>
+              <%= f.submit "購入を希望する", class: "btn btn-light card-registration", id: "want-button" %>
+              <script
+                type="text/javascript"
+                src="https://checkout.pay.jp/"
+                class="payjp-button"
+                data-key="pk_test_018ce8fdc73b775ddd4f225c"
+                data-submit-text="登録する"
+                data-text="購入を希望する"
+                data-partial="false">
+              </script>
+            <% end %>
+          <% end %>
+
+
         <% end %>
         <% if @exist_room === true %>
           <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>

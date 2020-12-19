@@ -63,4 +63,15 @@ class CardsController < ApplicationController
     flash[:notice] = "登録されていたクレジットカードが削除されました。"
     redirect_to new_card_path
   end
+
+  def checkout
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer = Payjp::Customer.create(
+      card: params['payjp-token']
+    )
+    @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+    @card.save!
+    redirect_to controller: :requests, action: :create, ticket_id: params["ticket_id"]
+  end
+
 end

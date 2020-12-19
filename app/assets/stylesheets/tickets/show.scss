@@ -196,6 +196,9 @@
     background-color: #ffcc00;
     border: none;
   }
+  input[type="button"]{
+    display: none !important;
+  }
   #cancel-button{
     background-color: #ddd;
     border: none;

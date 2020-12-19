@@ -2,6 +2,7 @@
 
 class RequestsController < ApplicationController
   def create
+    binding.pry
     @request = Request.new(request_params)
     @request.save!
     @request.ticket.create_notification_request(current_user)
