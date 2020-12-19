@@ -66,9 +66,24 @@
     transform: translateY(-5px);
     box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
   }
-  .thumbnail{
+  .image{
     height: 57%;
+    position: relative;
+  }
+  .thumbnail{
     object-fit: cover;
+    height: 100%;
+  }
+  .tag{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    background-color: #FF6347;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
   }
   .card-body{
     padding: 0.5rem 0.7rem;
