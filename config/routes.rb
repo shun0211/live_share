@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
     resource :likes, only: %i[create destroy]
     resource :requests, only: %i[create destroy]
+    member do
+      post 'purchase'
+    end
   end
 
   resources :notifications, only: :index

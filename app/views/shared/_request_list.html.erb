@@ -19,7 +19,7 @@
               </div>
             <% end %>
           </div>
-          <%= link_to "譲る", "#", class: "btn btn-light", id: "give-button", data: {confirm: "本当に譲りますか？\nこの操作は取り消せません。"} %>
+          <%= link_to "譲る", purchase_ticket_path(@ticket.id, taker_id: request.user.id), method: :post, class: "btn btn-light", id: "give-button", data: {confirm: "本当に譲りますか？\nこの操作は取り消せません。"} %>
         </div>
       <% end %>
     </div>
