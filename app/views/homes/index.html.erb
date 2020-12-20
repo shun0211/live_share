@@ -22,7 +22,12 @@
         <%= link_to ticket_path(ticket.id) do %>
           <div class="rectangle-wrapper">
             <div class="item card">
-              <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+              <div class="image">
+                <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+                <% if ticket.buyer_id.present? %>
+                  <div class="tag">Sold Out</div>
+                <% end %>
+              </div>
               <div class="card-body">
                 <div class="flex-box">
                   <h5 class="card-title">
@@ -56,7 +61,12 @@
         <%= link_to ticket_path(ticket.id) do %>
           <div class="rectangle-wrapper">
             <div class="item card">
-              <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+              <div class="image">
+                <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+                <% if ticket.buyer_id.present? %>
+                  <div class="tag">Sold Out</div>
+                <% end %>
+              </div>
               <div class="card-body">
                 <div class="flex-box">
                   <h5 class="card-title">

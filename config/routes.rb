@@ -18,13 +18,20 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
     resource :likes, only: %i[create destroy]
     resource :requests, only: %i[create destroy]
+    member do
+      post 'purchase'
+    end
   end
 
   resources :notifications, only: :index
 
   resources :rooms, only: %i[create show index]
 
-  resources :cards, only: [:new, :show, :destroy, :create]
+  resources :cards, only: [:new, :show, :destroy, :create] do
+    collection do
+      post 'checkout'
+    end
+  end
 
   root 'homes#index'
 end

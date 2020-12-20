@@ -66,6 +66,22 @@ class TicketsController < ApplicationController
     redirect_to root_path
   end
 
+  def purchase
+    ticket = Ticket.find(params[:id])
+    taker = User.find(params[:taker_id])
+    card = taker.cards.first
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    charge = Payjp::Charge.create(
+      amount: ticket.price,
+      customer: Payjp::Customer.retrieve(card.customer_id),
+      currency: 'jpy'
+    )
+    ticket.buyer_id = taker.id
+    ticket.save!
+    flash[:notice] = "#{taker.nickname}さんに譲る処理が完了しました。"
+    redirect_to ticket_path(ticket)
+  end
+
   private
 
   def ticket_params
