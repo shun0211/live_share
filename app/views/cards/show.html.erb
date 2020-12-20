@@ -1,0 +1,26 @@
+<%= render partial: 'shared/header' %>
+
+<div class="card-information-container">
+  <%= render partial: 'shared/sidebar' %>
+
+  <main>
+    <div class="card-information-wrapper">
+      <h2>お支払い方法</h2>
+
+      <div class="credit-card">
+        <div class="credit-card-info">
+          <%= image_tag asset_path(@card_src, alt: "登録済みクレジットカードのロゴ") %>
+          <div class="unit">
+            <p class="card-num"><%= "**** **** **** " + @registration_card.last4 %></p>
+            <p class="expiration-date"><%= "有効期限 " + @registration_card.exp_month.to_s + " / " + @registration_card.exp_year.to_s.slice(2..3) %></p>
+          </div>
+        </div>
+        <%= link_to "削除する", card_path(@card.id), method: :delete, class: "credit-card-delete" %>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>

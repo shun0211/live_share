@@ -37,48 +37,49 @@ https://conefan.com
 - コメント機能
 出品されているチケットにコメントを投稿することができます。出品者にライブやフェスにおける補足情報を聞くことができます。
 - 通知機能
-自分の出品したチケットへのコメントや行きたい!!、購入希望があった際、またDMが届いた際に通知が来ます。
-
+自分の出品したチケットへのコメントや行きたい!!、購入希望や購入があった際、またDMが届いた際に通知が来ます。
+- 決済機能
+チケット出品者が購入希望者に対して譲るボタンを押し取引が成立すると、決済が行われます。
 
 ## 実装予定
 - フォロー機能
-- 決済機能
 - 検索機能
 - レスポンシブ対応
 - Googleマップ表示
-- Twitterに投稿機能
+- Twitterへの投稿機能
 
 ## 環境・使用技術
 ### フロントエンド
-Bootstrap 4.3.1
-SCSS
-JavaScript、jQuery、Ajax
+- Bootstrap 4.3.1
+- SCSS
+- JavaScript、jQuery、Ajax
 ### バックエンド
-Ruby 2.7.1
-Rails 6.0.1
+- Ruby 2.7.1
+- Rails 6.0.1
 ### 開発環境
-Docker/Docker-compose
-MySQL2
+- Docker/Docker-compose
+- MySQL2
 ### 本番環境
-AWS (EC2、RDS for MySQL、Route53、ELB)
-Nginx
-Unicorn
-Capictrano
-インフラ構成図
+- AWS (EC2、RDS for MySQL、Route53、ELB、S3)
+- Nginx
+- Unicorn
+- Capictrano
+- インフラ構成図
 
 ![](https://i.imgur.com/ynlaUwM.png)
 
 
 ### テスト
-Rspec (単体／結合） 計130以上
+- Rspec (単体／結合） 計130以上
 
 ### その他使用技術
-非同期通信 (コメント、行きたい!!、購入希望など各種ボタン、DM機能等)
-ActionCable
-Rubocop
-HTTPS接続
-チーム開発を意識したGitHubの活用 （マイルストーン、イシュー、プルリク、マージ）
-ER図&テーブル定義
+- 非同期通信 (コメント、行きたい!!、購入希望など各種ボタン、DM機能等)
+- ActionCable
+- Rubocop
+- HTTPS接続
+- チーム開発を意識したGitHubの活用 （マイルストーン、イシュー、プルリク、マージ）
+- PAY.JPのAPIを使ったクレジットカード決済
+- ER図&テーブル定義
 
 ![](https://i.imgur.com/qj4xVQK.png)
 

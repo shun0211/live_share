@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy, inverse_of: 'visited'
   has_many :sold_tickets, class_name: 'Ticket', foreign_key: 'seller_id', dependent: :destroy, inverse_of: 'seller'
   has_many :buyed_tickets, class_name: 'Ticket', foreign_key: 'buyer_id', dependent: :nullify, inverse_of: 'buyer'
+  has_many :cards, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX, message: 'を○○@○○.○○の形式で入力して下さい' }, length: { maximum: 255 }

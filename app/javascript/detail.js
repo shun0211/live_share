@@ -56,4 +56,12 @@ document.addEventListener('turbolinks:load', function(){
       $('[data-comment-id = '+ comment_id + ']').remove();
     })
   })
+  // 購入希望(カードが登録されていない時)
+  $('.card-registration').on('click', function(e){
+    e.preventDefault();
+    console.log("test");
+    let tokenButton = document.getElementsByTagName('input')[4];
+    console.log(tokenButton);
+    tokenButton.click();
+  })
 })

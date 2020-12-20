@@ -1,0 +1,67 @@
+@import "common.scss";
+
+.card-registration-container{
+  display: flex;
+  .sidebar{
+    background-color: $boundary_primary;
+    padding: 30px 47px;
+    width: 27%;
+    min-height: calc(100vh - 70px);
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+  p{
+    padding-top: 20px;
+    margin: 0;
+  }
+  .user-info{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .avatar{
+    border-radius: 100%;
+  }
+  .user-name{
+    padding-left: 15px;
+    font-weight: bold;
+  }
+
+  // クレジットカード登録画面
+  main{
+    background-color: #fff;
+    width: 73%;
+    .card-registration-wrapper{
+      padding: 50px 8% 30px;
+    }
+    h2{
+      font-size: 1.6rem;
+    }
+    img{
+      width: 50%;
+      display: block;
+      margin: 0 auto;
+      padding: 10px 0 20px;
+    }
+  }
+  #token_submit{
+    background-color: #fff000;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+    width: 30%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    padding: 5px;
+    margin-top: 25px;
+  }
+  #regist_card:hover{
+    background-color: #ffcc00;
+    border: none;
+  }
+}

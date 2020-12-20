@@ -1,0 +1,31 @@
+<%= render partial: 'shared/header' %>
+
+<div class="card-registration-container">
+  <%= render partial: 'shared/sidebar' %>
+
+  <main>
+    <%= form_with url: cards_path , method: :post, id: 'card-form' , html: { name: "cardForm" } do |f| %>
+      <div class="card-registration-wrapper form-group">
+        <h2>クレジットカード情報登録</h2>
+
+        <%= image_tag asset_path("creditcards.png", alt: "使用可能なクレジットカードのロゴ") %>
+
+        <label for="number-form">クレジットカード情報</label>
+        <div class="payjs-outer form-control" id="number-form"></div>
+
+        <label for="cvc-form">セキュリティーコード (カード裏面の3~4桁の数字)</label>
+        <div class="payjs-outer form-control" id="cvc-form"></div>
+
+        <label for="expiry-form">有効期限</label>
+        <div class="payjs-outer form-control" id="expiry-form"></div>
+
+        <%= f.submit '送信', id: 'token_submit' %>
+        <div id="card_token"></div>
+
+      </div>
+    <% end %>
+  </main>
+</div>
+
+<%= render partial: 'shared/sub_footer' %>
+<%= render partial: 'shared/footer' %>
