@@ -39,6 +39,11 @@
                 <%= notification.message.content %>
               </p>
               <hr>
+            <% when "purchase" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんから<%= link_to "#{notification.ticket.event_name}のチケット", ticket_path(notification.ticket.id) %>の譲り先に選ばれました。
+              </p>
+              <hr>
             <% end %>
           </div>
         <% end %>
