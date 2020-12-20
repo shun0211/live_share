@@ -1,46 +1,50 @@
 <%= render "shared/header" %>
-<div class="container profile-container">
-  <div class="bg-image">
-    <div class="user-info">
-      <div id="avatar-preview">
-        <%= image_tag resource.avatar.url, alt: "プロフィール画像", class: "icon", id: "edit-avatar" %>
-      </div>
-      <div class="inner">
-        <p class="user-name">
-          <%= resource.nickname %>
-        </p>
-        <p class="listing-number">
-          出品数
-          <% if @listing_tickets.blank? %>
-            0
-          <% else %>
-            <%= @listing_tickets.count %>
-          <% end %>
-          件
-        </p>
+
+<div class="profile">
+  <%= render partial: "shared/sidebar" %>
+  <div class="profile-container">
+    <div class="bg-image">
+      <div class="user-info">
+        <div id="avatar-preview">
+          <%= image_tag resource.avatar.url, alt: "プロフィール画像", class: "icon", id: "edit-avatar" %>
+        </div>
+        <div class="inner">
+          <p class="user-name">
+            <%= resource.nickname %>
+          </p>
+          <p class="listing-number">
+            出品数
+            <% if @listing_tickets.blank? %>
+              0
+            <% else %>
+              <%= @listing_tickets.count %>
+            <% end %>
+            件
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="wrapper edit-wrapper form-group">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.file_field :avatar %>
-      <p id="file-insert">プロフィール画像を変更する</p>
+    <div class="wrapper edit-wrapper form-group">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.file_field :avatar %>
+        <p id="file-insert">プロフィール画像を変更する</p>
 
-      <%# エラーメッセージ %>
-      <% if resource.errors.full_messages.any? %>
-        <div class="error_messages">
-          <% resource.errors.full_messages.each do |error_message| %>
-            <%= content_tag :div, error_message, class:"alert alert-danger" %>
-          <% end %>
-        </div>
+        <%# エラーメッセージ %>
+        <% if resource.errors.full_messages.any? %>
+          <div class="error_messages">
+            <% resource.errors.full_messages.each do |error_message| %>
+              <%= content_tag :div, error_message, class:"alert alert-danger" %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= f.label :nickname, "ニックネーム" %>
+        <%= f.text_field :nickname, class: "form-control" %>
+        <%= f.label :profile, "プロフィール" %>
+        <%= f.text_area :profile, rows: 5, class: "form-control", placeholder: "例) [Alexandros]が大好きです！\n仕事で行けなくなったときなどに時々出品しています。\nよろしくお願いします😌" %>
+        <%= f.submit "更新する", class: "btn btn-warning update-btn" %>
       <% end %>
-
-      <%= f.label :nickname, "ニックネーム" %>
-      <%= f.text_field :nickname, class: "form-control" %>
-      <%= f.label :profile, "プロフィール" %>
-      <%= f.text_area :profile, rows: 5, class: "form-control", placeholder: "例) [Alexandros]が大好きです！\n仕事で行けなくなったときなどに時々出品しています。\nよろしくお願いします😌" %>
-      <%= f.submit "更新する", class: "btn btn-warning update-btn" %>
-    <% end %>
+    </div>
   </div>
 </div>
 
