@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", e => {
+document.addEventListener(
+  "DOMContentLoaded", e => {
   // カード情報を暗号化するため、公開鍵を指定
   const payjp = Payjp("pk_test_018ce8fdc73b775ddd4f225c");
   let elements = payjp.elements();
