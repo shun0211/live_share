@@ -79,6 +79,7 @@ class TicketsController < ApplicationController
     ticket.buyer_id = taker.id
     ticket.save!
     flash[:notice] = "#{taker.nickname}さんに譲る処理が完了しました。"
+    ticket.create_notification_purchase(current_user)
     redirect_to ticket_path(ticket)
   end
 
