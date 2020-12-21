@@ -36,6 +36,6 @@ module Myapp
     config.i18n.default_locale = :ja
 
     # circle CIでZeitwerk関連のエラーが出るため変更
-    config.autoloader = :classic
+    # config.autoloader = :classic
   end
 end
