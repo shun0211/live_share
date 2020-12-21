@@ -8,9 +8,9 @@ jobs:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
       - image: circleci/mysql:8.0
-        # environment:
-        #   - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-        #   - MYSQL_ROOT_HOST: '%'
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
