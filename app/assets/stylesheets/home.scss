@@ -27,7 +27,6 @@
   position: absolute;
   top: -30px;
 }
-
 .big-bg{
   background-image: image-url(toppage-bg);
   min-height: 100vh;
@@ -84,8 +83,9 @@
   }
   .grid{
     display: grid;
-    gap: 30px;
+    gap: 50px;
     grid-template-columns: repeat(4, 1fr);
+    margin: 0 10% 0;
   }
   .rectangle-wrapper{
     position: relative;
@@ -131,6 +131,7 @@
   }
   .card-body{
     padding: 0.5rem 0.7rem;
+    height: 43%;
   }
   .flex-box{
     display: flex;
@@ -138,10 +139,14 @@
   .like{
     color: $primary;
     font-size: 0.75rem;
+    width: 37px;
+    text-align: right;
   }
   .card-title{
     font-size: 1.1rem;
-    margin-bottom: 1px;
+    margin-bottom: 5px;
+    height: 1.1rem;
+    overflow: hidden;
   }
   .date{
     font-size: 0.7rem;
@@ -151,7 +156,7 @@
   .card-text{
     font-size: 0.7rem;
     overflow: hidden;
-    height: 48px;
+    height: calc(100% - 2.3rem - 9px);
   }
   .more{
     text-align: center;
@@ -195,4 +200,14 @@
   background-color: #e2a6a6;
   color: $dark_gray;
   text-decoration: none;
+}
+@media only screen and (max-width: 1200px){
+  .main-content{
+    .grid{
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(4, 1fr);
+      margin: 0 5% 0;
+    }
+  }
 }

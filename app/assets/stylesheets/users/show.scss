@@ -83,3 +83,13 @@
     background-color: #ff9E9E;
   }
 }
+
+// ログインしていない場合
+.not-login-wrapper{
+  background-color: $boundary_primary;
+}
+// application.scssでusers/editより後に読み込まれているため問題なし
+.profile-container{
+  min-height: auto;
+  margin-bottom: 40px;
+}
