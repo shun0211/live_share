@@ -1,0 +1,33 @@
+<div class="container profile-container">
+  <div class="bg-image">
+    <div class="user-info">
+      <div id="avatar-preview">
+        <%= image_tag @user.avatar.url, alt: "プロフィール画像", class: "icon", id: "edit-avatar" %>
+      </div>
+      <div class="inner">
+        <p class="user-name">
+          <%= @user.nickname %>
+        </p>
+        <p class="listing-number">
+          出品数
+          <% if @listing_tickets.blank? %>
+            0
+          <% else %>
+            <%= @listing_tickets.count %>
+          <% end %>
+          件
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper profile-wrapper not-login-wrapper">
+    <h3 class="heading">プロフィール</h3>
+    <div class="text">
+      <% if @user.profile.present? %>
+        <%= safe_join(@user.profile.split("\n"), tag(:br)) %>
+      <% else %>
+        <p class="placeholder">まだプロフィール文が投稿されていません。<br>プロフィールを編集してみましょう。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

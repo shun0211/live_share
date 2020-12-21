@@ -13,7 +13,7 @@ require("listing_page.js")
 require("top_page.js")
 require("detail.js")
 require("profile_edit")
-require("pay")
+require("pay.js")
 require("message.js")
 
 // Uncomment to copy all static images under ../images to the output folder and reference

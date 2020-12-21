@@ -5,7 +5,7 @@ document.addEventListener('turbolinks:load', function(){
       for(let i=0; i<messageNum; i++){
         if(gon.current_user_id === messages[i].user_id){
           let html = `<div class="message">
-                        <img alt="ユーザのプロフィール画像" class="avatar" src="/assets/${messages[i].user.avatar}" width="40" height="40">
+                        <img alt="ユーザのプロフィール画像" class="avatar" src="${messages[i].user.avatar}" width="40" height="40">
                         <div class="speech-bubble-own">
                           ${messages[i].content}
                         </div>
@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', function(){
           document.getElementById('messages').insertAdjacentHTML('afterbegin', html)
         }else{
           let html = `<div class="message">
-                        <img alt="ユーザのプロフィール画像" class="avatar" src="/assets/${messages[i].user.avatar}" width="40" height="40">
+                        <img alt="ユーザのプロフィール画像" class="avatar" src="${messages[i].user.avatar}" width="40" height="40">
                         <div class="speech-bubble-partner">
                           ${messages[i].content}
                         </div>
@@ -46,10 +46,5 @@ document.addEventListener('turbolinks:load', function(){
         })
       }
     })
-    // document.querySelector('[data-behavior="room_speaker"]').addEventListener('click', () => {
-    //   const form = $('input[data-behavior="form_data"]');
-    //   this.speak(form.val());
-    //   form.val('');
-    // })
   }
 })

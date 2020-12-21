@@ -13,4 +13,5 @@ CarrierWave.configure do |config|
     region: 'ap-northeast-1',
     path_style: true
   }
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/www.conefan.com'
 end
