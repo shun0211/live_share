@@ -11,7 +11,8 @@ jobs:
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
+          - MYSQL_USER: root
+          - MYSQL_DB: circle_test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -45,6 +46,7 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
+      - run: cp -v config/database.ci.yml config/database.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
