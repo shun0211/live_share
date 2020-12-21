@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -20,21 +20,24 @@ jobs:
     working_directory: ~/live_share
 
     steps:
+      # ソースコードをマシンにチェックアウト。通常stepsの最初に書かれる
       - checkout
 
-      # Download and cache dependencies
+      # Gemfile.lockが変更された場合、キャッシュを変更する設定
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # runはコマンドの実行
       - run:
           name: install dependencies
           command: |
             gem install bundler -v 2.1.4
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
+      # Gemfile.lockの中身が変わらない場合はcashを使う設定
       - save_cache:
           paths:
             - ./vendor/bundle
@@ -66,7 +69,7 @@ jobs:
               --format progress \
               $TEST_FILES
 
-      # collect reports
+      # store_test_resultsを指定するとTESTSのタブでテスト結果を確認できるようになる
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
