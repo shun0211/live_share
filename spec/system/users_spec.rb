@@ -16,7 +16,7 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'aaa@example.com'
         fill_in 'パスワード', with: 'password1'
         fill_in 'パスワード確認', with: 'password1'
-        find_by(id: 'registration-btn').click
+        find_by_id('registration-btn').click
         # have_content：ページ内に特定の文字列が表示されていることを検証
         expect(page).to have_content "WE'LL CONNECT MUSIC FANS"
       end

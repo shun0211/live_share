@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Comment', type: :system do
@@ -29,7 +31,7 @@ RSpec.describe 'Comment', type: :system do
       end
 
       it 'コメントのテキストボックスが表示されないこと' do
-        expect(page).to_not have_selector 'input#comment_content'
+        expect(page).not_to have_selector 'input#comment_content'
       end
     end
   end
@@ -50,7 +52,7 @@ RSpec.describe 'Comment', type: :system do
         expect(page).to have_content '値下げお願いできないでしょうか'
         find('.fas.fa-trash-alt').click
         sleep 2
-        expect(page).to_not have_content '値下げお願いできないでしょうか'
+        expect(page).not_to have_content '値下げお願いできないでしょうか'
       end
     end
 
@@ -62,7 +64,7 @@ RSpec.describe 'Comment', type: :system do
       end
 
       it 'コメント削除ボタンが表示されないこと' do
-        expect(page).to_not have_selector '.fas.fa-trash-alt'
+        expect(page).not_to have_selector '.fas.fa-trash-alt'
       end
     end
 
@@ -73,7 +75,7 @@ RSpec.describe 'Comment', type: :system do
       end
 
       it 'コメント削除バタンが表示されないこと' do
-        expect(page).to_not have_selector '.fas.fa-trash-alt'
+        expect(page).not_to have_selector '.fas.fa-trash-alt'
       end
     end
   end

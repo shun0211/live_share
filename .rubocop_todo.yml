@@ -1,4 +1,0 @@
-# Offense count: 1
-RSpec/EmptyExampleGroup:
-  Exclude:
-    - 'spec/system/tickets_spec.rb'

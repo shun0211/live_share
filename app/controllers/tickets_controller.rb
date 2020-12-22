@@ -29,19 +29,19 @@ class TicketsController < ApplicationController
     @comment = Comment.new
     gon.ticket = @ticket
 
-    if user_signed_in?
-      @my_entries = Entry.where(user_id: current_user.id)
-      @partner_entries = Entry.where(user_id: @ticket.seller_id)
-      @my_entries.each do |my_entry|
-        @partner_entries.each do |partner_entry|
-          if my_entry.room_id == partner_entry.room_id
-            @exist_room = true
-            @room_id = my_entry.room_id
-          end
+    return unless user_signed_in?
+
+    @my_entries = Entry.where(user_id: current_user.id)
+    @partner_entries = Entry.where(user_id: @ticket.seller_id)
+    @my_entries.each do |my_entry|
+      @partner_entries.each do |partner_entry|
+        if my_entry.room_id == partner_entry.room_id
+          @exist_room = true
+          @room_id = my_entry.room_id
         end
       end
-      @my_request = @ticket.requests.find_by(user_id: current_user.id, ticket_id: @ticket.id)
     end
+    @my_request = @ticket.requests.find_by(user_id: current_user.id, ticket_id: @ticket.id)
   end
 
   def edit
@@ -71,7 +71,7 @@ class TicketsController < ApplicationController
     taker = User.find(params[:taker_id])
     card = taker.cards.first
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    charge = Payjp::Charge.create(
+    Payjp::Charge.create(
       amount: ticket.price,
       customer: Payjp::Customer.retrieve(card.customer_id),
       currency: 'jpy'

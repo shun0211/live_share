@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :rooms, only: %i[create show index]
 
-  resources :cards, only: [:new, :show, :destroy, :create] do
+  resources :cards, only: %i[new show destroy create] do
     collection do
       post 'checkout'
     end
