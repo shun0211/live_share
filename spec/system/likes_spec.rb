@@ -44,7 +44,7 @@ RSpec.describe 'Like', type: :system do
       end
 
       it '行きたい!!の数が変化しない', js: true do
-        find_by(id: 'like').click
+        find_by_id('like').click
         sleep 2
         expect(page).to have_content 0
       end

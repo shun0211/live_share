@@ -27,7 +27,7 @@ Rails/LexicallyScopedActionFilter:
 
 # 自動修正するとエラーになる
 Rails/DynamicFindBy:
-  Enabled: true
+  Enabled: false
 
 Style/AsciiComments:
   Enabled: false
@@ -82,3 +82,6 @@ RSpec/ContextWording:
 
 RSpec/NestedGroups:
   Max: 4
+
+RSpec/EmptyExampleGroup:
+  Enabled: false

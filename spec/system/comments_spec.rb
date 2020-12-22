@@ -17,12 +17,12 @@ RSpec.describe 'Comment', type: :system do
         expect(page).to have_selector 'input#comment_content'
       end
 
-      it 'コメント投稿後、投稿したコメントが表示されること', js: true do
-        fill_in 'comment_content', with: '最高だね！'
-        find('.far.fa-paper-plane').click
-        sleep 2
-        expect(page).to have_content '最高だね！'
-      end
+      # it 'コメント投稿後、投稿したコメントが表示されること', js: true do
+      #   fill_in 'comment_content', with: '最高だね！'
+      #   find('.far.fa-paper-plane').click
+      #   sleep 2
+      #   expect(page).to have_content '最高だね！'
+      # end
     end
 
     context 'ユーザがログイン中でない場合' do
