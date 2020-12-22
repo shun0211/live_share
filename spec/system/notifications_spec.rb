@@ -70,12 +70,12 @@ RSpec.describe 'Notification', type: :system do
         sleep 2
       end
 
-      # it 'チケット投稿者に通知がいくこと', js: true do
-      #   sign_out friend
-      #   sign_in user
-      #   find('.far.fa-bell').click
-      #   expect(page).to have_content 'ひろちょさんがあなたのチケットにコメントしました。'
-      # end
+      it 'チケット投稿者に通知がいくこと', js: true do
+        sign_out friend
+        sign_in user
+        find('.far.fa-bell').click
+        expect(page).to have_content 'ひろちょさんがあなたのチケットにコメントしました。'
+      end
     end
 
     context 'ログイン中のユーザが自分の投稿チケットにコメントした場合' do

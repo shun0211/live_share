@@ -55,6 +55,12 @@ jobs:
             bundle exec rake db:schema:load
 
       - run:
+          name: yarn Install
+          command: yarn install
+
+      - run: bundle exec bin/webpack
+
+      - run:
           name: Rubocop
           command: bundle exec rubocop
 
