@@ -42,6 +42,7 @@ jobs:
 
       # Database setup
       - run: mv ./config/database.yml.ci ./config/database.yml
+      - run: bundle install --path vendor/cache
 
       - run:
           name: Wait for DB
