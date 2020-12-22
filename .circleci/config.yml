@@ -65,19 +65,30 @@ jobs:
           command: bundle exec rubocop
 
       # run tests!
+      # - run:
+      #     name: run tests
+      #     command: |
+      #       mkdir /tmp/test-results
+      #       TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+      #         circleci tests split --split-by=timings)"
+
+      #       bundle exec rspec \
+      #         --format progress \
+      #         --format RspecJunitFormatter \
+      #         --out /tmp/test-results/rspec.xml \
+      #         --format progress \
+      #         $TEST_FILES
+
       - run:
           name: run tests
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
+            mkdir -p /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format documentation \
+                              --format RspecJunitFormatter \
+                              --out /tmp/test-results/rspec.xml \
+                              -- $(echo "${TEST_FILES}" | sed -e 's/\n/\\n/' -e 's/ /\ /')
 
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
 
       # store_test_resultsを指定するとTESTSのタブでテスト結果を確認できるようになる
       - store_test_results:
