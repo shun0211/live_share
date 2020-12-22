@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
@@ -7,8 +7,8 @@ jobs:
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
-      - image: circleci/mysql:8.0
-        command: mysqld --default-authentication-plugin=mysql_native_password
+      - image: circleci/mysql:5.7
+        # command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
           - MYSQL_ROOT_HOST: '%'
