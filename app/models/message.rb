@@ -3,7 +3,7 @@
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :room
-  has_one :notification
+  has_one :notification, dependent: :destroy
 
   validates :content, presence: true
   after_create_commit { MessageBroadcastJob.perform_later self }

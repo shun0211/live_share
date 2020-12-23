@@ -139,9 +139,8 @@
               </script>
             <% end %>
           <% end %>
-
-
         <% end %>
+
         <% if @exist_room === true %>
           <%= link_to "メッセージを送る", room_path(@room_id), class: "btn btn-light", id: "message-button" %>
         <% else %>

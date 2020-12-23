@@ -27,7 +27,7 @@ Rails/LexicallyScopedActionFilter:
 
 # 自動修正するとエラーになる
 Rails/DynamicFindBy:
-  Enabled: true
+  Enabled: false
 
 Style/AsciiComments:
   Enabled: false
@@ -36,6 +36,10 @@ Style/AsciiComments:
 Style/Documentation:
   Enabled: false
 
+Style/IdenticalConditionalBranches:
+  Exclude:
+    - 'app/controllers/tickets_controller.rb'
+
 Metrics/LineLength:
   Enabled: false
 
@@ -43,12 +47,22 @@ Metrics/BlockLength:
   Exclude:
     - Gemfile
     - spec/**/*
+    - config/routes.rb
 
 Metrics/MethodLength:
-  Max: 14
+  Max: 16
+  Exclude:
+    - app/controllers/cards_controller.rb
 
 Metrics/AbcSize:
   Max: 23
+  Exclude:
+    - app/channels/room_channel.rb
+    - app/controllers/tickets_controller.rb
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - app/controllers/cards_controller.rb
 
 # エラーが起きた際、spec/rails_helper.rb内のsave_and_open_pageメソッドを実行する設定を見直す必要がある
 Lint/Debugger:
@@ -68,3 +82,6 @@ RSpec/ContextWording:
 
 RSpec/NestedGroups:
   Max: 4
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
