@@ -101,3 +101,15 @@ jobs:
       # store_test_resultsを指定するとTESTSのタブでテスト結果を確認できるようになる
       - store_test_results:
           path: /tmp/test-results
+
+      - add_ssh_keys:
+          fingerprints:
+            - b9:b2:5d:69:d9:5b:59:03:52:35:78:af:00:9c:21:d1
+
+      - deploy:
+          name: Capistrano deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "main" ]; then
+              exit 0
+            fi
+            bundle exec cap production deploy
