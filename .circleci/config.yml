@@ -2,11 +2,11 @@ version: 2.1
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/ruby:2.7.1-node-browsers
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
+          - RAILS_MASTER_KEY: 'ad39ba102712ef76fd5533bd00934196'
 
       - image: circleci/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
@@ -19,30 +19,65 @@ jobs:
     steps:
       # ソースコードをマシンにチェックアウト。通常stepsの最初に書かれる
       - checkout
+      - run:
+          name: Chrome Driverのインストール
+          command: |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt-get update && sudo apt-get install -y unzip
+            wget -N http://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip -P ~/
+            unzip ~/chromedriver_linux64.zip -d ~/
+            rm ~/chromedriver_linux64.zip
+            sudo chown root:root ~/chromedriver
+            sudo chmod 755 ~/chromedriver
+            sudo mv ~/chromedriver /usr/bin/chromedriver
+            sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -'
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+            sudo apt-get update && sudo apt-get install -y google-chrome-stable
 
       # Gemfile.lockが変更された場合、キャッシュを変更する設定
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # runはコマンドの実行
+      - restore_cache:
+          keys:
+            - rails-yarn-{{ checksum "yarn.lock" }}
+            - rails-yarn-
+
       - run:
-          name: install dependencies
+          name: bundlerをインストール
+          command: gem install bundler -v 2.1.4
+
+      - run:
+          name: プロジェクトローカルにGemをインストールするよう設定
+          command: bundle config set --local path 'vendor/bundle'
+
+      - run:
+          name: bundle installを実行
           command: |
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle check --path vendor/bundle || bundle install --clean --force --jobs=4 --retry=3
+            bundle install --path vendor/cache
+
+      - run:
+          name: yarn installを実行
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - run:
+          name: webpack installを実行
+          command: bundle exec bin/webpack
 
       # Gemfile.lockの中身が変わらない場合はcashを使う設定
       - save_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # Database setup
-      - run: mv ./config/database.yml.ci ./config/database.yml
-      - run: bundle install --path vendor/cache
+      - save_cache:
+          key: rails-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
 
       - run:
           name: Wait for DB
@@ -51,60 +86,18 @@ jobs:
       - run:
           name: Databasesetup
           command: |
+            mv ./config/database.yml.ci ./config/database.yml
             bundle exec rake db:create
             bundle exec rake db:schema:load
 
-      - run: apt-get update && apt-get install -y unzip && \
-             CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
-             wget -N http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -P ~/ && \
-             unzip ~/chromedriver_linux64.zip -d ~/ && \
-             rm ~/chromedriver_linux64.zip && \
-             chown root:root ~/chromedriver && \
-             chmod 755 ~/chromedriver && \
-             mv ~/chromedriver /usr/bin/chromedriver && \
-             sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' && \
-             sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' && \
-             apt-get update && apt-get install -y google-chrome-stable
-
       - run:
-          name: yarn Install
-          command: yarn install
-
-      - run: bundle exec bin/webpack
-
-      - run:
-          name: Rubocop
+          name: Rubocop実行
           command: bundle exec rubocop
 
-      # run tests!
-      # - run:
-      #     name: run tests
-      #     command: |
-      #       mkdir /tmp/test-results
-      #       TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-      #         circleci tests split --split-by=timings)"
-
-      #       bundle exec rspec \
-      #         --format progress \
-      #         --format RspecJunitFormatter \
-      #         --out /tmp/test-results/rspec.xml \
-      #         --format progress \
-      #         $TEST_FILES
-
       - run:
-          name: run tests
-          command: |
-            mkdir -p /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            bundle exec rspec --format documentation \
-                              --format RspecJunitFormatter \
-                              --out /tmp/test-results/rspec.xml \
-                              -- $(echo "${TEST_FILES}" | sed -e 's/\n/\\n/' -e 's/ /\ /')
-
+          name: RSpec実行
+          command: bundle exec rspec -b --format documentation
 
       # store_test_resultsを指定するとTESTSのタブでテスト結果を確認できるようになる
       - store_test_results:
           path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
