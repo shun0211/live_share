@@ -69,6 +69,7 @@ RSpec.describe 'Room', type: :system do
       before do
         FactoryBot.create_list(:message, 100, user: user, room: @active_room)
         visit room_path(@active_room.id)
+        sleep 1
       end
 
       it 'メッセージが30件のみ表示されること' do
