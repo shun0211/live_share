@@ -15,7 +15,7 @@ RSpec.describe 'Ticket', type: :system do
     context '必須項目をすべて入力し、出品ボタンを押した場合' do
       before do
         # attach_file 'ラベル名', '画像のパス'
-        attach_file('thumbnail-uploadButton', "#{Rails.root}/spec/fixtures/thumbnail.jpeg", make_visible: true)
+        attach_file('thumbnail-uploadButton', Rails.root.join('spec/fixtures/thumbnail.jpeg'), make_visible: true)
         fill_in 'event_name-form', with: 'YON FES 2021'
         fill_in '公演日', with: '2020-12-11'
         fill_in '開催地', with: 'モリコロパーク'
@@ -37,7 +37,7 @@ RSpec.describe 'Ticket', type: :system do
     context '必須項目が未入力のまま、出品ボタンを押した場合' do
       before do
         # attach_file 'ラベル名', '画像のパス'
-        attach_file('thumbnail-uploadButton', "#{Rails.root}/spec/fixtures/thumbnail.jpeg", make_visible: true)
+        attach_file('thumbnail-uploadButton', Rails.root.join('spec/fixtures/thumbnail.jpeg'), make_visible: true)
         fill_in 'event_name-form', with: 'YON FES 2021'
         fill_in '公演日', with: '2020-12-11'
         fill_in '開催地', with: 'モリコロパーク'
@@ -79,7 +79,7 @@ RSpec.describe 'Ticket', type: :system do
       end
 
       it '価格が入力されていない場合、エラーメッセージが表示されること', js: true do
-        fill_in '販売価格', with: ""
+        fill_in '販売価格', with: ''
         click_button '出品する'
         expect(page).to have_content '販売価格を300 ~ 99,999円で入力してください'
       end
@@ -131,7 +131,7 @@ RSpec.describe 'Ticket', type: :system do
 
     context 'ログイン中のユーザ以外が投稿したチケットの場合' do
       it '購入希望ボタンが表示されていること' do
-        expect(page).to have_content '購入を希望する'
+        expect(page).to have_button '購入を希望する'
       end
 
       it 'メッセージ送信ボタンが表示されていること' do
@@ -211,8 +211,8 @@ RSpec.describe 'Ticket', type: :system do
         fill_in 'event_name-form', with: 'MET ROCK FES 2021'
         click_button '編集する'
         # using_wait_time(5) do
-          expect(page).to have_content 'MET ROCK FES 2021'
-          expect(page).to have_current_path ticket_path(@current_user_ticket)
+        expect(page).to have_content 'MET ROCK FES 2021'
+        expect(page).to have_current_path ticket_path(@current_user_ticket)
         # end
       end
 

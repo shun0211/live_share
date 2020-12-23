@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CardsController < ApplicationController
   require 'payjp'
 
@@ -38,18 +40,18 @@ class CardsController < ApplicationController
       @registration_card = customer.cards.retrieve(@card.card_id)
       brand = @registration_card.brand
       case brand
-      when "Visa"
-        @card_src = "visa.png"
-      when "JCB"
-        @card_src = "jcb.png"
-      when "MasterCard"
-        @card_src = "mastercard.png"
-      when "American Express"
-        @card_src = "americanexpress.png"
-      when "Diners Club"
-        @card_src = "dinersclub.png"
-      when "Discover"
-        @card_src = "discover.png"
+      when 'Visa'
+        @card_src = 'visa.png'
+      when 'JCB'
+        @card_src = 'jcb.png'
+      when 'MasterCard'
+        @card_src = 'mastercard.png'
+      when 'American Express'
+        @card_src = 'americanexpress.png'
+      when 'Diners Club'
+        @card_src = 'dinersclub.png'
+      when 'Discover'
+        @card_src = 'discover.png'
       end
     end
   end
@@ -60,7 +62,7 @@ class CardsController < ApplicationController
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     @card.delete
-    flash[:notice] = "登録されていたクレジットカードが削除されました。"
+    flash[:notice] = '登録されていたクレジットカードが削除されました。'
     redirect_to new_card_path
   end
 
@@ -72,7 +74,6 @@ class CardsController < ApplicationController
     @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
     @card.save!
     @ticket = Ticket.find(params[:ticket_id])
-    render "shared/for_redirect_to_request", layout: false
+    render 'shared/for_redirect_to_request', layout: false
   end
-
 end

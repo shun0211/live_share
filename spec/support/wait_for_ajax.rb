@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # このメソッドを使おうとするとテストが通らなくなる
 module WaitForAjax
   # デフォルトのajax通信を待つ時間は2s

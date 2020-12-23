@@ -16,7 +16,7 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'aaa@example.com'
         fill_in 'パスワード', with: 'password1'
         fill_in 'パスワード確認', with: 'password1'
-        find_by(id: 'registration-btn').click
+        find_by_id('registration-btn').click
         # have_content：ページ内に特定の文字列が表示されていることを検証
         expect(page).to have_content "WE'LL CONNECT MUSIC FANS"
       end
@@ -28,14 +28,14 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: ''
         fill_in 'パスワード確認', with: ''
-        find_by(id: 'registration-btn').click
+        find_by_id('registration-btn').click
         expect(page).to have_content '新規会員登録'
       end
     end
 
     context '簡単ログインボタンをクリックした場合' do
       it 'トップページへ遷移すること' do
-        find_by(id: 'easy-login-registration').click
+        find_by_id('easy-login-registration').click
         expect(page).to have_content "WE'LL CONNECT MUSIC FANS"
       end
     end
@@ -50,7 +50,7 @@ RSpec.describe 'User', type: :system do
       it 'トップページへ遷移すること' do
         fill_in 'メールアドレス', with: user.email
         fill_in 'パスワード', with: user.password
-        find_by(id: 'login-btn').click
+        find_by_id('login-btn').click
         expect(page).to have_content "WE'LL CONNECT MUSIC FANS"
       end
     end
@@ -59,14 +59,14 @@ RSpec.describe 'User', type: :system do
       it 'ログインページが再度表示されること' do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: ''
-        find_by(id: 'login-btn').click
+        find_by_id('login-btn').click
         expect(page).to have_content 'ログイン'
       end
     end
 
     context 'かんたんログインボタンをクリックした場合' do
       it 'トップページへ遷移すること' do
-        find_by(id: 'easy-login-session').click
+        find_by_id('easy-login-session').click
         expect(page).to have_content "WE'LL CONNECT MUSIC FANS"
       end
     end
@@ -94,7 +94,7 @@ RSpec.describe 'User', type: :system do
       visit login_path
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
-      find_by(id: 'login-btn').click
+      find_by_id('login-btn').click
     end
 
     context 'トップページにて' do

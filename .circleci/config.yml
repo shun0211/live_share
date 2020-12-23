@@ -1,0 +1,115 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          - BUNDLER_VERSION: 2.1.4
+          - RAILS_ENV: 'test'
+          - RAILS_MASTER_KEY: 'ad39ba102712ef76fd5533bd00934196'
+
+      - image: circleci/mysql:8.0
+        command: mysqld --default-authentication-plugin=mysql_native_password
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
+
+    working_directory: ~/live_share
+
+    steps:
+      # ソースコードをマシンにチェックアウト。通常stepsの最初に書かれる
+      - checkout
+      - run:
+          name: Chrome Driverのインストール
+          command: |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt-get update && sudo apt-get install -y unzip
+            wget -N http://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip -P ~/
+            unzip ~/chromedriver_linux64.zip -d ~/
+            rm ~/chromedriver_linux64.zip
+            sudo chown root:root ~/chromedriver
+            sudo chmod 755 ~/chromedriver
+            sudo mv ~/chromedriver /usr/bin/chromedriver
+            sh -c 'wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -'
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+            sudo apt-get update && sudo apt-get install -y google-chrome-stable
+
+      # Gemfile.lockが変更された場合、キャッシュを変更する設定
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
+      - restore_cache:
+          keys:
+            - rails-yarn-{{ checksum "yarn.lock" }}
+            - rails-yarn-
+
+      - run:
+          name: bundlerをインストール
+          command: gem install bundler -v 2.1.4
+
+      - run:
+          name: プロジェクトローカルにGemをインストールするよう設定
+          command: bundle config set --local path 'vendor/bundle'
+
+      - run:
+          name: bundle installを実行
+          command: |
+            bundle check --path vendor/bundle || bundle install --clean --force --jobs=4 --retry=3
+            bundle install --path vendor/cache
+
+      - run:
+          name: yarn installを実行
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - run:
+          name: webpack installを実行
+          command: bundle exec bin/webpack
+
+      # Gemfile.lockの中身が変わらない場合はcashを使う設定
+      - save_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+
+      - save_cache:
+          key: rails-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - run:
+          name: Databasesetup
+          command: |
+            mv ./config/database.yml.ci ./config/database.yml
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+
+      - run:
+          name: Rubocop実行
+          command: bundle exec rubocop
+
+      - run:
+          name: RSpec実行
+          command: bundle exec rspec -b --format documentation
+
+      # store_test_resultsを指定するとTESTSのタブでテスト結果を確認できるようになる
+      - store_test_results:
+          path: /tmp/test-results
+
+      - add_ssh_keys:
+          fingerprints:
+            - b9:b2:5d:69:d9:5b:59:03:52:35:78:af:00:9c:21:d1
+
+      - deploy:
+          name: Capistrano deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "main" ]; then
+              exit 0
+            fi
+            bundle exec cap production deploy
