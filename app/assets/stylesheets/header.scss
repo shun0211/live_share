@@ -54,6 +54,7 @@ aside{
   transition: all 0.3s ease-in-out;
   background-color: $thin_primary;
   z-index: 100;
+
 }
 aside li{
   list-style: none inside;
@@ -92,3 +93,8 @@ input[type="checkbox"]:checked ~ .back{
   font-size: 1.75rem;
   cursor: pointer;
 }
+// @media only screen and (max-width: 480px){
+//   html, body{
+//     overflow: hidden;
+//   }
+// }
