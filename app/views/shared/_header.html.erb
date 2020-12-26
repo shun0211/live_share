@@ -26,7 +26,6 @@
   <input type="checkbox" id="hamburger-menu" class="hamburger-menu">
     <label for="hamburger-menu" class="back"></label>
     <aside class="menu">
-      <label for="hamburger-menu" class="close"><i class="fas fa-times"></i></label>
       <% if user_signed_in? %>
         <ul>
           <li><%= link_to "マイページ", mypage_path %></li>

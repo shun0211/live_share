@@ -5,6 +5,7 @@
     <%= render partial: "shared/sidebar" %>
     <div class="profile-container">
       <div class="bg-image">
+        <label for="mypage-hamburger-menu" class="open"><i class="fas fa-list-ul"></i></label>
         <div class="user-info">
           <div id="avatar-preview">
             <%= image_tag @user.avatar.url, alt: "プロフィール画像", class: "icon", id: "edit-avatar" %>
