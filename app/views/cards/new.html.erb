@@ -6,6 +6,7 @@
   <main>
     <%= form_with url: cards_path , method: :post, id: 'card-form' , html: { name: "cardForm" } do |f| %>
       <div class="card-registration-wrapper form-group">
+        <label for="mypage-hamburger-menu" class="open"><i class="fas fa-list-ul"></i></label>
         <h2>クレジットカード情報登録</h2>
 
         <%= image_tag asset_path("creditcards.png", alt: "使用可能なクレジットカードのロゴ") %>
