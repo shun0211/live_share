@@ -55,3 +55,8 @@
   color: $primary;
   text-decoration: none;
 }
+@media screen and (max-width: 480px){
+  #easy-login-session, #easy-login-registration{
+    width: 50%;
+  }
+}
