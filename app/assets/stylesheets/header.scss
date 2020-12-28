@@ -93,3 +93,12 @@ input[type="checkbox"]:checked ~ .back{
   font-size: 1.75rem;
   cursor: pointer;
 }
+@media screen and (max-width: 480px){
+  .page-header h2{
+    font-size: 40px;
+    margin-top: 13px;
+  }
+  .top-nav{
+    font-size: 1.65rem;
+  }
+}
