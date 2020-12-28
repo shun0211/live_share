@@ -1,5 +1,5 @@
 <%= render "shared/header" %>
-<div class="message-container">
+<div class="rooms-index-container">
   <%= render partial: "sidebar" %>
   <main>
     <% if @rooms.present? %>
@@ -29,6 +29,3 @@
     <% end %>
   </main>
 </div>
-
-<%= render "shared/sub_footer" %>
-<%= render "shared/footer" %>

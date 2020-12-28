@@ -8,10 +8,10 @@ $boundary_white: rgba(255, 255, 255, .16);
 $dark_gray: #666666;
 $secondary: #c1FFBe;
 
-body{
+html, body{
   font-size: 100%;
   background-color: #f4f4f4;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   position: relative;
 }
 a{

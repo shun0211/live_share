@@ -24,3 +24,8 @@
   font-size: 18px;
   font-weight: bold;
 }
+@media screen and (max-width: 480px){
+  .app-link img{
+    width: 150px;
+  }
+}

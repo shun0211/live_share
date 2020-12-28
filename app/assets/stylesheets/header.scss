@@ -54,6 +54,7 @@ aside{
   transition: all 0.3s ease-in-out;
   background-color: $thin_primary;
   z-index: 100;
+
 }
 aside li{
   list-style: none inside;
@@ -91,4 +92,13 @@ input[type="checkbox"]:checked ~ .back{
   padding: 20px;
   font-size: 1.75rem;
   cursor: pointer;
+}
+@media screen and (max-width: 480px){
+  .page-header h2{
+    font-size: 40px;
+    margin-top: 13px;
+  }
+  .top-nav{
+    font-size: 1.65rem;
+  }
 }

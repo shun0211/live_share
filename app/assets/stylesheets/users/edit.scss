@@ -9,6 +9,9 @@
     height: 300px;
     background-position: center bottom 10%;
   }
+  .open{
+    display: none;
+  }
   .user-info{
     text-align: center;
     position: relative;
@@ -85,5 +88,12 @@
   .update-btn:hover{
     background-color: #ffcc00;
     border: none;
+  }
+}
+@media screen and (max-width: 480px){
+  .profile-container{
+    .update-btn{
+      width: 50%;
+    }
   }
 }
