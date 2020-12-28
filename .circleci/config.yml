@@ -10,7 +10,6 @@ jobs:
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
-          - RAILS_MASTER_KEY: 'ad39ba102712ef76fd5533bd00934196'
 
       - image: circleci/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
