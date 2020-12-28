@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  slack: circleci/slack@4.1.4
+
 jobs:
   build:
     docker:
@@ -113,3 +117,11 @@ jobs:
               exit 0
             fi
             bundle exec cap production deploy
+
+      - slack/notify:
+          event: fail
+          mentions: '@さかい'
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
