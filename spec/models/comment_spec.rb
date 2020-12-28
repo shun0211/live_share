@@ -6,7 +6,7 @@ RSpec.describe Comment, type: :model do
   let(:comment) { FactoryBot.build(:comment) }
 
   it 'コメントがなければ無効な状態であること' do
-    # comment.content = nil
+    comment.content = nil
     comment.valid?
     expect(comment).not_to be_valid
   end
