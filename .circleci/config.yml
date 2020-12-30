@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.1
+
 jobs:
   build:
     docker:
@@ -6,7 +10,6 @@ jobs:
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
-          - RAILS_MASTER_KEY: 'ad39ba102712ef76fd5533bd00934196'
 
       - image: circleci/mysql:8.0
         command: mysqld --default-authentication-plugin=mysql_native_password
@@ -113,3 +116,8 @@ jobs:
               exit 0
             fi
             bundle exec cap production deploy
+
+      - slack/status:
+          success_message: ':circleci-pass: $CIRCLE_BRANCH のテスト(mainブランチの場合、デプロイも)が完了しました\n:github_octocat: User：$CIRCLE_USERNAME'
+          failure_message: ':circleci-fail: $CIRCLE_BRANCH のテストが失敗しました\n:github_octocat: User：$CIRCLE_USERNAME'
+          webhook: '${SLACK_WEBHOOK}'

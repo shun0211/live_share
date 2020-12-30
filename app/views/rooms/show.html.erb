@@ -1,9 +1,12 @@
 <%= render "shared/header" %>
-<div class="message-container">
+<div class="rooms-show-container">
   <%= render partial: "sidebar" %>
   <main>
     <div class="partner">
-      <%= @user[0].nickname %>
+      <%= link_to rooms_path do %>
+       <i class="fas fa-arrow-left"></i>
+       <% end %>
+       <%= @user[0].nickname %>
     </div>
     <div class="message-wrapper form-group">
       <div id="messages" data-room_id="<%= @room.id %>">
@@ -16,9 +19,5 @@
         <i class="far fa-paper-plane" data-behavior="room_speaker"></i>
       </div>
     </div>
-
   </main>
 </div>
-
-<%= render "shared/sub_footer" %>
-<%= render "shared/footer" %>

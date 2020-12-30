@@ -93,3 +93,52 @@
   min-height: auto;
   margin-bottom: 40px;
 }
+@media screen and (max-width: 480px){
+  .profile{
+    position: relative;
+    .profile-container{
+      width: 100%;
+    }
+    #mypage-hamburger-menu{
+      position: absolute;
+      left: -50px;
+      z-index: 1;
+    }
+    .back{
+      display: none;
+    }
+    .sidebar{
+      position: absolute;
+      left: -60%;
+      transition: all 0.3s ease-in-out;
+      z-index: 100;
+      background-color: #FFEAEA;
+      width: 60%;
+    }
+    .open{
+      display: block;
+      position: absolute;
+      left: 20px;
+      top: 15px;
+      font-size: 1.4rem;
+      z-index: 1;
+      cursor: pointer;
+    }
+    #mypage-hamburger-menu:checked ~ .sidebar{
+      left: 0;
+    }
+    #mypage-hamburger-menu:checked ~ .back{
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.3);
+      z-index: 99;
+    }
+    .edit-btn{
+      width: 50%;
+    }
+  }
+}

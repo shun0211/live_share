@@ -5,6 +5,7 @@
 
   <main>
     <div class="notification-wrapper">
+      <label for="mypage-hamburger-menu" class="open"><i class="fas fa-list-ul"></i></label>
       <h2>お知らせ</h2>
       <% if @notifications.exists? %>
         <% @notifications.each do |notification| %>
