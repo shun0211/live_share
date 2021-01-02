@@ -3,7 +3,7 @@
 <%= form_with model: @ticket, id: :new_ticket do |f| %>
   <div class="container listing-container">
     <div class="wrapper form-group">
-      <%= f.label :thumbnail, "イベントの画像(手もとにない場合は右から選択してください)" %>
+      <%= f.label :thumbnail, "イベントの画像を挿入してください。" %>
       <div class="image-wrapper" id="thumbnail-wrapper">
         <% if @ticket.thumbnail.url.blank? %>
           <i class="fas fa-camera"></i>

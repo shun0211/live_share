@@ -94,10 +94,15 @@
   .like{
     color: $primary;
     font-size: 0.75rem;
+    width: 37px;
+    text-align: right;
   }
   .card-title{
     font-size: 1.1rem;
     margin-bottom: 1px;
+    height: 1.1rem;
+    overflow: hidden;
+    width: calc(100% - 37px);
   }
   .date{
     font-size: 0.7rem;
@@ -108,6 +113,9 @@
     font-size: 0.7rem;
     overflow: hidden;
     height: 48px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
   }
   nav{
     margin-top: 30px;
@@ -120,4 +128,61 @@
     background-color: $primary;
     border: 1px solid #dee2e6;
   }
+  .open{
+    display: none;
+  }
+}
+@media screen and (max-width: 480px){
+  // ハンバーガーメニュー
+  .list-container{
+    position: relative;
+    main{
+      width: 100%;
+    }
+    #ticketlist-hamburger-menu{
+      position: absolute;
+      left: -50px;
+      z-index: 1;
+    }
+    .back{
+      display: none;
+    }
+    .sidebar{
+      position: absolute;
+      left: -60%;
+      transition: all 0.3s ease-in-out;
+      z-index: 100;
+      background-color: #FFEAEA;
+      width: 60%;
+      min-height: calc(100vh - 70px);
+    }
+    .open{
+      display: block;
+      position: absolute;
+      left: 20px;
+      top: 15px;
+      font-size: 1.4rem;
+      z-index: 1;
+      cursor: pointer;
+    }
+    #ticketlist-hamburger-menu:checked ~ .sidebar{
+      left: 0;
+    }
+    #ticketlist-hamburger-menu:checked ~ .back{
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.3);
+      z-index: 99;
+    }
+    // メイン画面
+    .grid{
+      grid-template-columns: repeat(2, 1fr);
+      margin: 0 3% 0;
+    }
+  }
+
 }
