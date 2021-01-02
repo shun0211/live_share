@@ -1,21 +1,9 @@
 <%= render partial: "shared/header" %>
 
 <div class="list-container">
-  <div class="sidebar">
-    <h3 class="sub-title">並び替え</h2>
-    <%= link_to "新着順" %>
-    <%= link_to "公演日が近い順" %>
-    <%= link_to "行きたい!!が多い順" %>
-    <%= link_to "Sold Outの非表示" %>
-    <%= link_to "公演日の過ぎたチケットの非表示" %>
-    <%= link_to "すべてを表示" %>
-    <%= form_tag("/search", method: "get") do %>
-      <%= label_tag(:search, "キーワードで検索") %>
-      <%= text_field_tag(:search, "", {class: "form-control"}) %>
-      <%= submit_tag("Search") %>
-    <% end %>
-  </div>
+  <%= render partial: "sidebar" %>
   <main>
+    <label for="ticketlist-hamburger-menu" class="open"><i class="fas fa-list-ul"></i></label>
     <h2 class="title">チケット一覧</h2>
     <div class="cards grid">
       <% @tickets.each do |ticket|%>
