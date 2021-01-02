@@ -1,0 +1,7 @@
+<%= render partial: "shared/header" %>
+
+<div class="relationship-container">
+  <%= render partial: "shared/sidebar" %>
+
+  <%= react_component("HelloWorld", { greeting: "Hello from react-rails." }) %>
+</div>

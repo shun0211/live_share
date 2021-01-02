@@ -11,4 +11,10 @@ class UsersController < ApplicationController
   def mypage
     redirect_to user_path(current_user.id)
   end
+
+  def following
+  end
+
+  def followers
+  end
 end
