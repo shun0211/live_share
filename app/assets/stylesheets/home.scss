@@ -157,7 +157,10 @@
   .card-text{
     font-size: 0.7rem;
     overflow: hidden;
-    height: calc(100% - 2.3rem - 9px);
+    // height: calc(100% - 2.3rem - 9px);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
   }
   .more{
     text-align: center;
@@ -239,6 +242,20 @@
       gap: 30px;
       grid-template-columns: repeat(4, 1fr);
       margin: 0 5% 0;
+    }
+  }
+}
+@media screen and (max-width: 1120px){
+  .main-content{
+    .card-text{
+      -webkit-line-clamp: 3;
+    }
+  }
+}
+@media screen and (max-width: 1010px){
+  .main-content{
+    .card-text{
+      -webkit-line-clamp: 2;
     }
   }
 }
