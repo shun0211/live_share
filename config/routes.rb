@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       post 'checkout'
     end
   end
+  resources :relationship, only: [:create, :destroy]
 
   root 'homes#index'
 end

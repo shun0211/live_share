@@ -12,9 +12,13 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
+  # フォロー中のユーザの表示
   def following
+    @following_users = current_user.followings
+
   end
 
+  # フォロワーのユーザの表示
   def followers
   end
 end
