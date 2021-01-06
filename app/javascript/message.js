@@ -11,6 +11,7 @@ document.addEventListener('turbolinks:load', function(){
                       </div>`
           document.getElementById('messages').insertAdjacentHTML('afterbegin', html)
         }else{
+
           let html = `<div class="message">
                         <img alt="ユーザのプロフィール画像" class="avatar" src="${messages[i].user.avatar}" width="40" height="40">
                         <div class="speech-bubble-partner">
