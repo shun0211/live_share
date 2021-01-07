@@ -1,0 +1,45 @@
+<%= render partial: "shared/header" %>
+
+<div class="relationship-container">
+  <%= render partial: "shared/sidebar" %>
+
+  <main>
+    <div class="relationship-wrapper">
+      <div class="nav nav-tabs">
+        <div class="nav-item tab">
+          <%= link_to "フォロー中", following_user_path(current_user.id), class: "nav-link active" %>
+        </div>
+        <div class="nav-item tab">
+          <%= link_to "フォロワー", followers_user_path(current_user.id), class: "nav-link" %>
+        </div>
+      </div>
+
+      <% if @followers.exists? %>
+        <% @followers.each do |follower| %>
+          <%= link_to user_path(follower.id) do %>
+            <div class="user-info">
+              <%= image_tag follower.avatar.url, alt: "フォロー中のユーザのプロフィール画像", class: "avatar" %>
+              <div class="wrapper">
+                <div class="user-name">
+                  <%= follower.nickname %>
+                </div>
+                <div class="user-profile">
+                  <%= follower.profile %>
+                </div>
+              </div>
+              <%= react_component("follow-button", user: follower) %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p class="note">
+          フォロワーはいません。積極的にフォローしてみましょう！
+        </p>
+      <% end %>
+    </div>
+  </main>
+
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>

@@ -70,7 +70,7 @@
     height: 40px;
     width: 30%;
     border: none;
-    margin-top: 30px;
+    margin-top: 20px;
     box-shadow: 0 0 2px rgba(0, 0, 0, .4);
     color: $dark_gray;
     padding-top: 8px;
@@ -81,6 +81,17 @@
   }
   .message-btn:hover{
     background-color: #ff9E9E;
+  }
+  // フォローボタン
+  .follow-btn{
+    background-color: rgb(29, 161, 242);
+    width: 150px;
+    border-radius: 20px;
+    border: none;
+    height: 40px;
+    width: 30%;
+    margin-top: 30px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .4);
   }
 }
 
