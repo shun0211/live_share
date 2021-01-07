@@ -27,7 +27,7 @@
                   <%= following_user.profile %>
                 </div>
               </div>
-              <%= react_component("follow-button", user: @user) %>
+              <%= react_component("follow_button", user: following_user, relationship: current_user.relationships.find_by(follow_id: following_user.id)) %>
             </div>
           <% end %>
         <% end %>
