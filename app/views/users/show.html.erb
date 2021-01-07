@@ -38,6 +38,10 @@
         <% if user_signed_in? && @user.id === current_user.id %>
           <%= link_to "編集する", edit_user_registration_path, class: "btn btn-warning edit-btn" %>
         <% else %>
+          <div id="follow_button">
+            <%= render partial: "relationships/follow", locals: {user: @user} %>
+          </div>
+
           <%= link_to "#", class: "btn btn-warning message-btn" do %>
             <i class="far fa-envelope"></i>
             メッセージを送る
