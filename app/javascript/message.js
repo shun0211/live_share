@@ -5,13 +5,13 @@ document.addEventListener('turbolinks:load', function(){
       for(let i=0; i<messageNum; i++){
         if(gon.current_user_id === messages[i].user_id){
           let html = `<div class="message">
+                        <img alt="ユーザのプロフィール画像" class="avatar" src="${messages[i].user.avatar}" width="40" height="40">
                         <div class="speech-bubble-own">
                           ${messages[i].content}
                         </div>
                       </div>`
           document.getElementById('messages').insertAdjacentHTML('afterbegin', html)
         }else{
-
           let html = `<div class="message">
                         <img alt="ユーザのプロフィール画像" class="avatar" src="${messages[i].user.avatar}" width="40" height="40">
                         <div class="speech-bubble-partner">
