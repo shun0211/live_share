@@ -6,10 +6,6 @@ class RoomsController < ApplicationController
     @active_room = @rooms.first
     @messages = @active_room.messages.order('created_at DESC').paginate(page: params[:page], per_page: 30) if @active_room
     gon.current_user_id = current_user.id
-    if @active_room.present?
-      @user = @active_room.users.where.not(id: current_user.id)
-      gon.partner_avatar_url = @user[0].avatar.url
-    end
     respond_to do |format|
       format.html
       format.json
@@ -29,7 +25,6 @@ class RoomsController < ApplicationController
     @user = @room.users.where.not(id: current_user.id)
     @messages = @room.messages.order('created_at DESC').paginate(page: params[:page], per_page: 30)
     gon.current_user_id = current_user.id
-    gon.partner_avatar_url = @user[0].avatar.url
     respond_to do |format|
       format.html
       format.json
