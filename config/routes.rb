@@ -11,12 +11,7 @@ Rails.application.routes.draw do
     get 'sign_up', to: 'users/registrations#new'
     post 'users/guest_sign_in', to: 'users/sessions#guest_user'
   end
-  resources :users, only: [:show] do
-    member do
-      get 'following'
-      get 'followers'
-    end
-  end
+  resources :users, only: [:show]
   get '/mypage' => 'users#mypage'
 
   resources :tickets do
@@ -29,13 +24,14 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: :index
+
   resources :rooms, only: %i[create show index]
+
   resources :cards, only: %i[new show destroy create] do
     collection do
       post 'checkout'
     end
   end
-  resources :relationships, only: %i[create destroy]
 
   root 'homes#index'
 end

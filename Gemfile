@@ -86,7 +86,6 @@ gem 'jquery-rails'
 gem 'mini_magick'
 gem 'payjp'
 gem 'pry-rails'
-gem 'react-rails'
 gem 'sassc', '~> 2.1.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'will_paginate', '3.1.8'
