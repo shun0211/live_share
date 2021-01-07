@@ -5,24 +5,24 @@
 
   <main>
     <div class="relationship-wrapper">
-      <div class="flex-box">
-        <div class="tab">
-          フォロー
+      <div class="nav nav-tabs">
+        <div class="nav-item tab">
+          <%= link_to "フォロー中", following_user_path(current_user.id), class: "nav-link active" %>
         </div>
-        <div class="tab">
-          フォロワー
+        <div class="nav-item tab">
+          <%= link_to "フォロワー", followers_user_path(current_user.id), class: "nav-link" %>
         </div>
       </div>
 
-      <%= @following_users.each do |following_user| %>
-        <%= link_to user_path(following.id) do %>
-          <div class="following-user-info">
-            <%= image_tag following_user.avatar.url, alt: "フォロー中のユーザのプロフィール画像", class: "avatar", size: "40" %>
+      <% @following_users.each do |following_user| %>
+        <%= link_to user_path(following_user.id) do %>
+          <div class="user-info">
+            <%= image_tag following_user.avatar.url, alt: "フォロー中のユーザのプロフィール画像", class: "avatar" %>
             <div class="wrapper">
-              <div class="following-user-name">
+              <div class="user-name">
                 <%= following_user.nickname %>
               </div>
-              <div class="following-user-profile">
+              <div class="user-profile">
                 <%= following_user.profile %>
               </div>
             </div>
@@ -34,3 +34,6 @@
   </main>
 
 </div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>

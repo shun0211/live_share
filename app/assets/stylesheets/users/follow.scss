@@ -1,0 +1,76 @@
+.relationship-container{
+  display: flex;
+  .sidebar{
+    background-color: $boundary_primary;
+    padding: 30px 47px;
+    width: 27%;
+    min-height: calc(100vh - 70px);
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+  p{
+    padding-top: 20px;
+    margin: 0;
+  }
+  .user-info{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .avatar{
+    border-radius: 100%;
+  }
+  .user-name{
+    padding-left: 15px;
+    font-weight: bold;
+  }
+  main{
+    background-color: #fff;
+    width: 73%;
+  }
+  .relationship-wrapper{
+    padding: 50px 8% 30px;
+    .tab{
+      width: 50%;
+      text-align: center;
+      line-height: 30px;
+    }
+    .tab:hover{
+      background-color: #e6e5e0;
+    }
+    a{
+      color: black;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    // ユーザ情報
+    .user-info{
+      padding: 10px;
+      display: flex;
+      border-radius: 5px;
+      .avatar{
+        width: 55px;
+        height: 55px;
+      }
+    }
+    .user-info:hover{
+      background-color: #e6e5e0;
+    }
+    .wrapper{
+      padding-left: 15px;
+    }
+    .user-name{
+      font-weight: bold;
+      padding: 0;
+    }
+    .user-profile{
+      font-size: 0.9rem;
+    }
+  }
+}
