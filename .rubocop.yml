@@ -25,6 +25,11 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
 
+# フォロー機能の場合のInverseOfオプションが腹落ちしないため除外
+Rails/InverseOf:
+  Exclude:
+    - 'app/models/user.rb'
+
 # 自動修正するとエラーになる
 Rails/DynamicFindBy:
   Enabled: false
@@ -39,6 +44,9 @@ Style/Documentation:
 Style/IdenticalConditionalBranches:
   Exclude:
     - 'app/controllers/tickets_controller.rb'
+
+Style/RedundantSelf:
+  Enabled: false
 
 Metrics/LineLength:
   Enabled: false
@@ -59,6 +67,7 @@ Metrics/AbcSize:
   Exclude:
     - app/channels/room_channel.rb
     - app/controllers/tickets_controller.rb
+    - app/controllers/rooms_controller.rb
 
 Metrics/CyclomaticComplexity:
   Exclude:
