@@ -1,6 +1,26 @@
 import consumer from "./consumer"
 
 $(document).on('turbolinks:load', function(){
+  function buildReceivedMessageHTML(data){
+    // console.log(gon.current_user_id);
+    console.log(data.message.user);
+    if(data.message.user_id == gon.current_user_id){
+      let html = `<div class="message">
+                    <div class="speech-bubble-own">
+                      ${data.message.content}
+                    </div>
+                  </div>`
+      return html
+    } else {
+      let html = `<div class="message">
+                    <img alt="ユーザのプロフィール画像" class="avatar" src="${gon.partner_avatar_url}" width="40" height="40">
+                    <div class="speech-bubble-partner">
+                      ${data.message.content}
+                    </div>
+                  </div>`
+      return html
+    }
+  };
   // createの中身でparamsの中に入るkeyが決まる
   consumer.subscriptions.create({ channel: "RoomChannel", room: $('#messages').data('room_id')}, {
     connected() {
@@ -18,8 +38,10 @@ $(document).on('turbolinks:load', function(){
     },
 
     received(data) {
+      console.log(data);
+      const receiveMessage = buildReceivedMessageHTML(data);
       const element = document.querySelector('#messages');
-      element.insertAdjacentHTML('beforeend', data['message']);
+      element.insertAdjacentHTML('beforeend', receiveMessage);
     },
 
     speak: function(message) {
