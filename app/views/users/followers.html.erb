@@ -14,26 +14,26 @@
         </div>
       </div>
 
-      <% if @following_users.exists? %>
-        <% @following_users.each do |following_user| %>
-          <%= link_to user_path(following_user.id) do %>
+      <% if @followers.exists? %>
+        <% @followers.each do |follower| %>
+          <%= link_to user_path(follower.id) do %>
             <div class="user-info">
-              <%= image_tag following_user.avatar.url, alt: "フォロー中のユーザのプロフィール画像", class: "avatar" %>
+              <%= image_tag follower.avatar.url, alt: "フォロー中のユーザのプロフィール画像", class: "avatar" %>
               <div class="wrapper">
                 <div class="user-name">
-                  <%= following_user.nickname %>
+                  <%= follower.nickname %>
                 </div>
                 <div class="user-profile">
-                  <%= following_user.profile %>
+                  <%= follower.profile %>
                 </div>
               </div>
-              <%= react_component("follow-button", user: @user) %>
+              <%= react_component("follow-button", user: follower) %>
             </div>
           <% end %>
         <% end %>
       <% else %>
         <p class="note">
-          フォロー中のユーザはいません。
+          フォロワーはいません。積極的にフォローしてみましょう！
         </p>
       <% end %>
     </div>

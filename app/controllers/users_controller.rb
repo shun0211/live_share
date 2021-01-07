@@ -15,10 +15,10 @@ class UsersController < ApplicationController
   # フォロー中のユーザの表示
   def following
     @following_users = current_user.followings
-
   end
 
   # フォロワーのユーザの表示
   def followers
+    @followers = current_user.followers
   end
 end
