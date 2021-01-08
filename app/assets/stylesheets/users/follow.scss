@@ -29,6 +29,18 @@
     padding-left: 15px;
     font-weight: bold;
   }
+  .follow-box{
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 0.8rem;
+  }
+  .follow-link{
+    color: $dark_gray !important;
+  }
+  .follower-link{
+    padding-left: 10px;
+    color: $dark_gray !important;
+  }
   main{
     background-color: #fff;
     width: 73%;
@@ -54,6 +66,7 @@
       padding: 10px;
       display: flex;
       border-radius: 5px;
+      position: relative;
       .avatar{
         width: 55px;
         height: 55px;
@@ -64,6 +77,7 @@
     }
     .wrapper{
       padding-left: 15px;
+      padding-right: 108px;
     }
     .user-name{
       font-weight: bold;
@@ -80,6 +94,11 @@
       height: 40px;
       box-shadow: 0 0 2px rgba(0, 0, 0, .4);
       font-size: 0.9rem;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
     }
   }
   .note{

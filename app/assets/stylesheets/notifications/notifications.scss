@@ -31,6 +31,18 @@
     padding-left: 15px;
     font-weight: bold;
   }
+  .follow-box{
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 0.8rem;
+  }
+  .follow-link{
+    color: $dark_gray !important;
+  }
+  .follower-link{
+    padding-left: 10px;
+    color: $dark_gray !important;
+  }
   // お知らせ画面
   main{
     width: 73%;
