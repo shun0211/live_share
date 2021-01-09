@@ -13,10 +13,11 @@
   </div>
   <p><%= link_to "メッセージ", rooms_path %></p>
   <p><%= link_to "お知らせ", notifications_path %></p>
+  <p><%= link_to "購入希望したチケット", requests_user_path(current_user.id) %></p>
+  <p><%= link_to "出品したチケット", sold_tickets_user_path(current_user.id) %></p>
+  <p><%= link_to "購入したチケット", buyed_tickets_user_path(current_user.id) %></p>
   <p><%= link_to "行きたい!!を押したリスト" %></p>
   <p><%= link_to "お支払い方法", new_card_path %></p>
-  <p><%= link_to "配送先住所" %></p>
   <p><%= link_to "プロフィール編集", edit_user_registration_path %></p>
   <p><a rel="nofollow" data-method="delete" href="/logout" class="logout-button">ログアウト</a></p>
-  <p><%= link_to "退会" %></p>
 </div>

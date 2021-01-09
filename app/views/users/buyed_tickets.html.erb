@@ -1,0 +1,47 @@
+<%= render "shared/header" %>
+
+<div class="buyed-tickets-container">
+  <%= render "shared/sidebar" %>
+
+  <main>
+    <div class="buyed-tickets-wrapper">
+      <h2 class="title">
+        購入したチケット
+      </h2>
+      <div class="cards grid">
+        <% @buyed_tickets.each do |ticket| %>
+          <%= link_to ticket_path(ticket.id) do %>
+            <div class="item card">
+              <div class="image">
+                <%= image_tag ticket.thumbnail.url, class: "thumbnail card-img-top", alt: "チケットのサムネイル画像" %>
+                <% if ticket.buyer_id.present? %>
+                  <div class="tag">Sold Out</div>
+                <% end %>
+                </div>
+              <div class="card-body">
+                <div class="flex-box">
+                  <h5 class="card-title">
+                    <%= ticket.event_name %>
+                  </h5>
+                  <div class="like">
+                    <i class="fas fa-heart"></i>
+                    <%= ticket.likes.length %>
+                  </div>
+                </div>
+                <p class="date">
+                  <%= ticket.event_date %>
+                </p>
+                <p class="card-text">
+                  <%= ticket.description %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </main>
+</div>
+
+<%= render "shared/sub_footer" %>
+<%= render "shared/footer" %>

@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       get 'following'
       get 'followers'
       get 'likes'
+      get 'requests'
+      get 'sold_tickets'
+      get 'buyed_tickets'
     end
   end
   get '/mypage' => 'users#mypage'
