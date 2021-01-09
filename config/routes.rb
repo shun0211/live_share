@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       get 'following'
       get 'followers'
+      get 'likes'
     end
   end
   get '/mypage' => 'users#mypage'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     member do
       post 'purchase'
     end
+
   end
 
   resources :notifications, only: :index
