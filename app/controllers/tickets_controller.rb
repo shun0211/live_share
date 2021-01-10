@@ -8,7 +8,7 @@ class TicketsController < ApplicationController
   end
 
   def new_arrival
-    @tickets = Ticket.all.order(created_at: "DESC").paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.order(created_at: 'DESC').paginate(page: params[:page], per_page: 20)
     render :index
   end
 
@@ -18,12 +18,12 @@ class TicketsController < ApplicationController
   end
 
   def near
-    @tickets = Ticket.all.where("event_date >= ?", Time.current).order(event_date: "ASC").paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.where('event_date >= ?', Time.current).order(event_date: 'ASC').paginate(page: params[:page], per_page: 20)
     render :index
   end
 
   def on_sale
-    @tickets = Ticket.all.where(buyer_id: nil).order(event_date: "ASC").paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.where(buyer_id: nil).order(event_date: 'ASC').paginate(page: params[:page], per_page: 20)
     render :index
   end
 
