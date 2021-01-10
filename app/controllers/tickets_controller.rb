@@ -8,22 +8,23 @@ class TicketsController < ApplicationController
   end
 
   def new_arrival
-    @tickets = Ticket.all.sort { |a, b| b.created_at <=> a.created_at }
-    @tickets.paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.order(created_at: "DESC").paginate(page: params[:page], per_page: 20)
+    render :index
   end
 
   def trend
-    @tickets = Ticket.all.sort { |a, b| b.likes.count <=> a.likes.count }
+    @tickets = Ticket.select('tickets.*', 'count(likes.id) AS likes').left_joins(:likes).group('tickets.id').order('likes desc').paginate(page: params[:page], per_page: 20)
+    render :index
   end
 
   def near
-    @tickets = Ticket.all.where("event_date >= ?", Time.current)
-    @tickets.sort { |a, b| a.event_date <=> b.event_date }
+    @tickets = Ticket.all.where("event_date >= ?", Time.current).order(event_date: "ASC").paginate(page: params[:page], per_page: 20)
+    render :index
   end
 
   def on_sale
-    @tickets = Ticket.all.where(buyer_id: nil)
-    @tickets.sort { |a, b| a.event_date <=> b.event_date }
+    @tickets = Ticket.all.where(buyer_id: nil).order(event_date: "ASC").paginate(page: params[:page], per_page: 20)
+    render :index
   end
 
   def new
