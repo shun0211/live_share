@@ -1,0 +1,144 @@
+.request-tickets-container{
+  display: flex;
+  .sidebar{
+    background-color: $boundary_primary;
+    padding: 30px 47px;
+    width: 27%;
+    min-height: calc(100vh - 70px);
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+  p{
+    padding-top: 20px;
+    margin: 0;
+  }
+  .user-info{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .avatar{
+    border-radius: 100%;
+  }
+  .user-name{
+    padding-left: 15px;
+    font-weight: bold;
+  }
+  .follow-box{
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 0.8rem;
+  }
+  .follow-link{
+    color: $dark_gray !important;
+  }
+  .follower-link{
+    padding-left: 10px;
+    color: $dark_gray !important;
+  }
+  // チケット一覧
+  main{
+    background-color: #fff;
+    width: 73%;
+    padding: 20px 3% 50px;
+  }
+  .title{
+    font-size: 1.7rem;
+    text-align: center;
+    padding: 20px 0 15px;
+  }
+  .cards{
+    a{
+      color: $dark_gray;
+      text-decoration: none;
+    }
+  }
+  .grid{
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .item{
+    width: 100%;
+    height: 250px;
+    margin-top: 20px;
+    transition: 0.3s;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .2)
+  }
+  .item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
+  }
+  .image{
+    height: 57%;
+    position: relative;
+  }
+  .thumbnail{
+    object-fit: cover;
+    height: 100%;
+  }
+  .tag{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    background-color: #FF6347;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+  }
+  .card-body{
+    padding: 0.5rem 0.7rem;
+  }
+  .flex-box{
+    display: flex;
+  }
+  .like{
+    color: $primary;
+    font-size: 0.75rem;
+    width: 37px;
+    text-align: right;
+  }
+  .card-title{
+    font-size: 1.1rem;
+    margin-bottom: 1px;
+    height: 1.1rem;
+    overflow: hidden;
+    width: calc(100% - 37px);
+  }
+  .date{
+    font-size: 0.7rem;
+    color: $dark_gray;
+    margin-bottom: 4px;
+    padding: 0;
+  }
+  .card-text{
+    font-size: 0.7rem;
+    overflow: hidden;
+    height: 48px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    padding: 0;
+  }
+  // nav{
+  //   margin-top: 30px;
+  // }
+  // .page-item{
+  //   width: 34px;
+  //   text-align: center;
+  // }
+  // .active .page-link{
+  //   background-color: $primary;
+  //   border: 1px solid #dee2e6;
+  // }
+  // .open{
+  //   display: none;
+  // }
+}

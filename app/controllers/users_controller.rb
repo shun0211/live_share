@@ -21,4 +21,20 @@ class UsersController < ApplicationController
   def followers
     @followers = current_user.followers
   end
+
+  def likes
+    @like_tickets = current_user.like_tickets
+  end
+
+  def requests
+    @request_tickets = current_user.request_tickets
+  end
+
+  def sold_tickets
+    @sold_tickets = current_user.sold_tickets
+  end
+
+  def buyed_tickets
+    @buyed_tickets = current_user.buyed_tickets
+  end
 end
