@@ -30,7 +30,12 @@ Rails.application.routes.draw do
     member do
       post 'purchase'
     end
-
+    collection do
+      get 'new_arrival'
+      get 'trend'
+      get 'near'
+      get 'on_sale'
+    end
   end
 
   resources :notifications, only: :index

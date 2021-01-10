@@ -7,6 +7,25 @@ class TicketsController < ApplicationController
     @tickets = Ticket.paginate(page: params[:page], per_page: 20)
   end
 
+  def new_arrival
+    @tickets = Ticket.all.sort { |a, b| b.created_at <=> a.created_at }
+    @tickets.paginate(page: params[:page], per_page: 20)
+  end
+
+  def trend
+    @tickets = Ticket.all.sort { |a, b| b.likes.count <=> a.likes.count }
+  end
+
+  def near
+    @tickets = Ticket.all.where("event_date >= ?", Time.current)
+    @tickets.sort { |a, b| a.event_date <=> b.event_date }
+  end
+
+  def on_sale
+    @tickets = Ticket.all.where(buyer_id: nil)
+    @tickets.sort { |a, b| a.event_date <=> b.event_date }
+  end
+
   def new
     @ticket = Ticket.new
     gon.ticket = 'new_ticket'
