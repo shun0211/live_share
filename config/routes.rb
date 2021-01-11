@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     member do
       get 'following'
       get 'followers'
+      get 'likes'
+      get 'requests'
+      get 'sold_tickets'
+      get 'buyed_tickets'
     end
   end
   get '/mypage' => 'users#mypage'
@@ -25,6 +29,12 @@ Rails.application.routes.draw do
     resource :requests, only: %i[create destroy]
     member do
       post 'purchase'
+    end
+    collection do
+      get 'new_arrival'
+      get 'trend'
+      get 'near'
+      get 'on_sale'
     end
   end
 
