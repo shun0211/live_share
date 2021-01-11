@@ -2,7 +2,12 @@
   <h2><a href="/">Conefan</a></h2>
   <nav>
     <ul class="top-nav">
-      <li><i class="fas fa-search"></i></li>
+      <%= search_form_for @q, html: {class: "form-group"} do |f| %>
+        <%= f.search_field :event_name_cont, class: "form-control search_form" %>
+        <%= button_tag do %>
+          <li><i class="fas fa-search"></i></li>
+        <% end %>
+      <% end %>
       <% if user_signed_in? %>
         <li class="bell">
           <%= link_to notifications_path do %>

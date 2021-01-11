@@ -4,7 +4,10 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: %w[show edit update destroy]
 
   def index
-    @tickets = Ticket.paginate(page: params[:page], per_page: 20)
+    # binding.pry
+    @q = Ticket.ransack(params[:q])
+    @tickets = @q.result.paginate(page: params[:page], per_page: 20)
+    # Ticket.paginate(page: params[:page], per_page: 20)
   end
 
   def new_arrival
@@ -112,4 +115,8 @@ class TicketsController < ApplicationController
   def set_ticket
     @ticket = Ticket.find(params[:id])
   end
+
+  # def search_params
+  #   params.require(:q).permit(:event_name_cont)
+  # end
 end
