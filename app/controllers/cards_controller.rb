@@ -3,6 +3,8 @@
 class CardsController < ApplicationController
   require 'payjp'
 
+  before_action :set_search_form, only: %w[new show]
+
   def new
     card = Card.where(user_id: current_user.id).first
     redirect_to card_path(card) if card.present?
@@ -75,5 +77,11 @@ class CardsController < ApplicationController
     @card.save!
     @ticket = Ticket.find(params[:ticket_id])
     render 'shared/for_redirect_to_request', layout: false
+  end
+
+  private
+
+  def set_search_form
+    @q = Ticket.ransack(params[:q])
   end
 end

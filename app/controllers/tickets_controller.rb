@@ -2,9 +2,9 @@
 
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %w[show edit update destroy]
+  before_action :set_search_form, only: %w[index new_arrival trend near on_sale new show edit]
 
   def index
-    # binding.pry
     @q = Ticket.ransack(params[:q])
     @tickets = @q.result.paginate(page: params[:page], per_page: 20)
     # Ticket.paginate(page: params[:page], per_page: 20)
@@ -116,7 +116,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
   end
 
-  # def search_params
-  #   params.require(:q).permit(:event_name_cont)
-  # end
+  def set_search_form
+    @q = Ticket.ransack(params[:q])
+  end
 end

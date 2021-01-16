@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RoomsController < ApplicationController
+  before_action :set_search_form, only: %w[index show]
+
   def index
     @rooms = current_user.rooms.includes(:messages).order('messages.created_at DESC')
     @active_room = @rooms.first
@@ -34,5 +36,11 @@ class RoomsController < ApplicationController
       format.html
       format.json
     end
+  end
+
+  private
+
+  def set_search_form
+    @q = Ticket.ransack(params[:q])
   end
 end
