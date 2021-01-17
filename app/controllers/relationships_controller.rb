@@ -5,6 +5,7 @@ class RelationshipsController < ApplicationController
   def create
     @other_user = User.find(params[:follow_id])
     @relationship = current_user.follow(@other_user)
+    @other_user.create_notification_follow(current_user)
     respond_to do |format|
       format.html { redirect_to user_path(@other_user.id) }
       format.js

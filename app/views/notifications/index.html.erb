@@ -45,6 +45,11 @@
                 <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんから<%= link_to "#{notification.ticket.event_name}のチケット", ticket_path(notification.ticket.id) %>の譲り先に選ばれました。
               </p>
               <hr>
+            <% when "follow" then %>
+              <p class="content">
+                <%= link_to "#{notification.visitor.nickname}", user_path(notification.visitor.id) %>さんからフォローされました。
+              </p>
+              <hr>
             <% end %>
           </div>
         <% end %>
