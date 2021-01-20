@@ -66,4 +66,24 @@ class Ticket < ApplicationRecord
   validates :shipping, presence: true
   validates :delivery_method, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 99_999 }
+
+  scope :new_arrival_order, -> (page) { order(created_at: 'DESC').paginate(page: page, per_page: 20) }
+  scope :trend_order, lambda { |page|
+                        select('tickets.*', 'count(likes.id) AS likes')
+                        .left_joins(:likes)
+                        .group('tickets.id')
+                        .order('likes desc')
+                        .paginate(page: page, per_page: 20)
+                      }
+  scope :near_order, lambda { |page|
+                       where('event_date >= ?', Time.current)
+                       .order(event_date: 'ASC')
+                       .paginate(page: page, per_page: 20)
+                     }
+  scope :only_on_sale, lambda { |page|
+                         where(buyer_id: nil)
+                         .order(event_date: 'ASC')
+                         .paginate(page: page, per_page: 20)
+                       }
+
 end
