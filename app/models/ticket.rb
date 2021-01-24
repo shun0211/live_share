@@ -86,11 +86,13 @@ class Ticket < ApplicationRecord
                          .paginate(page: page, per_page: 20)
                        }
 
-  scope :search_ticket, lambda { |search_params, page|
+  scope :search_ticket, lambda { |search_params|
                           return if search_params.blank?
 
-                          where('event_name LIKE(?)', "%#{search_params}%")
-                          .paginate(page: page, per_page: 20)
+                          search_event_name(search_params[:q])
+                          .paginate(page: search_params[:page], per_page: 20)
                         }
+
+  scope :search_event_name, ->(event_name) { where('event_name LIKE(?)', "%#{event_name}%") if event_name.present? }
 
 end

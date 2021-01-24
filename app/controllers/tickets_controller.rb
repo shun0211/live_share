@@ -9,8 +9,7 @@ class TicketsController < ApplicationController
   end
 
   def search
-    @tickets = Ticket.search_ticket(params[:q], params[:page])
-    # where('event_name LIKE(?)', "%#{params[:q]}%").paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.search_ticket(search_params)
     render :index
   end
 
@@ -122,5 +121,9 @@ class TicketsController < ApplicationController
 
   def set_search_form
     @q = Ticket.ransack(params[:q])
+  end
+
+  def search_params
+    params.permit(:q, :page)
   end
 end
