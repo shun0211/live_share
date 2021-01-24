@@ -9,7 +9,8 @@ class TicketsController < ApplicationController
   end
 
   def search
-    @tickets = Ticket.all.where('event_name LIKE(?)', "%#{params[:q]}%").paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.search_ticket(params[:q], params[:page])
+    # where('event_name LIKE(?)', "%#{params[:q]}%").paginate(page: params[:page], per_page: 20)
     render :index
   end
 
