@@ -5,8 +5,12 @@ class TicketsController < ApplicationController
   before_action :set_search_form, only: %w[index new_arrival trend near on_sale new show edit]
 
   def index
-    @q = Ticket.ransack(params[:q])
-    @tickets = @q.result.paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.paginate(page: params[:page], per_page: 20)
+  end
+
+  def search
+    @tickets = Ticket.all.where('event_name LIKE(?)', "%#{params[:q]}%").paginate(page: params[:page], per_page: 20)
+    render :index
   end
 
   def new_arrival

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get 'trend'
       get 'near'
       get 'on_sale'
+      get 'search'
     end
   end
 
