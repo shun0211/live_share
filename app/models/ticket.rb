@@ -90,17 +90,20 @@ class Ticket < ApplicationRecord
                           return if search_params.blank?
 
                           search_event_name(search_params[:q])
+                          # .search_venue(search_params[:q])
                           .paginate(page: search_params[:page], per_page: 20)
                         }
 
   scope :search_event_name, lambda { |keyword|
+
                               split_keywords = keyword.split(/[[:blank:]]+/)
                               split_keywords.delete_if {|n| n.blank?}
 
                               tickets = Ticket.none
                               split_keywords.each do |keyword|
-                                search_tickets = Ticket.where('event_name LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
-                                tickets = tickets.or(search_tickets)
+                                event_name_search_tickets = where('event_name LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
+                                venue_search_tickets = where('venue LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
+                                tickets = tickets.or(event_name_search_tickets).or(venue_search_tickets)
                               end
 
                               return tickets
