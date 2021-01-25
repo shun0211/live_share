@@ -93,6 +93,20 @@ class Ticket < ApplicationRecord
                           .paginate(page: search_params[:page], per_page: 20)
                         }
 
-  scope :search_event_name, ->(event_name) { where('event_name LIKE(?)', "%#{event_name}%") if event_name.present? }
+  scope :search_event_name, lambda { |keyword|
+                              split_keywords = keyword.split(/[[:blank:]]+/)
+                              split_keywords.delete_if {|n| n.blank?}
+
+                              split_keywords.each_with_index do |keyword, i|
+                                if i == 0
+                                  @tickets = Ticket.where('event_name LIKE(?)', "%#{keyword}%")
+                                else
+                                  other_tickets = Ticket.where('event_name LIKE(?)', "%#{keyword}%")
+                                  @tickets = @tickets.or(other_tickets)
+                                end
+                              end
+
+                              return @tickets
+                            }
 
 end
