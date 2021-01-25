@@ -2,7 +2,6 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:mypage]
-  before_action :set_search_form, only: %w[show following followers likes requests sold_tickets buyed_tickets]
 
   def show
     @user = User.find(params[:id])
@@ -37,11 +36,5 @@ class UsersController < ApplicationController
 
   def buyed_tickets
     @buyed_tickets = current_user.buyed_tickets
-  end
-
-  private
-
-  def set_search_form
-    @q = Ticket.ransack(params[:q])
   end
 end
