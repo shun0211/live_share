@@ -90,7 +90,6 @@ class Ticket < ApplicationRecord
                           return if search_params.blank?
 
                           search_event_name(search_params[:q])
-                          # .search_venue(search_params[:q])
                           .paginate(page: search_params[:page], per_page: 20)
                         }
 
