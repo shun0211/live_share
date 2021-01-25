@@ -97,16 +97,13 @@ class Ticket < ApplicationRecord
                               split_keywords = keyword.split(/[[:blank:]]+/)
                               split_keywords.delete_if {|n| n.blank?}
 
-                              split_keywords.each_with_index do |keyword, i|
-                                if i == 0
-                                  @tickets = Ticket.where('event_name LIKE(?)', "%#{keyword}%")
-                                else
-                                  other_tickets = Ticket.where('event_name LIKE(?)', "%#{keyword}%")
-                                  @tickets = @tickets.or(other_tickets)
-                                end
+                              tickets = Ticket.none
+                              split_keywords.each do |keyword|
+                                search_tickets = Ticket.where('event_name LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
+                                tickets = tickets.or(search_tickets)
                               end
 
-                              return @tickets
+                              return tickets
                             }
 
 end
