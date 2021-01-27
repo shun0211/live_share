@@ -2,7 +2,14 @@
   <h2><a href="/">Conefan</a></h2>
   <nav>
     <ul class="top-nav">
-      <li><i class="fas fa-search"></i></li>
+      <%= form_tag("/tickets/search", method: "get", id: "ticket_search") do %>
+        <%= text_field_tag :q, nil, class: "form-control search_form" %>
+        <%= button_tag do %>
+          <li><i class="fas fa-search"></i></li>
+        <% end %>
+      <% end %>
+
+
       <% if user_signed_in? %>
         <li class="bell">
           <%= link_to notifications_path do %>

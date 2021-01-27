@@ -2,6 +2,7 @@
 
 module Users
   class SessionsController < Devise::SessionsController
+    before_action :set_search_form
     # before_action :configure_sign_in_params, only: [:create]
 
     # GET /resource/sign_in
@@ -33,5 +34,10 @@ module Users
     # def configure_sign_in_params
     #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
     # end
+    private
+
+    def set_search_form
+      @q = Ticket.ransack(params[:q])
+    end
   end
 end

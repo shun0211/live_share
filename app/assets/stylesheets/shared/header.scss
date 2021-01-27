@@ -26,6 +26,22 @@
     color: #f67690;
     font-size: 0.85rem;
   }
+  #ticket_search{
+    margin: 0;
+    display: flex;
+    position: relative;
+  }
+  .search_form{
+    margin-right: 45px;
+    width: 200px;
+  }
+  button{
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    right: 0;
+  }
 }
 .top-nav li i{
   cursor: pointer;
