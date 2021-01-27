@@ -67,45 +67,43 @@ class Ticket < ApplicationRecord
   validates :delivery_method, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 99_999 }
 
-  scope :new_arrival_order, -> (page) { order(created_at: 'DESC').paginate(page: page, per_page: 20) }
+  scope :new_arrival_order, ->(page) { order(created_at: 'DESC').paginate(page: page, per_page: 20) }
   scope :trend_order, lambda { |page|
                         select('tickets.*', 'count(likes.id) AS likes')
-                        .left_joins(:likes)
-                        .group('tickets.id')
-                        .order('likes desc')
-                        .paginate(page: page, per_page: 20)
+                          .left_joins(:likes)
+                          .group('tickets.id')
+                          .order('likes desc')
+                          .paginate(page: page, per_page: 20)
                       }
   scope :near_order, lambda { |page|
                        where('event_date >= ?', Time.current)
-                       .order(event_date: 'ASC')
-                       .paginate(page: page, per_page: 20)
+                         .order(event_date: 'ASC')
+                         .paginate(page: page, per_page: 20)
                      }
   scope :only_on_sale, lambda { |page|
                          where(buyer_id: nil)
-                         .order(event_date: 'ASC')
-                         .paginate(page: page, per_page: 20)
+                           .order(event_date: 'ASC')
+                           .paginate(page: page, per_page: 20)
                        }
 
   scope :search_ticket, lambda { |search_params|
                           return if search_params.blank?
 
-                          search_event_name(search_params[:q])
-                          .paginate(page: search_params[:page], per_page: 20)
+                          search_event_name_and_venue(search_params[:q])
+                            .paginate(page: search_params[:page], per_page: 20)
                         }
 
-  scope :search_event_name, lambda { |keyword|
+  scope :search_event_name_and_venue, lambda { |q|
+                                        split_keywords = q.split(/[[:blank:]]+/)
+                                        split_keywords.delete_if(&:blank?)
 
-                              split_keywords = keyword.split(/[[:blank:]]+/)
-                              split_keywords.delete_if {|n| n.blank?}
+                                        tickets = Ticket.none
+                                        split_keywords.each do |keyword|
+                                          event_name_search_tickets = where('event_name LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
+                                          venue_search_tickets = where('venue LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
+                                          tickets = tickets.or(event_name_search_tickets).or(venue_search_tickets)
+                                        end
 
-                              tickets = Ticket.none
-                              split_keywords.each do |keyword|
-                                event_name_search_tickets = where('event_name LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
-                                venue_search_tickets = where('venue LIKE(?)', "%#{sanitize_sql_like(keyword)}%")
-                                tickets = tickets.or(event_name_search_tickets).or(venue_search_tickets)
-                              end
-
-                              return tickets
-                            }
-
+                                        return tickets
+                                      }
 end
