@@ -53,4 +53,16 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+
+  def create_notification_follow(current_user)
+    follow_notification = Notification.where('visitor_id = ? and visited_id = ? and action = ?', current_user.id, id, 'follow')
+    return if follow_notification.present?
+
+    notification = Notification.new(
+      visitor_id: current_user.id,
+      visited_id: id,
+      action: 'follow'
+    )
+    notification.save!
+  end
 end
