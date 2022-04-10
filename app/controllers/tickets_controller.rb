@@ -4,26 +4,31 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: %w[show edit update destroy]
 
   def index
-    @tickets = Ticket.paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.paginate(page: params[:page], per_page: 20)
+  end
+
+  def search
+    @tickets = Ticket.search_ticket(search_params)
+    render :index
   end
 
   def new_arrival
-    @tickets = Ticket.all.order(created_at: 'DESC').paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.new_arrival_order(params[:page])
     render :index
   end
 
   def trend
-    @tickets = Ticket.select('tickets.*', 'count(likes.id) AS likes').left_joins(:likes).group('tickets.id').order('likes desc').paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.trend_order(params[:page])
     render :index
   end
 
   def near
-    @tickets = Ticket.all.where('event_date >= ?', Time.current).order(event_date: 'ASC').paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.near_order(params[:page])
     render :index
   end
 
   def on_sale
-    @tickets = Ticket.all.where(buyer_id: nil).order(event_date: 'ASC').paginate(page: params[:page], per_page: 20)
+    @tickets = Ticket.all.only_on_sale(params[:page])
     render :index
   end
 
@@ -111,5 +116,9 @@ class TicketsController < ApplicationController
 
   def set_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def search_params
+    params.permit(:q, :page)
   end
 end

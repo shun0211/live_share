@@ -7,9 +7,8 @@
     <%= link_to "行きたい!!が多い順", trend_tickets_path %>
     <%= link_to "出品中のチケットのみ表示", on_sale_tickets_path %>
     <%= link_to "すべてを表示", tickets_path %>
-    <%= form_tag("/search", method: "get") do %>
+    <%= form_tag("/tickets/search", method: "get") do %>
       <%= label_tag(:search, "キーワードで検索") %>
-      <%= text_field_tag(:search, "", {class: "form-control"}) %>
-      <%= submit_tag("Search") %>
+      <%= text_field_tag :q, nil, class: "form-control search_form" %>
     <% end %>
   </div>
