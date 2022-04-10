@@ -42,3 +42,4 @@ yarn-debug.log*
 /config/credentials/production.key
 /.ssh
 .env
+/vendor/*
