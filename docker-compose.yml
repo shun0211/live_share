@@ -3,10 +3,13 @@ services:
   db:
     image: mysql:8.0
     platform: linux/amd64
-    command:
     restart: always
     environment:
+      MYSQL_DATABASE: conefan_dev
+      MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_TCP_PORT: 3306
     ports:
       - 4306:3306
     # MySQL8.0からデフォルトの認証方式が変更された(caching_sha2_password)ため、mysql_native_passwordに戻す
